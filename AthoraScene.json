@@ -1,0 +1,260 @@
+[
+
+{
+  "id": 0,
+  "name": "Dock",
+  "north": null,
+  "northMessage": "Try not to walk off this dock please",
+  "south": 2,
+  "east": 3,
+  "west": 1,
+  "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. To the east, you can see a parking lot and to the west, you can see the entry gates to the boats."
+},
+
+{
+  "id": 1,
+  "name": "Parking Lot",
+  "north": null,
+  "northMessage": "Where on earth are you going? Get back to your mission.",
+  "south": null,
+  "southMessage": "It would be appreciated if you got back to your mission now",
+  "east": 0,
+  "west": null,
+  "westMessage": "You have a mission to do, don't bail now.",
+  "setting": "You stare at a parking lot, you're not thinking of leaving are you?"
+},
+
+{
+  "id": 2,
+  "name": "McDonalds",
+  "north": 0,
+  "south": null,
+  "southMessage": "Walking into the kitchen of a McDonald's isn't going to help the mission",
+  "east": null,
+  "eastMessage": "Have you never seen a wall before?",
+  "west": null,
+  "westMessage": "A wall, good job",
+  "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? Get back to your mission, they dont sell the Filet-o-fish anymore."
+},
+
+{
+  "id": 3,
+  "name": "Entry Gates",
+  "north": 4,
+  "south": null,
+  "southMessage": "Walking into the ocean won't help you beat Felon",
+  "east": null,
+  "eastMessage": "Theres nothing there but water. This is not the time for a swim, get back to your mission",
+  "west": 0,
+  "setting": "You walk through the gates, hopefully you paid for your ticket, there's lots of boats to the north, which one are you going to?"
+},
+
+{
+  "id": 4,
+  "name": "Boats",
+  "north": null,
+  "northMessage": "Can you not tell the difference between the ground and water?",
+  "south": 3,
+  "east": 5,
+  "west": null,
+  "westMessage": "Keep your feet on the ground for now",
+  "setting": "You stare very intensely at the boats neatly lined up on the dock as they bob up and down in the water. Eventually your eyes land on a particularily large yacht that looks very well maintained."
+},
+
+{
+  "id": 5,
+  "name": "Loading Bay",
+  "north": 6,
+  "south": null,
+  "southMessage": "There's nothing here",
+  "east": 8,
+  "west": 4,
+  "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped"
+},
+
+{
+  "id": 6,
+  "name": "Yacht",
+  "north": 7,
+  "south": 5,
+  "east": null,
+  "eastMessage": "There's no door here, you can't just walk into the side of a boat",
+  "west": null,
+  "westMessage": "Wrong way, I'm starting to think we shouldn't have recruited you",
+  "setting": "Standing next to the yacht is a bit awkward, the guards might start to suspect you. Hurry up and move, theres a guard to the north and the loading bay to the south"
+},
+
+{
+  "id": 7,
+  "name": "Guard",
+  "north": null,
+  "northMessage": "You can't just run away from this",
+  "south": 6,
+  "east": null,
+  "eastMessage": "There's nothing there but water",
+  "west": null,
+  "westMessage": "Walking away from someone is incredibly rude",
+  "setting": "Approaching the guard reveals that he is very nicely equipped to disable you in one swift stroke. The guard has a baton, taser, pepper spray and because he’s protecting such an important person, naturally, a gun."
+},
+
+{
+  "id": 8,
+  "name": "Cargo Hold",
+  "north": 9,
+  "south": null,
+  "southMessage": "Nice wall you've got there",
+  "east": null,
+  "eastMessage": "A wall, cool",
+  "west": 5,
+  "setting": "You're surrounded by what looks like years of supplies, maybe Felon was planning to escape and keep all the good stuff to himself. There is a hallway to the north and an exit to the west."
+},
+
+{
+  "id": 9,
+  "name": "Level One Hallway",
+  "north": 14,
+  "south": 10,
+  "east": 12,
+  "west": 11,
+  "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as a pretty looking staircase to the north. You could also go down the stairs you just climbed up to the south"
+},
+
+{
+  "id": 10,
+  "name": "Engine Bay",
+  "north": 9,
+  "south": null,
+  "southMessage": "You're not a mechanic, you don't know how engines work",
+  "east": null,
+  "eastMessage": "Sweet wall, maybe taste it to check",
+  "west": null,
+  "westMessage": "You just walked into a wall, you now have a shiny new bruise",
+  "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along."
+},
+
+{
+  "id": 11,
+  "name": "Life Boats",
+  "north": null,
+  "northMessage": "Do you want a bruise?",
+  "south": null,
+  "southMessage": "Don't walk into walls, you're going to break your nose",
+  "east": 9,
+  "west": null,
+  "westMessage": "Don't jump off the boat, you have work to do",
+  "setting": "This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out."
+},
+
+{
+  "id": 12,
+  "name": "Weapons",
+  "north": null,
+  "northMessage": "Walking into a wall of water guns isn't going to help you",
+  "south": null,
+  "southMessage": "Walking into shelves, well that's new",
+  "east": null,
+  "eastMessage": "The porthole is too small for you to jump out of",
+  "west": 9,
+  "setting": "Finally, something exciting for you to do. Oh wait, these are all water pistols. Take one just in case I suppose."
+},
+
+{
+  "id": 13,
+  "name": "Level Two Hallway",
+  "north": 16,
+  "south": 9,
+  "east": 14,
+  "west": 15,
+  "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
+},
+
+{
+  "id": 14,
+  "name": "Security",
+  "north": null,
+  "northMessage": "Stop walking into things, you're gonna break one of these displays",
+  "south": null,
+  "southMessage": "You just walked into a server rack, congratulations",
+  "east": null,
+  "eastMessage": "Another wall, are you collecting bruises or something?",
+  "west": 13,
+  "setting": "You seem to have wandered into the server room. There's a set of television screens on the north wall, notably, you can see Felon Muks standing in the Main Bridge, you'll have to be careful if you go up there."
+},
+
+{
+  "id": 15,
+  "name": "Bathroom",
+  "north": null,
+  "northMessage": "There is no mirror dimension, stop",
+  "south": null,
+  "southMessage": "Learn to walk without crashing",
+  "east": 13,
+  "west": null,
+  "westMessage": "A wall, epic",
+  "setting": "I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom."
+},
+
+{
+  "id": 16,
+  "name": "Main Bridge",
+  "north": 19,
+  "south": 13,
+  "east": 17,
+  "west": 18,
+  "setting": "You walk very slowly up the stairs so you're not spotted by Muks. Thankfully, he's facing a window. You can sneak into a door to the west or a door to the east. You could also go down the stairs you just climbed up to the south."
+},
+
+{
+  "id": 17,
+  "name": "Safe",
+  "north": null,
+  "northMessage": "You're making an awful racket walking into walls all the time, you're going to give yourself away",
+  "south": null,
+  "southMessage": "SHHHHHHHH",
+  "east": null,
+  "eastMessage": "Shush, you've gotten this far, don't blow it now",
+  "west": 16,
+  "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash."
+},
+
+{
+  "id": 18,
+  "name": "Deck",
+  "north": null,
+  "northMessage": "There is nothing of interest out here",
+  "south": null,
+  "southMessage": "How are you going to stop Felon Muks from here?",
+  "east": 16,
+  "west": null,
+  "westMessage": "There's nothing interesting here",
+  "setting": "Ah, fresh air. Must be hard to come by as a field agent."
+},
+
+{
+  "id": 19,
+  "name": "Controls",
+  "north": null,
+  "northMessage": "What are you going to do, jump out the window?",
+  "south": 16,
+  "east": null,
+  "eastMessage": "You can't go there, what are you, Mace Windu?",
+  "west": null,
+  "westMessage": "No, stop staring at the view and get to work",
+  "setting": "Good job, you've disabled everyone on the ship, now you have to navigate to the specified island and hideout while the other agents deactivate the rest of Felon's guards. There's a passkey to use the control panel though, have you been paying attention?"
+},
+
+{
+  "id": 20,
+  "name": "Secret Island",
+  "north": null,
+  "northMessage": "Once you start down the magenta path, forever will it dominate your destiny",
+  "south": null,
+  "southMessage": "The ability to save the world does not make you intelligent",
+  "east": null,
+  "eastMessage": "Wherever I go, the cartridge goes",
+  "west": null,
+  "westMessage": "You did it, you brought balance to the cartridges",
+  "setting": "You lie on the grass feeling accomplished. Don't get too relaxed though, you haven't retired yet."
+}
+
+]
