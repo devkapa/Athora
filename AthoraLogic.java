@@ -6,6 +6,8 @@ public class AthoraLogic {
 
     public static void main(String[] args) throws IOException, ParseException {
         AthoraScene.InitiateScenes();
+
+        // movement, messages, commands, scene map
     }
 
 }
