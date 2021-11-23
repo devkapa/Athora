@@ -1,10 +1,7 @@
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AthoraLogic {
 
@@ -20,7 +17,7 @@ public class AthoraLogic {
         boolean playerAlive = true;
 
         while(playerAlive){
-            String command = input.nextLine();
+            String command = input.nextLine().toLowerCase();
 
             if(hasVerb(command)) {
 
@@ -29,36 +26,17 @@ public class AthoraLogic {
                 }
 
                 if(command.contains("move") || command.contains("north") || command.contains("east") || command.contains("south") || command.contains("west")){
-
-                    String[] args = command.split(" ");
-
-                    if(args[1].equals("north") || command.contains("north")) {
+                    if(command.contains("north")) {
                         move(0);
-                    }
-
-                    if(args[1].equals("east")) {
+                    } else if(command.contains("east")) {
                         move(1);
-                    }
-
-                    if(args[1].equals("south")) {
+                    } else if(command.contains("south")) {
                         move(2);
-                    }
-
-                    if(args[1].equals("west")) {
+                    } else if(command.contains("west")) {
                         move(3);
-                    }
-
-                    /*
-                    String digits = command.replaceAll("[A-Za-z\\s]+", "");
-                    if(digits.length() > 0){
-                        int res = Integer.parseInt(digits);
-                        move(res);
-                        System.out.println(look());
                     } else {
-                        System.out.println("invalid scene number");
+                        System.out.println("Where do you want to move?");
                     }
-                     */
-
                 }
             } else {
                 System.out.println("I don't know what " + command + " means.");
@@ -85,7 +63,6 @@ public class AthoraLogic {
                 "quit", "go", "enter", "get", "take", "open", "move",
                 "inventory", "break", "kill", "look"
         };
-
         for (int i = 0; i <= verbs.length - 1; i++) {
             if (input.contains(verbs[i])) {
                 return true;
