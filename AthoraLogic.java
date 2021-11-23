@@ -45,16 +45,15 @@ public class AthoraLogic {
     }
 
     public static String look() {
-        return AthoraScene.currentScene.getSetting();
+        return AthoraScene.currentScene.getName() + "\n" + AthoraScene.currentScene.getSetting();
     }
 
     public static void move(int directionIndex) {
-        AthoraScene currentScene = AthoraScene.currentScene;
-        if(currentScene.getDirections().get(directionIndex) != 100) {
+        if(AthoraScene.currentScene.getDirections().get(directionIndex) != 100) {
             AthoraScene.currentScene = AthoraScene.athoraScenes.get(Math.toIntExact(AthoraScene.currentScene.getDirections().get(directionIndex)));
             System.out.println(look());
         } else {
-            System.out.println(currentScene.getDirectionMessage(directionIndex));
+            System.out.println(AthoraScene.currentScene.getDirectionMessage(directionIndex));
         }
     }
 
