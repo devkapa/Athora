@@ -7,7 +7,7 @@
     "south": 2,
     "east": 3,
     "west": 1,
-    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. To the east, you can see a parking lot and to the west, you can see the entry gates to the boats."
+    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. There is an exit to the east and an entrance to the west."
   },
   {
     "id": 1,
@@ -19,7 +19,7 @@
     "east": 0,
     "west": 100,
     "westMessage": "You have a mission to do, don't bail now.",
-    "setting": "You stare at a parking lot, you're not thinking of leaving are you?"
+    "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore."
   },
   {
     "id": 2,
@@ -42,7 +42,7 @@
     "east": 100,
     "eastMessage": "Theres nothing there but water. This is not the time for a swim, get back to your mission",
     "west": 0,
-    "setting": "You walk through the gates, hopefully you paid for your ticket, there's lots of boats to the north, which one are you going to?"
+    "setting": "You walk through the gates, hopefully you paid for your ticket, there's an exit to your north."
   },
   {
     "id": 4,
@@ -53,17 +53,17 @@
     "east": 5,
     "west": 100,
     "westMessage": "Keep your feet on the ground for now",
-    "setting": "You stare very intensely at the boats neatly lined up on the dock as they bob up and down in the water. Eventually your eyes land on a particularily large yacht that looks very well maintained."
+    "setting": "There are lots of boats here, You stare very intensely at the boats neatly lined up on the dock channeling your inner genius as they bob up and down in the water. Eventually your eyes land on a particularly large yacht to the east that looks very well maintained."
   },
   {
     "id": 5,
     "name": "Loading Bay",
     "north": 6,
     "south": 100,
-    "southMessage": "There's nothing here",
+    "southMessage": "You're not going to accomplish anything by swimming away",
     "east": 8,
     "west": 4,
-    "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped"
+    "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition."
   },
   {
     "id": 6,
@@ -74,7 +74,7 @@
     "eastMessage": "There's no door here, you can't just walk into the side of a boat",
     "west": 100,
     "westMessage": "Wrong way, I'm starting to think we shouldn't have recruited you",
-    "setting": "Standing next to the yacht is a bit awkward, the guards might start to suspect you. Hurry up and move, theres a guard to the north and the loading bay to the south"
+    "setting": "Standing next to the yacht is a bit awkward, you might trip the robot guards' suspicion detectors. Hurry up and move, the front of the yacht is up north and the rear is back south."
   },
   {
     "id": 7,
@@ -97,16 +97,16 @@
     "east": 100,
     "eastMessage": "A wall, cool",
     "west": 5,
-    "setting": "You're surrounded by what looks like years of supplies, maybe Felon was planning to escape and keep all the good stuff to himself. There is a hallway to the north and an exit to the west."
+    "setting": "You're surrounded by what looks like years of supplies and stacks of paperwork (perhaps relating to the acquisition and destruction of all the major printing companies on earth), maybe Felon was planning to escape and keep all the good stuff to himself. There is a doorway to the north and an exit to the west."
   },
   {
     "id": 9,
     "name": "Level One Hallway",
-    "north": 14,
+    "north": 13,
     "south": 10,
     "east": 12,
     "west": 11,
-    "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as a pretty looking staircase to the north. You could also go down the stairs you just climbed up to the south"
+    "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
   },
   {
     "id": 10,
@@ -118,7 +118,7 @@
     "eastMessage": "Sweet wall, maybe taste it to check",
     "west": 100,
     "westMessage": "You just walked into a wall, you now have a shiny new bruise",
-    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along."
+    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing. "
   },
   {
     "id": 11,
@@ -140,7 +140,7 @@
     "south": 100,
     "southMessage": "Walking into shelves, well that's new",
     "east": 100,
-    "eastMessage": "The porthole is too small for you to jump out of",
+    "eastMessage": "Thunk, This porthole is too small for you to jump out of",
     "west": 9,
     "setting": "Finally, something exciting for you to do. Oh wait, these are all water pistols. Take one just in case I suppose."
   },
@@ -196,7 +196,7 @@
     "east": 100,
     "eastMessage": "Shush, you've gotten this far, don't blow it now",
     "west": 16,
-    "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash."
+    "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash. You're so close now, make it out alive."
   },
   {
     "id": 18,
@@ -217,13 +217,37 @@
     "northMessage": "What are you going to do, jump out the window?",
     "south": 16,
     "east": 100,
-    "eastMessage": "You can't go there, what are you, Mace Windu?",
+    "eastMessage": "You can't go there, who are you, Mace Windu?",
     "west": 100,
     "westMessage": "No, stop staring at the view and get to work",
     "setting": "Good job, you've disabled everyone on the ship, now you have to navigate to the specified island and hideout while the other agents deactivate the rest of Felon's guards. There's a passkey to use the control panel though, have you been paying attention?"
   },
   {
     "id": 20,
+    "name": "More confidential dock",
+    "north": 100,
+    "northMessage": "Don't walk away from your associate ",
+    "south": 21,
+    "east": 100,
+    "eastMessage": "You're so rude oh my goodness.",
+    "west": 100,
+    "westMessage": "stop. walking. away.",
+    "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n \n Oh there he is. \n You hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south."
+  },
+  {
+    "id": 21,
+    "name": "The path to the magenta side",
+    "north": 100,
+    "northMessage": "You're not there yet",
+    "south": 100,
+    "southMessage": "Just a little longer",
+    "east": 22,
+    "west": 100,
+    "westMessage": "Just a few more hours, good job on the mission though",
+    "setting": "You sit on the deck as the boat cruises on autocaptain. Bathed in the golden hour light, you think about the memories you've created on this mission as we insulted you non-stop. Get off the boat through the east staircase when it lands itself in a couple seconds."
+  },
+  {
+    "id": 22,
     "name": "Secret Island",
     "north": 100,
     "northMessage": "Once you start down the magenta path, forever will it dominate your destiny",
