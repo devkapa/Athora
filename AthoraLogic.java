@@ -7,7 +7,6 @@ public class AthoraLogic {
 
     static Scanner input = new Scanner(System.in);
 
-    @SuppressWarnings("InfiniteLoopStatement")
     public static void AwaitMovement() throws IOException, ParseException {
 
         AthoraScene.InitiateScenes();
