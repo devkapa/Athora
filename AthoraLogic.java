@@ -1,7 +1,10 @@
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AthoraLogic {
 
@@ -11,12 +14,23 @@ public class AthoraLogic {
 
         AthoraScene.InitiateScenes();
 
+        long playerHp = 10;
+        ArrayList<String> inventory = new ArrayList<>();
+
+        AthoraPlayer player = new AthoraPlayer(playerHp, inventory);
+
         System.out.println(look());
 
-        boolean playerAlive = true;
+        while(true){
 
-        while(playerAlive){
-            String command = input.nextLine().toLowerCase();
+            if (player.getHp() <= 0){
+                System.out.println(AthoraAssets.diedMessage);
+                break;
+            }
+
+            String command = input.nextLine().toLowerCase().trim();
+
+            String[] args = command.split(" ");
 
             if(hasVerb(command)) {
 
@@ -24,18 +38,28 @@ public class AthoraLogic {
                     System.out.println(look());
                 }
 
-                if(command.contains("move") || command.contains("north") || command.contains("east") || command.contains("south") || command.contains("west")){
-                    if(command.contains("north")) {
+                if(isolatedContains(command, "move") || isolatedContains(command, "north") || isolatedContains(command, "east") || isolatedContains(command, "south") || isolatedContains(command, "west")){
+                    if(isolatedContains(command, "north")) {
                         move(0);
-                    } else if(command.contains("east")) {
+                    } else if(isolatedContains(command, "east")) {
                         move(1);
-                    } else if(command.contains("south")) {
+                    } else if(isolatedContains(command, "south")) {
                         move(2);
-                    } else if(command.contains("west")) {
+                    } else if(isolatedContains(command, "west")) {
                         move(3);
                     } else {
                         System.out.println("Where do you want to move?");
                     }
+                }
+
+                if(isolatedContains(command, "addhp")){
+                    player.setHp((int) player.getHp() + Integer.parseInt(args[1]));
+                    System.out.println(player.getHp());
+                }
+
+                if(isolatedContains(command, "removehp")){
+                    player.setHp((int) player.getHp() - Integer.parseInt(args[1]));
+                    System.out.println(player.getHp());
                 }
             } else {
                 System.out.println("I don't know what " + command + " means.");
@@ -59,14 +83,21 @@ public class AthoraLogic {
     public static boolean hasVerb(String input){
         String[] verbs = {"north", "east", "south", "west", "restart",
                 "quit", "go", "enter", "get", "take", "open", "move",
-                "inventory", "break", "kill", "look"
+                "inventory", "break", "kill", "look", "addhp", "removehp"
         };
         for (int i = 0; i <= verbs.length - 1; i++) {
-            if (input.contains(verbs[i])) {
+            if (isolatedContains(input, verbs[i])) {
                 return true;
             }
         }
         return false;
+    }
+
+    private static boolean isolatedContains(String source, String subItem){
+        String pattern = "\\b"+subItem+"\\b";
+        Pattern p=Pattern.compile(pattern);
+        Matcher m=p.matcher(source);
+        return m.find();
     }
 
 }
