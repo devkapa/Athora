@@ -7,6 +7,10 @@
     "south": 2,
     "east": 3,
     "west": 1,
+    "up": 100,
+    "upMessage": "You're not superman, no flying into the sunset here",
+    "down": 100,
+    "downMessage": "Did you bring a jackhammer?",
     "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. There is an exit to the east and an entrance to the west."
   },
   {
@@ -19,6 +23,10 @@
     "east": 0,
     "west": 100,
     "westMessage": "You have a mission to do, don't bail now.",
+    "up": 100,
+    "upMessage": "Wheeeee, I'm kidding, you only made it 2 feet off the ground.",
+    "down": 100,
+    "downMessage": "You fell down a drain, good job. \n You clamber back up, looking like an idiot who watched It one too many times",
     "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore."
   },
   {
@@ -31,6 +39,10 @@
     "eastMessage": "Have you never seen a wall before?",
     "west": 100,
     "westMessage": "A wall, good job",
+    "up": 100,
+    "upMessage": "You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission",
+    "down": 100,
+    "downMessage": "Tiles, cool \n You want a medal or something?",
     "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? Get back to your mission, they dont sell the Filet-o-fish anymore."
   },
   {
@@ -42,6 +54,10 @@
     "east": 100,
     "eastMessage": "Theres nothing there but water. This is not the time for a swim, get back to your mission",
     "west": 0,
+    "up": 100,
+    "upMessage": "You can't fly, you're not a bee",
+    "down": 100,
+    "downMessage": "If you put a hole in this floor, you would get to the ocean, you would also have to pay a hefty fine.",
     "setting": "You walk through the gates, hopefully you paid for your ticket, there's an exit to your north."
   },
   {
@@ -53,28 +69,74 @@
     "east": 5,
     "west": 100,
     "westMessage": "Keep your feet on the ground for now",
+    "up": 100,
+    "upMessage": "Bring a jetpack next time, Barry.",
+    "down": 100,
+    "downMessage": "You planning to dig to China or something?",
     "setting": "There are lots of boats here, You stare very intensely at the boats neatly lined up on the dock channeling your inner genius as they bob up and down in the water. Eventually your eyes land on a particularly large yacht to the east that looks very well maintained."
   },
   {
     "id": 5,
     "name": "Loading Bay",
-    "north": 6,
-    "south": 100,
-    "southMessage": "You're not going to accomplish anything by swimming away",
-    "east": 8,
-    "west": 4,
-    "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition."
+    "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition.",
+    "directions": [
+      {
+        "direction": "north",
+        "value": 6
+      },
+      {
+        "direction": "east",
+        "value": 8
+      },
+      {
+        "direction": "south",
+        "value": 100,
+        "message": "You're not going to accomplish anything by swimming away"
+      },
+      {
+        "direction": "west",
+        "value": 4
+      },
+      {
+        "direction": "up",
+        "value": 100,
+        "message": "Don't waste your energy jumping, you have a mission to do."
+      },
+      {
+        "direction": "down",
+        "value": 100,
+        "message": "This isn't the time to be socialising with ants."
+      }
+    ]
   },
   {
     "id": 6,
     "name": "Yacht",
-    "north": 7,
-    "south": 5,
-    "east": 100,
-    "eastMessage": "There's no door here, you can't just walk into the side of a boat",
-    "west": 100,
-    "westMessage": "Wrong way, I'm starting to think we shouldn't have recruited you",
-    "setting": "Standing next to the yacht is a bit awkward, you might trip the robot guards' suspicion detectors. Hurry up and move, the front of the yacht is up north and the rear is back south."
+    "setting": "Standing next to the yacht is a bit awkward, you might trip the robot guards' suspicion detectors. Hurry up and move, the front of the yacht is up north and the rear is back south.",
+    "directions": {
+      "north": {
+        "value": 7
+      },
+      "east": {
+        "value": 100,
+        "message": "There's no door here, you can't just walk into the side of a boat"
+      },
+      "south": {
+        "value": 5
+      },
+      "west": {
+        "value": 100,
+        "message": "Wrong way, I'm starting to think we shouldn't have recruited you"
+      },
+      "up": {
+        "value": 100,
+        "message": "Climbing up the side of the yacht is futile."
+      },
+      "down": {
+        "value": 100,
+        "message": "The floor here is made out of floor."
+      }
+    }
   },
   {
     "id": 7,
@@ -86,26 +148,37 @@
     "eastMessage": "There's nothing there but water",
     "west": 100,
     "westMessage": "Walking away from someone is incredibly rude",
+    "up": 100,
+    "upMessage": "No don't do that.",
+    "down": 100,
+    "downMessage": "As flattering as that would be, worshipping a guard would be a bit suspicious.",
     "setting": "Approaching the guard reveals that he is very nicely equipped to disable you in one swift stroke. The guard has a baton, taser, pepper spray and because he’s protecting such an important person, naturally, a gun."
   },
   {
     "id": 8,
     "name": "Cargo Hold",
-    "north": 9,
+    "north": 100,
+    "northMessage": "Walking into a suitcase isn't possible, you're not that tiny.",
     "south": 100,
     "southMessage": "Nice wall you've got there",
     "east": 100,
     "eastMessage": "A wall, cool",
     "west": 5,
+    "up": 9,
+    "down": 100,
+    "downMessage": "If you went any lower than this you'd end up in the water.",
     "setting": "You're surrounded by what looks like years of supplies and stacks of paperwork (perhaps relating to the acquisition and destruction of all the major printing companies on earth), maybe Felon was planning to escape and keep all the good stuff to himself. There is a doorway to the north and an exit to the west."
   },
   {
     "id": 9,
     "name": "Level One Hallway",
-    "north": 13,
+    "north": 100,
+    "northMessage": "You've walked into a cupboard *disappointed sigh*",
     "south": 10,
     "east": 12,
     "west": 11,
+    "up": 13,
+    "down": 8,
     "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
   },
   {
@@ -118,6 +191,10 @@
     "eastMessage": "Sweet wall, maybe taste it to check",
     "west": 100,
     "westMessage": "You just walked into a wall, you now have a shiny new bruise",
+    "up": 100,
+    "upMessage": "Nothing above you but a ceiling",
+    "down": 100,
+    "downMessage": "Wanna fall through a floor?",
     "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing. "
   },
   {
@@ -130,6 +207,10 @@
     "east": 9,
     "west": 100,
     "westMessage": "Don't jump off the boat, you have work to do",
+    "up": 100,
+    "upMessage": "NO, nothing there",
+    "down": 100,
+    "downMessage": "You examine a floor, it looks just like all the others on this boat.",
     "setting": "This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out."
   },
   {
@@ -142,6 +223,10 @@
     "east": 100,
     "eastMessage": "Thunk, This porthole is too small for you to jump out of",
     "west": 9,
+    "up": 100,
+    "upMessage": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling.",
+    "down": 100,
+    "downMessage": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years.",
     "setting": "Finally, something exciting for you to do. Oh wait, these are all water pistols. Take one just in case I suppose."
   },
   {
@@ -151,6 +236,8 @@
     "south": 9,
     "east": 14,
     "west": 15,
+    "up": 16,
+    "down": 9,
     "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
   },
   {
@@ -163,6 +250,11 @@
     "east": 100,
     "eastMessage": "Another wall, are you collecting bruises or something?",
     "west": 13,
+    "up": 100,
+    "upMessage": "Your noggin would not like that.",
+    "down": 100,
+    "downMessage": "You fell over. Good job.",
+    "hp": -1,
     "setting": "You seem to have wandered into the server room. There's a set of television screens on the north wall, notably, you can see Felon Muks standing in the Main Bridge, you'll have to be careful if you go up there."
   },
   {
@@ -175,6 +267,10 @@
     "east": 13,
     "west": 100,
     "westMessage": "A wall, epic",
+    "up": 100,
+    "upMessage": "No please sir no more brain damage.",
+    "down": 100,
+    "downMessage": "Yuck. That would be pretty unhygienic.",
     "setting": "I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom."
   },
   {
@@ -184,6 +280,10 @@
     "south": 13,
     "east": 17,
     "west": 18,
+    "up": 100,
+    "upMessage": "You jump, and Muks hears you. He turns around, his fiery red eyes stare you down as he lifts up a The Interesting Company flamethrower. Oops, you're on fire.",
+    "hp": -10000,
+    "down": 13,
     "setting": "You walk very slowly up the stairs so you're not spotted by Muks. Thankfully, he's facing a window. You can sneak into a door to the west or a door to the east. You could also go down the stairs you just climbed up to the south."
   },
   {
@@ -196,6 +296,10 @@
     "east": 100,
     "eastMessage": "Shush, you've gotten this far, don't blow it now",
     "west": 16,
+    "up": 100,
+    "upMessage": "Hah. You're too short to reach that cash.",
+    "down": 100,
+    "downMessage": "Nothing here but clean, shiny, expensive safe floor.",
     "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash. You're so close now, make it out alive."
   },
   {
@@ -208,6 +312,11 @@
     "east": 16,
     "west": 100,
     "westMessage": "There's nothing interesting here",
+    "up": 100,
+    "upMessage": "Up, up, and away! *splash*. Titanic flashbacks. The ocean is too cold for you.",
+    "hp": -10,
+    "down": 100,
+    "downMessage": "Yuck. There's bird poop on the floor.",
     "setting": "Ah, fresh air. Must be hard to come by as a field agent."
   },
   {
@@ -217,9 +326,13 @@
     "northMessage": "What are you going to do, jump out the window?",
     "south": 16,
     "east": 100,
-    "eastMessage": "You can't go there, who are you, Mace Windu?",
+    "eastMessage": "Don't jump out the Mace Windu.",
     "west": 100,
     "westMessage": "No, stop staring at the view and get to work",
+    "up": 100,
+    "upMessage": "Kopfschmerzen",
+    "down": 100,
+    "downMessage": "Dunce. You notice your shoelaces are untied.",
     "setting": "Good job, you've disabled everyone on the ship, now you have to navigate to the specified island and hideout while the other agents deactivate the rest of Felon's guards. There's a passkey to use the control panel though, have you been paying attention?"
   },
   {
@@ -232,6 +345,10 @@
     "eastMessage": "You're so rude oh my goodness.",
     "west": 100,
     "westMessage": "stop. walking. away.",
+    "up": 100,
+    "upMessage": "Nah nothing up there.",
+    "down": 100,
+    "downMessage": "Good attentiveness but there isn't anything on the floor.",
     "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n \n Oh there he is. \n You hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south."
   },
   {
@@ -244,6 +361,10 @@
     "east": 22,
     "west": 100,
     "westMessage": "Just a few more hours, good job on the mission though",
+    "up": 100,
+    "upMessage": "Flying is an ability some would consider to be unnatural",
+    "down": 100,
+    "downMessage": "Whats brown and sticky, and the thing you just stepped in?",
     "setting": "You sit on the deck as the boat cruises on autocaptain. Bathed in the golden hour light, you think about the memories you've created on this mission as we insulted you non-stop. Get off the boat through the east staircase when it lands itself in a couple seconds."
   },
   {
@@ -257,6 +378,10 @@
     "eastMessage": "Wherever I go, the cartridge goes",
     "west": 100,
     "westMessage": "You did it, you brought balance to the cartridges",
+    "up": 100,
+    "upMessage": "You brought peace, freedom, justice and security to your surprisingly-not-new World.",
+    "down": 100,
+    "downMessage": "Did you notice the floor was still there? Anyways you finished the game. GG. :)",
     "setting": "You lie on the grass feeling accomplished. Don't get too relaxed though, you haven't retired yet."
   }
 ]
