@@ -12,7 +12,7 @@ public class AthoraLogic {
 
     public static void AwaitMovement() throws IOException, ParseException {
 
-        AthoraScene.InitiateScenes();
+        AthoraScene.InitiateScenes("AthoraScenes.json");
 
         long playerHp = 10;
         ArrayList<String> inventory = new ArrayList<>();
@@ -72,8 +72,8 @@ public class AthoraLogic {
     }
 
     public static void move(int directionIndex) {
-        if(AthoraScene.currentScene.getDirections().get(directionIndex) != 100) {
-            AthoraScene.currentScene = AthoraScene.athoraScenes.get(Math.toIntExact(AthoraScene.currentScene.getDirections().get(directionIndex)));
+        if((long) AthoraScene.currentScene.getDirections().get(directionIndex).get("value") != 100) {
+            AthoraScene.currentScene = AthoraScene.athoraScenes.get(Math.toIntExact((long) AthoraScene.currentScene.getDirections().get(directionIndex).get("value")));
             System.out.println(look());
         } else {
             System.out.println(AthoraScene.currentScene.getDirectionMessage(directionIndex));
