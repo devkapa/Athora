@@ -52,7 +52,7 @@
       },
       "down": {
         "value": 100,
-        "message": "You fell down a drain, good job. \n You clamber back up, looking like an idiot who watched It one too many times."
+        "message": "You fell down a drain, good job. \nYou clamber back up, looking like an idiot who watched It one too many times."
       }
     },
     "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore."
@@ -264,6 +264,7 @@
   {
     "id": 9,
     "name": "Level One Hallway",
+    "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and south as well as another staircase leading up. You could also go down the stairs you just climbed up.",
     "directions": {
       "north": {
         "value": 100,
@@ -284,8 +285,7 @@
       "down": {
         "value": 8
       }
-    },
-    "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
+    }
   },
   {
     "id": 10,
