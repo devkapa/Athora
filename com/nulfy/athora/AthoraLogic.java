@@ -47,10 +47,6 @@ public class AthoraLogic {
                     System.out.println(look());
                 }
 
-                if(isolatedContains(command, "move")){
-                    directionActions(command);
-                }
-
                 if(isolatedContains(command, "addhp")){
                     player.changeHp(Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
