@@ -65,7 +65,9 @@ public class AthoraScene {
                     (Map<?, ?>) directionMap.get("north"),
                     (Map<?, ?>) directionMap.get("east"),
                     (Map<?, ?>) directionMap.get("south"),
-                    (Map<?, ?>) directionMap.get("west")
+                    (Map<?, ?>) directionMap.get("west"),
+                    (Map<?, ?>) directionMap.get("up"),
+                    (Map<?, ?>) directionMap.get("down")
             );
 
             AthoraScene selectedScene = new AthoraScene(

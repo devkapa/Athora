@@ -43,7 +43,7 @@ public class AthoraLogic {
                     System.out.println(look());
                 }
 
-                if(isolatedContains(command, "move") || isolatedContains(command, "north") || isolatedContains(command, "east") || isolatedContains(command, "south") || isolatedContains(command, "west")){
+                if(isolatedContains(command, "move") || isolatedContains(command, "north") || isolatedContains(command, "east") || isolatedContains(command, "south") || isolatedContains(command, "west") || isolatedContains(command, "up") || isolatedContains(command, "down")){
                     if(isolatedContains(command, "north")) {
                         move(0);
                     } else if(isolatedContains(command, "east")) {
@@ -52,6 +52,10 @@ public class AthoraLogic {
                         move(2);
                     } else if(isolatedContains(command, "west")) {
                         move(3);
+                    } else if(isolatedContains(command, "up")) {
+                        move(4);
+                    } else if(isolatedContains(command, "down")) {
+                        move(5);
                     } else {
                         System.out.println("Where do you want to move?");
                     }
@@ -86,7 +90,7 @@ public class AthoraLogic {
     }
 
     public static boolean hasVerb(String input){
-        String[] verbs = {"north", "east", "south", "west", "restart",
+        String[] verbs = {"north", "east", "south", "west", "up", "down", "restart",
                 "quit", "go", "enter", "get", "take", "open", "move",
                 "inventory", "break", "kill", "look", "addhp", "removehp"
         };
