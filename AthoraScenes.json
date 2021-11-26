@@ -194,7 +194,7 @@
       },
       "up": {
         "value": 100,
-        "message": "Climbing up the side of the yacht is futile."
+        "message": "Climbing up the yacht hull would be futile."
       },
       "down": {
         "value": 100,
@@ -290,204 +290,389 @@
   {
     "id": 10,
     "name": "Engine Bay",
-    "north": 9,
-    "south": 100,
-    "southMessage": "You're not a mechanic, you don't know how engines work",
-    "east": 100,
-    "eastMessage": "Sweet wall, maybe taste it to check",
-    "west": 100,
-    "westMessage": "You just walked into a wall, you now have a shiny new bruise",
-    "up": 100,
-    "upMessage": "Nothing above you but a ceiling",
-    "down": 100,
-    "downMessage": "Wanna fall through a floor?",
-    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing. "
+    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing. ",
+    "directions": {
+      "north": {
+        "value": 9
+      },
+      "east": {
+        "value": 100,
+        "message": "Sweet wall, maybe taste it to check"
+      },
+      "south": {
+        "value": 100,
+        "message": "You're not a mechanic, you don't know how engines work"
+      },
+      "west": {
+        "value": 100,
+        "message": "You just walked into a wall, you now have a shiny new bruise"
+      },
+      "up": {
+        "value": 100,
+        "message": "Nothing above you but a ceiling"
+      },
+      "down": {
+        "value": 100,
+        "message": "Wanna fall through a floor?"
+      }
+    }
   },
   {
     "id": 11,
     "name": "Life Boats",
-    "north": 100,
-    "northMessage": "Do you want a bruise?",
-    "south": 100,
-    "southMessage": "Don't walk into walls, you're going to break your nose",
-    "east": 9,
-    "west": 100,
-    "westMessage": "Don't jump off the boat, you have work to do",
-    "up": 100,
-    "upMessage": "NO, nothing there",
-    "down": 100,
-    "downMessage": "You examine a floor, it looks just like all the others on this boat.",
-    "setting": "This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out."
+    "setting": "This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Do you want a bruise?"
+      },
+      "east": {
+        "value": 9
+      },
+      "south": {
+        "value": 100,
+        "message":  "Don't walk into walls, you're going to break your nose"
+      },
+      "west": {
+        "value": 100,
+        "message": "Don't jump off the boat, you have work to do"
+      },
+      "up": {
+        "value": 100,
+        "message": "NO, nothing there"
+      },
+      "down": {
+        "value": 100,
+        "message": "You examine a floor, it looks just like all the others on this boat."
+      }
+    }
   },
   {
     "id": 12,
     "name": "Weapons",
-    "north": 100,
-    "northMessage": "Walking into a wall of water guns isn't going to help you",
-    "south": 100,
-    "southMessage": "Walking into shelves, well that's new",
-    "east": 100,
-    "eastMessage": "Thunk, This porthole is too small for you to jump out of",
-    "west": 9,
-    "up": 100,
-    "upMessage": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling.",
-    "down": 100,
-    "downMessage": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years.",
-    "setting": "Finally, something exciting for you to do. Oh wait, these are all water pistols. Take one just in case I suppose."
+    "setting": "Finally, something exciting for you to do. Oh wait, these are all water pistols. Take one just in case I suppose.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Walking into a wall of water guns isn't going to help you"
+      },
+      "east": {
+        "value": 13,
+        "message": "Thunk, This porthole is too small for you to jump out of"
+      },
+      "south": {
+        "value": 100,
+        "message": "Walking into shelves, well that's new"
+      },
+      "west": {
+        "value": 9
+      },
+      "up": {
+        "value": 100,
+        "message": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling."
+      },
+      "down": {
+        "value": 100,
+        "message": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years.",
+        "hp": -1
+      }
+    }
   },
   {
     "id": 13,
     "name": "Level Two Hallway",
-    "north": 16,
-    "south": 9,
-    "east": 14,
-    "west": 15,
-    "up": 16,
-    "down": 9,
-    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
+    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south",
+    "directions": {
+      "north": {
+        "value": 16
+      },
+      "east": {
+        "value": 14
+      },
+      "south": {
+        "value": 9
+      },
+      "west": {
+        "value": 15
+      },
+      "up": {
+        "value": 16
+      },
+      "down": {
+        "value": 9
+      }
+    }
   },
   {
     "id": 14,
     "name": "Security",
-    "north": 100,
-    "northMessage": "Stop walking into things, you're gonna break one of these displays",
-    "south": 100,
-    "southMessage": "You just walked into a server rack, congratulations",
-    "east": 100,
-    "eastMessage": "Another wall, are you collecting bruises or something?",
-    "west": 13,
-    "up": 100,
-    "upMessage": "Your noggin would not like that.",
-    "down": 100,
-    "downMessage": "You fell over. Good job.",
-    "hp": -1,
-    "setting": "You seem to have wandered into the server room. There's a set of television screens on the north wall, notably, you can see Felon Muks standing in the Main Bridge, you'll have to be careful if you go up there."
+    "setting": "You seem to have wandered into the server room. There's a set of television screens on the north wall, notably, you can see Felon Muks standing in the Main Bridge, you'll have to be careful if you go up there.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Stop walking into things, you're gonna break one of these displays"
+      },
+      "east": {
+        "value": 100,
+        "message": "Another wall, are you collecting bruises or something?"
+      },
+      "south": {
+        "value": 100,
+        "message": "You just walked into a server rack, congratulations"
+      },
+      "west": {
+        "value": 13
+      },
+      "up": {
+        "value": 100,
+        "message": "Your noggin does not like that.",
+        "hp": -1
+      },
+      "down": {
+        "value": 100,
+        "message": "You fell over. Good job.",
+        "hp": -1
+      }
+    }
   },
   {
     "id": 15,
     "name": "Bathroom",
-    "north": 100,
-    "northMessage": "There is no mirror dimension, stop",
-    "south": 100,
-    "southMessage": "Learn to walk without crashing",
-    "east": 13,
-    "west": 100,
-    "westMessage": "A wall, epic",
-    "up": 100,
-    "upMessage": "No please sir no more brain damage.",
-    "down": 100,
-    "downMessage": "Yuck. That would be pretty unhygienic.",
-    "setting": "I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom."
+    "setting": "I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "There is no mirror dimension, stop"
+      },
+      "east": {
+        "value": 13
+      },
+      "south": {
+        "value": 100,
+        "message": "Learn to walk without crashing"
+      },
+      "west": {
+        "value": 100,
+        "message": "A wall, epic"
+      },
+      "up": {
+        "value": 100,
+        "message": "No please sir no more brain damage."
+      },
+      "down": {
+        "value": 100,
+        "message": "Yuck. That would be pretty unhygienic."
+      }
+    }
   },
   {
     "id": 16,
     "name": "Main Bridge",
-    "north": 19,
-    "south": 13,
-    "east": 17,
-    "west": 18,
-    "up": 100,
-    "upMessage": "You jump, and Muks hears you. He turns around, his fiery red eyes stare you down as he lifts up a The Interesting Company flamethrower. Oops, you're on fire.",
-    "hp": -10000,
-    "down": 13,
-    "setting": "You walk very slowly up the stairs so you're not spotted by Muks. Thankfully, he's facing a window. You can sneak into a door to the west or a door to the east. You could also go down the stairs you just climbed up to the south."
+    "setting": "You walk very slowly up the stairs so you're not spotted by Muks. Thankfully, he's facing a window. You can sneak into a door to the west or a door to the east. You could also go down the stairs you just climbed up to the south.",
+    "directions": {
+      "north": {
+        "value": 19
+      },
+      "east": {
+        "value": 17
+      },
+      "south": {
+        "value": 13
+      },
+      "west": {
+        "value": 18
+      },
+      "up": {
+        "value": 100,
+        "message": "You jump, and Muks hears you. He turns around, his fiery red eyes stare you down as he lifts up a The Interesting Company flamethrower. Oops, you're on fire.",
+        "hp": -10000
+      },
+      "down": {
+        "value": 13
+      }
+    }
   },
   {
     "id": 17,
     "name": "Safe",
-    "north": 100,
-    "northMessage": "You're making an awful racket walking into walls all the time, you're going to give yourself away",
-    "south": 100,
-    "southMessage": "SHHHHHHHH",
-    "east": 100,
-    "eastMessage": "Shush, you've gotten this far, don't blow it now",
-    "west": 16,
-    "up": 100,
-    "upMessage": "Hah. You're too short to reach that cash.",
-    "down": 100,
-    "downMessage": "Nothing here but clean, shiny, expensive safe floor.",
-    "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash. You're so close now, make it out alive."
+    "setting": "Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash. You're so close now, make it out alive.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "You're making an awful racket walking into walls all the time, you're going to give yourself away"
+      },
+      "east": {
+        "value": 100,
+        "message": "Shush, you've gotten this far, don't blow it now"
+      },
+      "south": {
+        "value": 100,
+        "message": "SHHHHHHHH"
+      },
+      "west": {
+        "value": 16
+      },
+      "up": {
+        "value": 100,
+        "message": "Hah. You're too short to reach that cash."
+      },
+      "down": {
+        "value": 100,
+        "message": "Nothing here but clean, shiny, expensive safe floor."
+      }
+    }
   },
   {
     "id": 18,
     "name": "Deck",
-    "north": 100,
-    "northMessage": "There is nothing of interest out here",
-    "south": 100,
-    "southMessage": "How are you going to stop Felon Muks from here?",
-    "east": 16,
-    "west": 100,
-    "westMessage": "There's nothing interesting here",
-    "up": 100,
-    "upMessage": "Up, up, and away! *splash*. Titanic flashbacks. The ocean is too cold for you.",
-    "hp": -10,
-    "down": 100,
-    "downMessage": "Yuck. There's bird poop on the floor.",
-    "setting": "Ah, fresh air. Must be hard to come by as a field agent."
+    "setting": "Ah, fresh air. Must be hard to come by as a field agent.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "There is nothing of interest over there"
+      },
+      "east": {
+        "value": 16
+      },
+      "south": {
+        "value": 100,
+        "message": "How are you going to stop Felon Muks from here?"
+      },
+      "west": {
+        "value": 100,
+        "message": "There's nothing interesting here"
+      },
+      "up": {
+        "value": 100,
+        "message": "Up, up, and away! *splash*. Titanic flashbacks. The ocean is too cold for you.",
+        "hp": -10
+      },
+      "down": {
+        "value": 100,
+        "message": "Yuck. There's bird poop on the floor."
+      }
+    }
   },
   {
     "id": 19,
     "name": "Controls",
-    "north": 100,
-    "northMessage": "What are you going to do, jump out the window?",
-    "south": 16,
-    "east": 100,
-    "eastMessage": "Don't jump out the Mace Windu.",
-    "west": 100,
-    "westMessage": "No, stop staring at the view and get to work",
-    "up": 100,
-    "upMessage": "Kopfschmerzen",
-    "down": 100,
-    "downMessage": "Dunce. You notice your shoelaces are untied.",
-    "setting": "Good job, you've disabled everyone on the ship, now you have to navigate to the specified island and hideout while the other agents deactivate the rest of Felon's guards. There's a passkey to use the control panel though, have you been paying attention?"
+    "setting": "Good job, you've disabled everyone on the ship, now you have to navigate to the specified island and hideout while the other agents deactivate the rest of Felon's guards. There's a passkey to use the control panel though, have you been paying attention?",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "What are you going to do, jump out the window?"
+      },
+      "east": {
+        "value": 100,
+        "message": "Don't jump out the Mace Windu."
+      },
+      "south": {
+        "value": 100,
+        "message": "Learn to walk without crashing"
+      },
+      "west": {
+        "value": 100,
+        "message": "No, stop staring at the view and get to work"
+      },
+      "up": {
+        "value": 100,
+        "message": "Kopfschmerzen"
+      },
+      "down": {
+        "value": 100,
+        "message": "Dunce. You notice your shoelaces are untied."
+      }
+    }
   },
   {
     "id": 20,
     "name": "More confidential dock",
-    "north": 100,
-    "northMessage": "Don't walk away from your associate ",
-    "south": 21,
-    "east": 100,
-    "eastMessage": "You're so rude oh my goodness.",
-    "west": 100,
-    "westMessage": "stop. walking. away.",
-    "up": 100,
-    "upMessage": "Nah nothing up there.",
-    "down": 100,
-    "downMessage": "Good attentiveness but there isn't anything on the floor.",
-    "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n \n Oh there he is. \n You hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south."
+    "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n \n Oh there he is. \n You hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Don't walk away from your associate"
+      },
+      "east": {
+        "value": 100,
+        "message": "You're so rude oh my goodness."
+      },
+      "south": {
+        "value": 21
+      },
+      "west": {
+        "value": 100,
+        "message": "stop. walking. away."
+      },
+      "up": {
+        "value": 100,
+        "message": "Nah nothing up there."
+      },
+      "down": {
+        "value": 100,
+        "message": "Whats brown and sticky, and the thing you just stepped in?"
+      }
+    }
   },
   {
     "id": 21,
     "name": "The path to the magenta side",
-    "north": 100,
-    "northMessage": "You're not there yet",
-    "south": 100,
-    "southMessage": "Just a little longer",
-    "east": 22,
-    "west": 100,
-    "westMessage": "Just a few more hours, good job on the mission though",
-    "up": 100,
-    "upMessage": "Flying is an ability some would consider to be unnatural",
-    "down": 100,
-    "downMessage": "Whats brown and sticky, and the thing you just stepped in?",
-    "setting": "You sit on the deck as the boat cruises on autocaptain. Bathed in the golden hour light, you think about the memories you've created on this mission as we insulted you non-stop. Get off the boat through the east staircase when it lands itself in a couple seconds."
+    "setting": "You sit on the deck as the boat cruises on autocaptain. Bathed in the golden hour light, you think about the memories you've created on this mission as we insulted you non-stop. Get off the boat through the east staircase when it lands itself in a couple seconds.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "You're not there yet"
+      },
+      "east": {
+        "value": 22
+      },
+      "south": {
+        "value": 100,
+        "message": "Just a little longer"
+      },
+      "west": {
+        "value": 100,
+        "message": "Just a few more hours, good job on the mission though"
+      },
+      "up": {
+        "value": 100,
+        "message": "Flying is an ability some would consider to be unnatural"
+      },
+      "down": {
+        "value": 100,
+        "message": "Good attentiveness but there isn't anything on the floor."
+      }
+    }
   },
   {
     "id": 22,
     "name": "Secret Island",
-    "north": 100,
-    "northMessage": "Once you start down the magenta path, forever will it dominate your destiny",
-    "south": 100,
-    "southMessage": "The ability to save the world does not make you intelligent",
-    "east": 100,
-    "eastMessage": "Wherever I go, the cartridge goes",
-    "west": 100,
-    "westMessage": "You did it, you brought balance to the cartridges",
-    "up": 100,
-    "upMessage": "You brought peace, freedom, justice and security to your surprisingly-not-new World.",
-    "down": 100,
-    "downMessage": "Did you notice the floor was still there? Anyways you finished the game. GG. :)",
-    "setting": "You lie on the grass feeling accomplished. Don't get too relaxed though, you haven't retired yet."
+    "setting": "You lie on the grass feeling accomplished. Don't get too relaxed though, you haven't retired yet.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Once you start down the magenta path, forever will it dominate your destiny"
+      },
+      "east": {
+        "value": 100,
+        "message": "Wherever I go, the cartridge goes"
+      },
+      "south": {
+        "value": 100,
+        "message": "The ability to save the world does not make you intelligent"
+      },
+      "west": {
+        "value": 100,
+        "message": "You did it, you brought balance to the cartridges"
+      },
+      "up": {
+        "value": 100,
+        "message": "You brought peace, freedom, justice and security to your surprisingly-not-new World."
+      },
+      "down": {
+        "value": 100,
+        "message": "Did you notice the floor was still there? Anyways you finished the game. GG. :)"
+      }
+    }
   }
 ]
