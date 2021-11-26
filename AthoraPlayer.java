@@ -14,16 +14,12 @@ public class AthoraPlayer {
         return hp;
     }
 
-    public void setHp(int amount){
-        hp = amount;
+    public void changeHp(int amount){
+        hp += amount;
     }
 
     public ArrayList<String> getInventory(){
         return inventory;
-    }
-
-    public void takeItem(String itemName) {
-
     }
 
 }

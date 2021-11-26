@@ -62,10 +62,10 @@ public class AthoraScene {
             JSONObject s = (JSONObject) scene;
 
             List<Long> directions = Arrays.asList(
-                    (long) s.get("north"),
-                    (long) s.get("east"),
-                    (long) s.get("south"),
-                    (long) s.get("west")
+                    (long) s.get("directions.north"),
+                    (long) s.get("directions.east"),
+                    (long) s.get("directions.south"),
+                    (long) s.get("directions.west")
             );
 
             List<String> directionMessages = Arrays.asList(

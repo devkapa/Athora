@@ -53,12 +53,12 @@ public class AthoraLogic {
                 }
 
                 if(isolatedContains(command, "addhp")){
-                    player.setHp((int) player.getHp() + Integer.parseInt(args[1]));
+                    player.changeHp(Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
                 }
 
                 if(isolatedContains(command, "removehp")){
-                    player.setHp((int) player.getHp() - Integer.parseInt(args[1]));
+                    player.changeHp(-Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
                 }
             } else {
