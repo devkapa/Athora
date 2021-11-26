@@ -2,112 +2,176 @@
   {
     "id": 0,
     "name": "Dock",
-    "north": 100,
-    "northMessage": "Try not to walk off this dock please",
-    "south": 2,
-    "east": 3,
-    "west": 1,
-    "up": 100,
-    "upMessage": "You're not superman, no flying into the sunset here",
-    "down": 100,
-    "downMessage": "Did you bring a jackhammer?",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Try not to walk off this dock please"
+      },
+      "east": {
+        "value": 3
+      },
+      "south": {
+        "value": 2
+      },
+      "west": {
+        "value": 1
+      },
+      "up": {
+        "value": 100,
+        "message": "You're not superman, no flying into the sunset here."
+      },
+      "down": {
+        "value": 100,
+        "message": "Did you bring a jackhammer?"
+      }
+    },
     "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. There is an exit to the east and an entrance to the west."
   },
   {
     "id": 1,
     "name": "Parking Lot",
-    "north": 100,
-    "northMessage": "Where on earth are you going? Get back to your mission.",
-    "south": 100,
-    "southMessage": "It would be appreciated if you got back to your mission now",
-    "east": 0,
-    "west": 100,
-    "westMessage": "You have a mission to do, don't bail now.",
-    "up": 100,
-    "upMessage": "Wheeeee, I'm kidding, you only made it 2 feet off the ground.",
-    "down": 100,
-    "downMessage": "You fell down a drain, good job. \n You clamber back up, looking like an idiot who watched It one too many times",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Where on earth are you going? Get back to your mission."
+      },
+      "east": {
+        "value": 0
+      },
+      "south": {
+        "value": 100,
+        "message": "It would be appreciated if you got back to your mission now"
+      },
+      "west": {
+        "value": 100,
+        "message": "You have a mission to do, don't bail now."
+      },
+      "up": {
+        "value": 100,
+        "message": "Wheeeee, I'm kidding, you only made it 2 feet off the ground."
+      },
+      "down": {
+        "value": 100,
+        "message": "You fell down a drain, good job. \n You clamber back up, looking like an idiot who watched It one too many times."
+      }
+    },
     "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore."
   },
   {
     "id": 2,
     "name": "McDonalds",
-    "north": 0,
-    "south": 100,
-    "southMessage": "Walking into the kitchen of a McDonald's isn't going to help the mission",
-    "east": 100,
-    "eastMessage": "Have you never seen a wall before?",
-    "west": 100,
-    "westMessage": "A wall, good job",
-    "up": 100,
-    "upMessage": "You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission",
-    "down": 100,
-    "downMessage": "Tiles, cool \n You want a medal or something?",
+    "directions": {
+      "north": {
+        "value": 0
+      },
+      "east": {
+        "value": 100,
+        "message": "Have you never seen a wall before?"
+      },
+      "south": {
+        "value": 100,
+        "message": "Walking into the kitchen of a McDonald's isn't going to help the mission"
+      },
+      "west": {
+        "value": 100,
+        "message": "A wall, good job"
+      },
+      "up": {
+        "value": 100,
+        "message": "You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission"
+      },
+      "down": {
+        "value": 100,
+        "message": "Tiles, cool \n You want a medal or something?"
+      }
+    },
     "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? Get back to your mission, they dont sell the Filet-o-fish anymore."
   },
   {
     "id": 3,
     "name": "Entry Gates",
-    "north": 4,
-    "south": 100,
-    "southMessage": "Walking into the ocean won't help you beat Felon",
-    "east": 100,
-    "eastMessage": "Theres nothing there but water. This is not the time for a swim, get back to your mission",
-    "west": 0,
-    "up": 100,
-    "upMessage": "You can't fly, you're not a bee",
-    "down": 100,
-    "downMessage": "If you put a hole in this floor, you would get to the ocean, you would also have to pay a hefty fine.",
+    "directions": {
+      "north": {
+        "value": 4
+      },
+      "east": {
+        "value": 100,
+        "message": "Theres nothing there but water. This is not the time for a swim, get back to your mission"
+      },
+      "south": {
+        "value": 100,
+        "message": "Walking into the ocean won't help you beat Felon"
+      },
+      "west": {
+        "value": 0
+      },
+      "up": {
+        "value": 100,
+        "message": "You can't fly, you're not a bee"
+      },
+      "down": {
+        "value": 100,
+        "message": "If you put a hole in this floor, you would get to the ocean, you would also have to pay a hefty fine."
+      }
+    },
     "setting": "You walk through the gates, hopefully you paid for your ticket, there's an exit to your north."
   },
   {
     "id": 4,
     "name": "Boats",
-    "north": 100,
-    "northMessage": "Can you not tell the difference between the ground and water?",
-    "south": 3,
-    "east": 5,
-    "west": 100,
-    "westMessage": "Keep your feet on the ground for now",
-    "up": 100,
-    "upMessage": "Bring a jetpack next time, Barry.",
-    "down": 100,
-    "downMessage": "You planning to dig to China or something?",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Can you not tell the difference between the ground and water?"
+      },
+      "east": {
+        "value": 5
+      },
+      "south": {
+        "value": 3
+      },
+      "west": {
+        "value": 100,
+        "message": "Keep your feet on the ground for now"
+      },
+      "up": {
+        "value": 100,
+        "message": "Bring a jetpack next time, Barry."
+      },
+      "down": {
+        "value": 100,
+        "message": "You planning to dig to China or something?"
+      }
+    },
     "setting": "There are lots of boats here, You stare very intensely at the boats neatly lined up on the dock channeling your inner genius as they bob up and down in the water. Eventually your eyes land on a particularly large yacht to the east that looks very well maintained."
   },
   {
     "id": 5,
     "name": "Loading Bay",
     "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition.",
-    "directions": [
-      {
-        "direction": "north",
+    "directions": {
+      "north": {
         "value": 6
       },
-      {
-        "direction": "east",
+      "east": {
         "value": 8
       },
-      {
-        "direction": "south",
+      "south": {
         "value": 100,
         "message": "You're not going to accomplish anything by swimming away"
       },
-      {
-        "direction": "west",
+      "west": {
         "value": 4
       },
-      {
-        "direction": "up",
+      "up": {
         "value": 100,
         "message": "Don't waste your energy jumping, you have a mission to do."
       },
-      {
-        "direction": "down",
+      "down": {
         "value": 100,
         "message": "This isn't the time to be socialising with ants."
       }
-    ]
+    }
   },
   {
     "id": 6,
@@ -141,44 +205,86 @@
   {
     "id": 7,
     "name": "Guard",
-    "north": 100,
-    "northMessage": "You can't just run away from this",
-    "south": 6,
-    "east": 100,
-    "eastMessage": "There's nothing there but water",
-    "west": 100,
-    "westMessage": "Walking away from someone is incredibly rude",
-    "up": 100,
-    "upMessage": "No don't do that.",
-    "down": 100,
-    "downMessage": "As flattering as that would be, worshipping a guard would be a bit suspicious.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "You can't just run away from this"
+      },
+      "east": {
+        "value": 100,
+        "message": "There's nothing there but water"
+      },
+      "south": {
+        "value": 6
+      },
+      "west": {
+        "value": 100,
+        "message": "Walking away from someone is incredibly rude"
+      },
+      "up": {
+        "value": 100,
+        "message": "No don't do that."
+      },
+      "down": {
+        "value": 100,
+        "message": "As flattering as that would be, worshipping a guard would be a bit suspicious."
+      }
+    },
     "setting": "Approaching the guard reveals that he is very nicely equipped to disable you in one swift stroke. The guard has a baton, taser, pepper spray and because he’s protecting such an important person, naturally, a gun."
   },
   {
     "id": 8,
     "name": "Cargo Hold",
-    "north": 100,
-    "northMessage": "Walking into a suitcase isn't possible, you're not that tiny.",
-    "south": 100,
-    "southMessage": "Nice wall you've got there",
-    "east": 100,
-    "eastMessage": "A wall, cool",
-    "west": 5,
-    "up": 9,
-    "down": 100,
-    "downMessage": "If you went any lower than this you'd end up in the water.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Walking into a suitcase isn't possible, you're not that tiny."
+      },
+      "east": {
+        "value": 100,
+        "message": "A wall, cool"
+      },
+      "south": {
+        "value": 100,
+        "message": "Nice wall you've got there"
+      },
+      "west": {
+        "value": 5
+      },
+      "up": {
+        "value": 9
+      },
+      "down": {
+        "value": 100,
+        "message": "If you went any lower than this you'd end up in the water."
+      }
+    },
     "setting": "You're surrounded by what looks like years of supplies and stacks of paperwork (perhaps relating to the acquisition and destruction of all the major printing companies on earth), maybe Felon was planning to escape and keep all the good stuff to himself. There is a doorway to the north and an exit to the west."
   },
   {
     "id": 9,
     "name": "Level One Hallway",
-    "north": 100,
-    "northMessage": "You've walked into a cupboard *disappointed sigh*",
-    "south": 10,
-    "east": 12,
-    "west": 11,
-    "up": 13,
-    "down": 8,
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "You've walked into a cupboard *disappointed sigh*"
+      },
+      "east": {
+        "value": 12
+      },
+      "south": {
+        "value": 10
+      },
+      "west": {
+        "value": 11
+      },
+      "up": {
+        "value": 13
+      },
+      "down": {
+        "value": 8
+      }
+    },
     "setting": "You seem to have entered a rather posh looking hallway, there's a door to your east, west and north as well as another staircase to the north. You could also go down the stairs you just climbed up to the south"
   },
   {
