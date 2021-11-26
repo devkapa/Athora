@@ -1,3 +1,8 @@
+package com.nulfy.athora;
+
+import com.nulfy.athora.assets.AthoraAssets;
+import com.nulfy.athora.player.AthoraPlayer;
+import com.nulfy.athora.scenes.AthoraScene;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -12,7 +17,7 @@ public class AthoraLogic {
 
     public static void AwaitMovement() throws IOException, ParseException {
 
-        AthoraScene.InitiateScenes("AthoraScenes.json");
+        AthoraScene.InitiateScenes("com/nulfy/athora/scenes/AthoraScenes.json");
 
         long playerHp = 10;
         ArrayList<String> inventory = new ArrayList<>();

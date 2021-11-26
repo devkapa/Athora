@@ -1,7 +1,9 @@
+package com.nulfy.athora;
+
+import com.nulfy.athora.assets.AthoraAssets;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.out;
 

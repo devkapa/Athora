@@ -1,3 +1,5 @@
+package com.nulfy.athora.player;
+
 import java.util.ArrayList;
 
 public class AthoraPlayer {

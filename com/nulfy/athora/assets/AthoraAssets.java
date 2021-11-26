@@ -1,3 +1,5 @@
+package com.nulfy.athora.assets;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,7 +21,7 @@ public class AthoraAssets {
 
     static {
         try {
-            str = Files.readString(Paths.get("AthoraLogo.txt"));
+            str = Files.readString(Paths.get("com/nulfy/athora/assets/AthoraLogo.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
