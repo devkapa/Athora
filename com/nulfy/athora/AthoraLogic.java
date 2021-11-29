@@ -39,29 +39,25 @@ public class AthoraLogic {
 
             String[] args = command.split(" ");
 
-            if(hasVerb(command)) {
+            String verb = hasVerb(command);
 
-                directionActions(command, false);
+            directionActions(command, false);
 
-                if(isolatedContains(command, "look")){
-                    System.out.println(look());
-                }
-
-                if(isolatedContains(command, "move")){
-                    directionActions(command.replaceFirst("move", "").trim(), true);
-                }
-
-                if(isolatedContains(command, "addhp")){
+            switch (verb) {
+                case "look" -> System.out.println(look());
+                case "move" -> directionActions(command.replaceFirst("move", "").trim(), true);
+                case "addhp" -> {
                     player.changeHp(Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
                 }
-
-                if(isolatedContains(command, "removehp")){
+                case "removehp" -> {
                     player.changeHp(-Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
                 }
-            } else {
-                System.out.println("I don't know what " + command + " means.");
+                case null -> System.out.println("I don't see a verb there");
+                case default -> {
+                    if(!hasDirection(command)) System.out.println("I don't understand \"" + command + "\"");
+                }
             }
         }
     }
@@ -79,13 +75,22 @@ public class AthoraLogic {
         }
     }
 
-    public static boolean hasVerb(String input){
-        String[] verbs = {"north", "east", "south", "west", "up", "down", "restart",
-                "quit", "go", "enter", "get", "take", "open", "move",
+    public static String hasVerb(String input){
+        String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "open", "move",
                 "inventory", "break", "kill", "look", "addhp", "removehp"
         };
         for (int i = 0; i <= verbs.length - 1; i++) {
             if (isolatedContains(input, verbs[i])) {
+                return verbs[i];
+            }
+        }
+        return "none";
+    }
+
+    public static boolean hasDirection(String input){
+        String[] directions = {"north", "east", "south", "west", "up", "down"};
+        for (int i = 0; i <= directions.length - 1; i++) {
+            if (isolatedContains(input, directions[i])) {
                 return true;
             }
         }
