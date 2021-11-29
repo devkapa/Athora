@@ -10,11 +10,128 @@
       "hp": -10
     },
     {
-      "name": "knife",
+      "name": "Knife",
       "type": "weapon"
     }
   ],
-  "1": [
+  "2": [
+    {
+      "name": "McDonald's Cheeseburger",
+      "type": "item"
+    }
+  ],
+  "3": [
+    {
+      "name": "Tickets",
+      "type": "item"
+    }
+  ],
 
+  "5": [
+    {
+      "name": "Porter",
+      "type": "obstacle"
+    },
+    {
+      "name": "Suitcase",
+      "type": "item"
+    }
+  ],
+
+  "7": [
+    {
+      "name": "Guard",
+      "type": "obstacle"
+    },
+    {
+      "name": "Pepper Spray",
+      "type": "item"
+    },
+    {
+      "name": "Baton",
+      "type": "item"
+    },
+    {
+      "name": "Gun",
+      "type": "item"
+    },
+    {
+      "name": "Taser",
+      "type": "item"
+    }
+  ],
+
+  "8": [
+    {
+      "name": "Suitcase",
+      "type": "item"
+    },
+    {
+      "name": "Sheets of Paper",
+      "type": "item"
+    }
+  ],
+
+  "9": [
+    {
+      "name": "Guard",
+      "type": "obstacle"
+    }
+  ],
+
+  "10": [
+    {
+      "name": "Wrench",
+      "type": "item"
+    }
+  ],
+
+  "11": [
+    {
+      "name": "Life Boat",
+      "type": "item"
+    }
+  ],
+
+  "12": [
+    {
+      "name": "Water Pistol",
+      "type": "item"
+    }
+  ],
+
+  "13": [
+    {
+      "name": "Guard",
+      "type": "obstacle"
+    }
+  ],
+
+  "14": [
+    {
+      "name": "Allen Key",
+      "type": "item"
+    }
+  ],
+
+  "15": [
+    {
+      "name": "Toothpaste",
+      "type": "item"
+    }
+  ],
+
+  "16": [
+    {
+      "name": "Felon",
+      "type": "obstacle"
+    }
+  ],
+
+  "17": [
+    {
+      "name": "Vial of Ink",
+      "type": "item"
+    }
   ]
 }

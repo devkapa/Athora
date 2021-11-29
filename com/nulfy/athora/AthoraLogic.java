@@ -45,7 +45,7 @@ public class AthoraLogic {
 
             switch (verb) {
                 case "look" -> System.out.println(look());
-                case "move" -> directionActions(command.replaceFirst("move", "").trim(), true);
+                case "move", "go" -> directionActions(command.replaceFirst(verb, "").trim(), true);
                 case "addhp" -> {
                     player.changeHp(Integer.parseInt(args[1]));
                     System.out.println(player.getHp());
@@ -72,9 +72,9 @@ public class AthoraLogic {
             System.out.println(look());
         } else {
             if(currentScene.getDirections().get(directionIndex).get("hp") != null){
-                int hpChange = (int) currentScene.getDirections().get(directionIndex).get("hp");
+                int hpChange = Math.toIntExact((long) currentScene.getDirections().get(directionIndex).get("hp"));
                 player.changeHp(hpChange);
-                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + hpChange);
+                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + hpChange + " HP");
             } else {
                 System.out.println(currentScene.getDirectionMessage(directionIndex));
             }
@@ -120,7 +120,7 @@ public class AthoraLogic {
             case "down" -> move(5);
             default -> {
                 if(move){
-                    System.out.println("Where do you want to move?");
+                    System.out.println("Where do you want to go?");
                 }
             }
         }

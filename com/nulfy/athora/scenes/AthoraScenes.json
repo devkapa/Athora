@@ -5,7 +5,7 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "Try not to walk off this dock please"
+        "message": "Try not to walk off this dock please."
       },
       "east": {
         "value": 3
@@ -40,7 +40,7 @@
       },
       "south": {
         "value": 100,
-        "message": "It would be appreciated if you got back to your mission now"
+        "message": "It would be appreciated if you got back to your mission now."
       },
       "west": {
         "value": 100,
@@ -70,15 +70,15 @@
       },
       "south": {
         "value": 100,
-        "message": "Walking into the kitchen of a McDonald's isn't going to help the mission"
+        "message": "Walking into the kitchen of a McDonald's isn't going to help the mission."
       },
       "west": {
         "value": 100,
-        "message": "A wall, good job"
+        "message": "A wall, good job."
       },
       "up": {
         "value": 100,
-        "message": "You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission"
+        "message": "You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission."
       },
       "down": {
         "value": 100,
@@ -96,18 +96,18 @@
       },
       "east": {
         "value": 100,
-        "message": "Theres nothing there but water. This is not the time for a swim, get back to your mission"
+        "message": "Theres nothing there but water. This is not the time for a swim, get back to your mission."
       },
       "south": {
         "value": 100,
-        "message": "Walking into the ocean won't help you beat Felon"
+        "message": "Walking into the ocean won't help you beat Felon."
       },
       "west": {
         "value": 0
       },
       "up": {
         "value": 100,
-        "message": "You can't fly, you're not a bee"
+        "message": "You can't fly, you're not a bee."
       },
       "down": {
         "value": 100,
@@ -132,7 +132,7 @@
       },
       "west": {
         "value": 100,
-        "message": "Keep your feet on the ground for now"
+        "message": "Keep your feet on the ground for now."
       },
       "up": {
         "value": 100,
@@ -158,7 +158,7 @@
       },
       "south": {
         "value": 100,
-        "message": "You're not going to accomplish anything by swimming away"
+        "message": "You're not going to accomplish anything by swimming away."
       },
       "west": {
         "value": 4
@@ -183,14 +183,14 @@
       },
       "east": {
         "value": 100,
-        "message": "There's no door here, you can't just walk into the side of a boat"
+        "message": "There's no door here, you can't just walk into the side of a boat."
       },
       "south": {
         "value": 5
       },
       "west": {
         "value": 100,
-        "message": "Wrong way, I'm starting to think we shouldn't have recruited you"
+        "message": "Wrong way, I'm starting to think we shouldn't have recruited you."
       },
       "up": {
         "value": 100,
@@ -208,18 +208,18 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "You can't just run away from this"
+        "message": "You can't just run away from this."
       },
       "east": {
         "value": 100,
-        "message": "There's nothing there but water"
+        "message": "There's nothing there but water."
       },
       "south": {
         "value": 6
       },
       "west": {
         "value": 100,
-        "message": "Walking away from someone is incredibly rude"
+        "message": "Walking away from someone is incredibly rude."
       },
       "up": {
         "value": 100,
@@ -242,11 +242,11 @@
       },
       "east": {
         "value": 100,
-        "message": "A wall, cool"
+        "message": "A wall, cool."
       },
       "south": {
         "value": 100,
-        "message": "Nice wall you've got there"
+        "message": "Nice wall you've got there."
       },
       "west": {
         "value": 5
@@ -268,7 +268,7 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "You've walked into a cupboard *disappointed sigh*"
+        "message": "You've walked into a cupboard. *disappointed sigh*"
       },
       "east": {
         "value": 12
@@ -297,19 +297,19 @@
       },
       "east": {
         "value": 100,
-        "message": "Sweet wall, maybe taste it to check"
+        "message": "Sweet wall, maybe taste it to check."
       },
       "south": {
         "value": 100,
-        "message": "You're not a mechanic, you don't know how engines work"
+        "message": "You're not a mechanic, you don't know how engines work."
       },
       "west": {
         "value": 100,
-        "message": "You just walked into a wall, you now have a shiny new bruise"
+        "message": "You just walked into a wall, you now have a shiny new bruise."
       },
       "up": {
         "value": 100,
-        "message": "Nothing above you but a ceiling"
+        "message": "Nothing above you but a ceiling."
       },
       "down": {
         "value": 100,
@@ -331,15 +331,15 @@
       },
       "south": {
         "value": 100,
-        "message":  "Don't walk into walls, you're going to break your nose"
+        "message":  "Don't walk into walls, you're going to break your nose."
       },
       "west": {
         "value": 100,
-        "message": "Don't jump off the boat, you have work to do"
+        "message": "Don't jump off the boat, you have work to do."
       },
       "up": {
         "value": 100,
-        "message": "NO, nothing there"
+        "message": "No, nothing there."
       },
       "down": {
         "value": 100,
@@ -354,34 +354,34 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "Walking into a wall of water guns isn't going to help you"
+        "message": "Walking into a wall of water guns isn't going to help you."
       },
       "east": {
         "value": 13,
-        "message": "Thunk, This porthole is too small for you to jump out of"
+        "message": "Thunk, This porthole is too small for you to jump out of."
       },
       "south": {
         "value": 100,
-        "message": "Walking into shelves, well that's new"
+        "message": "Walking into shelves, well that's new."
       },
       "west": {
         "value": 9
       },
       "up": {
         "value": 100,
-        "message": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling."
+        "message": "Up, up, and away!\n...BONK. You hit yer noggin on the ceiling.",
+        "hp": -1
       },
       "down": {
         "value": 100,
-        "message": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years.",
-        "hp": -1
+        "message": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years."
       }
     }
   },
   {
     "id": 13,
     "name": "Level Two Hallway",
-    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south",
+    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south.",
     "directions": {
       "north": {
         "value": 16
@@ -410,7 +410,7 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "Stop walking into things, you're gonna break one of these displays"
+        "message": "Stop walking into things, you're gonna break one of these displays."
       },
       "east": {
         "value": 100,
@@ -418,7 +418,7 @@
       },
       "south": {
         "value": 100,
-        "message": "You just walked into a server rack, congratulations"
+        "message": "You just walked into a server rack, congratulations."
       },
       "west": {
         "value": 13
@@ -442,18 +442,18 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "There is no mirror dimension, stop"
+        "message": "There is no mirror dimension, stop."
       },
       "east": {
         "value": 13
       },
       "south": {
         "value": 100,
-        "message": "Learn to walk without crashing"
+        "message": "Learn to walk without crashing."
       },
       "west": {
         "value": 100,
-        "message": "A wall, epic"
+        "message": "A wall, epic."
       },
       "up": {
         "value": 100,
@@ -499,15 +499,15 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "You're making an awful racket walking into walls all the time, you're going to give yourself away"
+        "message": "You're making an awful racket walking into walls all the time, you're going to give yourself away."
       },
       "east": {
         "value": 100,
-        "message": "Shush, you've gotten this far, don't blow it now"
+        "message": "Shush, you've gotten this far, don't blow it now."
       },
       "south": {
         "value": 100,
-        "message": "SHHHHHHHH"
+        "message": "SHHHHHHHH!"
       },
       "west": {
         "value": 16
@@ -529,7 +529,7 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "There is nothing of interest over there"
+        "message": "There is nothing of interest over there."
       },
       "east": {
         "value": 16
@@ -540,7 +540,7 @@
       },
       "west": {
         "value": 100,
-        "message": "There's nothing interesting here"
+        "message": "There's nothing interesting here."
       },
       "up": {
         "value": 100,
@@ -568,15 +568,15 @@
       },
       "south": {
         "value": 100,
-        "message": "Learn to walk without crashing"
+        "message": "Learn to walk without crashing."
       },
       "west": {
         "value": 100,
-        "message": "No, stop staring at the view and get to work"
+        "message": "No, stop staring at the view and get to work."
       },
       "up": {
         "value": 100,
-        "message": "Kopfschmerzen"
+        "message": "Kopfschmerzen."
       },
       "down": {
         "value": 100,
@@ -591,7 +591,7 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "Don't walk away from your associate"
+        "message": "Don't walk away from your associate."
       },
       "east": {
         "value": 100,
@@ -621,22 +621,22 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "You're not there yet"
+        "message": "You're not there yet."
       },
       "east": {
         "value": 22
       },
       "south": {
         "value": 100,
-        "message": "Just a little longer"
+        "message": "Just a little longer."
       },
       "west": {
         "value": 100,
-        "message": "Just a few more hours, good job on the mission though"
+        "message": "Just a few more hours, good job on the mission though."
       },
       "up": {
         "value": 100,
-        "message": "Flying is an ability some would consider to be unnatural"
+        "message": "Flying is an ability some would consider to be unnatural."
       },
       "down": {
         "value": 100,
@@ -651,19 +651,19 @@
     "directions": {
       "north": {
         "value": 100,
-        "message": "Once you start down the magenta path, forever will it dominate your destiny"
+        "message": "Once you start down the magenta path, forever will it dominate your destiny."
       },
       "east": {
         "value": 100,
-        "message": "Wherever I go, the cartridge goes"
+        "message": "Wherever I go, the cartridge goes."
       },
       "south": {
         "value": 100,
-        "message": "The ability to save the world does not make you intelligent"
+        "message": "The ability to save the world does not make you intelligent."
       },
       "west": {
         "value": 100,
-        "message": "You did it, you brought balance to the cartridges"
+        "message": "You did it, you brought balance to the cartridges."
       },
       "up": {
         "value": 100,
