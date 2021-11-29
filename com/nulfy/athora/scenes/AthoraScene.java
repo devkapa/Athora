@@ -46,6 +46,8 @@ public class AthoraScene {
         return setting;
     }
 
+    public void moveTo(long scene) { currentScene = athoraScenes.get((int) scene); }
+
     public static ArrayList<AthoraScene> athoraScenes = new ArrayList<>();
     public static AthoraScene currentScene;
 

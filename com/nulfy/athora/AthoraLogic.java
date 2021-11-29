@@ -8,9 +8,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AthoraLogic {
 
@@ -34,13 +33,16 @@ public class AthoraLogic {
             }
 
             String command = input.nextLine().toLowerCase().trim();
-            String verb = hasVerb(command);
-
-            directionActions(command, false);
+            String verb = hasVerb(command, false);
 
             switch (verb) {
                 case "look" -> System.out.println(look());
-                case "move", "go" -> directionActions(command.replaceFirst(verb, "").trim(), true);
+                case "north", "east", "south", "west", "up", "down" -> move(verb);
+                case "move", "go", "walk" -> {
+                    String direction = hasVerb(command, true);
+                    if(direction == null) System.out.println("Where do you want to move?");
+                    else move(direction);
+                }
                 case "none" -> System.out.println("There is no verb in that sentence.");
                 case null -> System.out.println("Something is wrong with the input you provided.");
                 case default -> {
@@ -54,9 +56,22 @@ public class AthoraLogic {
         return currentScene.getName() + "\n" + currentScene.getSetting();
     }
 
-    public static void move(int directionIndex) {
+    public static void move(String direction) {
+        int directionIndex;
+        switch (direction) {
+            case "north" -> directionIndex = 0;
+            case "east" -> directionIndex = 1;
+            case "south" -> directionIndex = 2;
+            case "west" -> directionIndex = 3;
+            case "up" -> directionIndex = 4;
+            case "down" -> directionIndex = 5;
+            default -> {
+                System.out.println("There is no direction in that sentence.");
+                return;
+            }
+        }
         if((long) currentScene.getDirections().get(directionIndex).get("value") != 100) {
-            currentScene = AthoraScene.athoraScenes.get(Math.toIntExact((long) currentScene.getDirections().get(directionIndex).get("value")));
+            currentScene.moveTo((long) currentScene.getDirections().get(directionIndex).get("value"));
             System.out.println(look());
         } else {
             if(currentScene.getDirections().get(directionIndex).get("hp") != null){
@@ -69,48 +84,30 @@ public class AthoraLogic {
         }
     }
 
-    public static String hasVerb(String input){
-        String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "open", "move",
-                "inventory", "break", "kill", "look", "addhp", "removehp"
-        };
-        for (int i = 0; i <= verbs.length - 1; i++) {
-            if (isolatedContains(input, verbs[i])) {
-                return verbs[i];
+    public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "open", "move",
+            "inventory", "break", "kill", "look", "north", "east", "south", "west", "up", "down"
+    };
+
+    public static String[] directions = {"north", "east", "south", "west", "up", "down"};
+
+    public static String hasVerb(String input, boolean movement){
+        ArrayList<String> args = new ArrayList<>(Arrays.asList(input.split(" ")));
+        if(movement) {
+            args.remove(0);
+            for (String direction : directions) {
+                if (args.contains(direction)) return direction;
+            }
+        } else {
+            for (String verb : verbs) {
+                if (args.contains(verb)) return verb;
             }
         }
         return "none";
     }
 
     public static boolean hasDirection(String input){
-        String[] directions = {"north", "east", "south", "west", "up", "down"};
-        for (int i = 0; i <= directions.length - 1; i++) {
-            if (isolatedContains(input, directions[i])) {
-                return true;
-            }
-        }
-        return false;
+        int pos = Arrays.asList(directions).indexOf(input);
+        return pos > -1;
     }
 
-    private static boolean isolatedContains(String source, String subItem){
-        String pattern = "\\b"+subItem+"\\b";
-        Pattern p=Pattern.compile(pattern);
-        Matcher m=p.matcher(source);
-        return m.find();
-    }
-
-    public static void directionActions(String source, boolean move) {
-        switch (source) {
-            case "north" -> move(0);
-            case "east" -> move(1);
-            case "south" -> move(2);
-            case "west" -> move(3);
-            case "up" -> move(4);
-            case "down" -> move(5);
-            default -> {
-                if(move){
-                    System.out.println("Where do you want to go?");
-                }
-            }
-        }
-    }
 }
