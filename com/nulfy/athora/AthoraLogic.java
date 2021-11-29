@@ -41,10 +41,14 @@ public class AthoraLogic {
 
             if(hasVerb(command)) {
 
-                directionActions(command);
+                directionActions(command, false);
 
                 if(isolatedContains(command, "look")){
                     System.out.println(look());
+                }
+
+                if(isolatedContains(command, "move")){
+                    directionActions(command.replaceFirst("move", "").trim(), true);
                 }
 
                 if(isolatedContains(command, "addhp")){
@@ -95,22 +99,19 @@ public class AthoraLogic {
         return m.find();
     }
 
-    public static void directionActions(String source) {
-        if(isolatedContains(source, "north")) {
-            move(0);
-        } else if(isolatedContains(source, "east")) {
-            move(1);
-        } else if(isolatedContains(source, "south")) {
-            move(2);
-        } else if(isolatedContains(source, "west")) {
-            move(3);
-        } else if(isolatedContains(source, "up")) {
-            move(4);
-        } else if(isolatedContains(source, "down")) {
-            move(5);
-        } else {
-            System.out.println("Where do you want to move?");
+    public static void directionActions(String source, boolean move) {
+        switch (source) {
+            case "north" -> move(0);
+            case "east" -> move(1);
+            case "south" -> move(2);
+            case "west" -> move(3);
+            case "up" -> move(4);
+            case "down" -> move(5);
+            default -> {
+                if(move){
+                    System.out.println("Where do you want to move?");
+                }
+            }
         }
     }
-
 }
