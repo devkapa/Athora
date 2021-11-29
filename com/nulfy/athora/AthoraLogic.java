@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -16,15 +17,14 @@ import java.util.regex.Pattern;
 public class AthoraLogic {
 
     static Scanner input = new Scanner(System.in);
+    public static long playerHp = 10;
+    public static ArrayList<String> inventory = new ArrayList<>();
+
+    public static AthoraPlayer player = new AthoraPlayer(playerHp, inventory);
 
     public static void AwaitMovement() throws IOException, ParseException {
 
         AthoraScene.InitiateScenes("com/nulfy/athora/scenes/AthoraScenes.json");
-
-        long playerHp = 10;
-        ArrayList<String> inventory = new ArrayList<>();
-
-        AthoraPlayer player = new AthoraPlayer(playerHp, inventory);
 
         System.out.println(look());
 
@@ -71,7 +71,13 @@ public class AthoraLogic {
             currentScene = AthoraScene.athoraScenes.get(Math.toIntExact((long) currentScene.getDirections().get(directionIndex).get("value")));
             System.out.println(look());
         } else {
-            System.out.println(currentScene.getDirectionMessage(directionIndex));
+            if(currentScene.getDirections().get(directionIndex).get("hp") != null){
+                int hpChange = (int) currentScene.getDirections().get(directionIndex).get("hp");
+                player.changeHp(hpChange);
+                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + hpChange);
+            } else {
+                System.out.println(currentScene.getDirectionMessage(directionIndex));
+            }
         }
     }
 

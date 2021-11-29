@@ -369,12 +369,12 @@
       },
       "up": {
         "value": 100,
-        "message": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling."
+        "message": "Up, up, and away!\n...BONK. You hit your noggin on the ceiling.",
+        "hp": -1
       },
       "down": {
         "value": 100,
-        "message": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years.",
-        "hp": -1
+        "message": "That carpet on the floor is probably musty and hasn't been cleaned in 10 years."
       }
     }
   },
