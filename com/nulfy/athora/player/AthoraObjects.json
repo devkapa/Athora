@@ -1,0 +1,20 @@
+{
+  "0": [
+    {
+      "name": "McDonald's Cheeseburger",
+      "type": "item"
+    },
+    {
+      "name": "Boat Guard",
+      "type": "obstacle",
+      "hp": -10
+    },
+    {
+      "name": "knife",
+      "type": "weapon"
+    }
+  ],
+  "1": [
+
+  ]
+}
