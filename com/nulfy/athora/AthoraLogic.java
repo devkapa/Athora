@@ -8,9 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,9 +34,6 @@ public class AthoraLogic {
             }
 
             String command = input.nextLine().toLowerCase().trim();
-
-            String[] args = command.split(" ");
-
             String verb = hasVerb(command);
 
             directionActions(command, false);
@@ -46,15 +41,8 @@ public class AthoraLogic {
             switch (verb) {
                 case "look" -> System.out.println(look());
                 case "move", "go" -> directionActions(command.replaceFirst(verb, "").trim(), true);
-                case "addhp" -> {
-                    player.changeHp(Integer.parseInt(args[1]));
-                    System.out.println(player.getHp());
-                }
-                case "removehp" -> {
-                    player.changeHp(-Integer.parseInt(args[1]));
-                    System.out.println(player.getHp());
-                }
-                case null -> System.out.println("I don't see a verb there");
+                case "none" -> System.out.println("There is no verb in that sentence.");
+                case null -> System.out.println("Something is wrong with the input you provided.");
                 case default -> {
                     if(!hasDirection(command)) System.out.println("I don't understand \"" + command + "\"");
                 }
