@@ -45,9 +45,7 @@ public class AthoraLogic {
                 }
                 case "none" -> System.out.println("There is no verb in that sentence.");
                 case null -> System.out.println("Something is wrong with the input you provided.");
-                case default -> {
-                    if(!hasDirection(command)) System.out.println("I don't understand \"" + command + "\"");
-                }
+                case default -> System.out.println("I don't understand \"" + command + "\"");
             }
         }
     }
@@ -57,27 +55,16 @@ public class AthoraLogic {
     }
 
     public static void move(String direction) {
-        int directionIndex;
-        switch (direction) {
-            case "north" -> directionIndex = 0;
-            case "east" -> directionIndex = 1;
-            case "south" -> directionIndex = 2;
-            case "west" -> directionIndex = 3;
-            case "up" -> directionIndex = 4;
-            case "down" -> directionIndex = 5;
-            default -> {
-                System.out.println("There is no direction in that sentence.");
-                return;
-            }
-        }
-        if((long) currentScene.getDirections().get(directionIndex).get("value") != 100) {
-            currentScene.moveTo((long) currentScene.getDirections().get(directionIndex).get("value"));
+        int directionIndex = currentScene.indexFromDirection(direction);
+        long directionValue = currentScene.getDirectionValue(directionIndex);
+        long healthChange = currentScene.getDirectionHealthChange(directionIndex);
+        if(directionValue != 100) {
+            currentScene.moveTo(directionValue);
             System.out.println(look());
         } else {
-            if(currentScene.getDirections().get(directionIndex).get("hp") != null){
-                int hpChange = Math.toIntExact((long) currentScene.getDirections().get(directionIndex).get("hp"));
-                player.changeHp(hpChange);
-                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + hpChange + " HP");
+            if(healthChange != 100){
+                player.changeHp(Math.toIntExact(healthChange));
+                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + Math.toIntExact(healthChange) + " HP");
             } else {
                 System.out.println(currentScene.getDirectionMessage(directionIndex));
             }
@@ -104,10 +91,4 @@ public class AthoraLogic {
         }
         return "none";
     }
-
-    public static boolean hasDirection(String input){
-        int pos = Arrays.asList(directions).indexOf(input);
-        return pos > -1;
-    }
-
 }

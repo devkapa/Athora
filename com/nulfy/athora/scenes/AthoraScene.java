@@ -12,25 +12,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class AthoraScene {
+public record AthoraScene(long id, String name, String setting, List<Map<?, ?>> directions) {
 
-    private final long id;
-    private final String name;
-    private final List<Map<?, ?>> directions;
-    private final String setting;
-
-    public AthoraScene(long id, String name, String setting, List<Map<?, ?>> directions) {
-        this.id = id;
-        this.name = name;
-        this.directions = directions;
-        this.setting = setting;
-    }
-
-    public long getId(){
+    public long getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -38,15 +26,51 @@ public class AthoraScene {
         return directions;
     }
 
+    public long getDirectionValue(int index) {
+        return (long) directions.get(index).get("value");
+    }
+
+    public long getDirectionHealthChange(int index) {
+        if (directions.get(index).get("hp") != null) return (long) directions.get(index).get("hp");
+        else return 100;
+    }
+
     public String getDirectionMessage(int index) {
         return (String) directions.get(index).get("message");
     }
 
-    public String getSetting(){
+    public String getSetting() {
         return setting;
     }
 
-    public void moveTo(long scene) { currentScene = athoraScenes.get((int) scene); }
+    public int indexFromDirection(String direction) {
+        switch (direction) {
+            case "north" -> {
+                return 0;
+            }
+            case "east" -> {
+                return 1;
+            }
+            case "south" -> {
+                return 2;
+            }
+            case "west" -> {
+                return 3;
+            }
+            case "up" -> {
+                return 4;
+            }
+            case "down" -> {
+                return 5;
+            }
+            default -> System.out.println("There is no direction in that sentence.");
+        }
+        return 100;
+    }
+
+    public void moveTo(long scene) {
+        currentScene = athoraScenes.get((int) scene);
+    }
 
     public static ArrayList<AthoraScene> athoraScenes = new ArrayList<>();
     public static AthoraScene currentScene;
