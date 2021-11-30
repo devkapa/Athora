@@ -56,6 +56,7 @@ public class AthoraLogic {
 
     public static void move(String direction) {
         int directionIndex = currentScene.indexFromDirection(direction);
+        if(directionIndex == 100) return;
         long directionValue = currentScene.getDirectionValue(directionIndex);
         long healthChange = currentScene.getDirectionHealthChange(directionIndex);
         if(directionValue != 100) {

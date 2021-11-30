@@ -55,9 +55,11 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
             case "down" -> {
                 return 5;
             }
-            default -> System.out.println("There is no direction in that sentence.");
+            default -> {
+                System.out.println("Where do you want to go?");
+                return 100;
+            }
         }
-        return 100;
     }
 
     public void moveTo(long scene) {
