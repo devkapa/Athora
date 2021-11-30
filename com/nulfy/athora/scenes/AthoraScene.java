@@ -12,18 +12,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public record AthoraScene(long id, String name, String setting, List<Map<?, ?>> directions) {
-
-    public long getId() {
-        return id;
-    }
+public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions) {
 
     public String getName() {
         return name;
-    }
-
-    public List<Map<?, ?>> getDirections() {
-        return directions;
     }
 
     public long getDirectionValue(int index) {
@@ -75,6 +67,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<?, ?>> 
     public static ArrayList<AthoraScene> athoraScenes = new ArrayList<>();
     public static AthoraScene currentScene;
 
+    @SuppressWarnings("unchecked")
     public static void InitiateScenes(String scenesPath) throws IOException, ParseException {
 
         JSONParser parser = new JSONParser();
@@ -85,15 +78,15 @@ public record AthoraScene(long id, String name, String setting, List<Map<?, ?>> 
 
             JSONObject s = (JSONObject) scene;
 
-            JSONObject directionMap = new JSONObject((Map<?, ?>) s.get("directions"));
+            JSONObject directionMap = new JSONObject((Map<String, ?>) s.get("directions"));
 
-            List<Map<?, ?>> directions = Arrays.asList(
-                    (Map<?, ?>) directionMap.get("north"),
-                    (Map<?, ?>) directionMap.get("east"),
-                    (Map<?, ?>) directionMap.get("south"),
-                    (Map<?, ?>) directionMap.get("west"),
-                    (Map<?, ?>) directionMap.get("up"),
-                    (Map<?, ?>) directionMap.get("down")
+            List<Map<String, ?>> directions = Arrays.asList(
+                    (Map<String, ?>) directionMap.get("north"),
+                    (Map<String, ?>) directionMap.get("east"),
+                    (Map<String, ?>) directionMap.get("south"),
+                    (Map<String, ?>) directionMap.get("west"),
+                    (Map<String, ?>) directionMap.get("up"),
+                    (Map<String, ?>) directionMap.get("down")
             );
 
             AthoraScene selectedScene = new AthoraScene(
