@@ -1,7 +1,7 @@
 package com.nulfy.athora;
 
 import com.nulfy.athora.assets.AthoraAssets;
-import com.nulfy.athora.objects.AthoraInventoryItem;
+import com.nulfy.athora.objects.AthoraObject;
 import com.nulfy.athora.player.AthoraPlayer;
 import com.nulfy.athora.scenes.AthoraScene;
 import static com.nulfy.athora.scenes.AthoraScene.currentScene;
@@ -16,13 +16,13 @@ public class AthoraLogic {
 
     static Scanner input = new Scanner(System.in);
     public static long playerHealth = 10;
-    public static ArrayList<AthoraInventoryItem> inventory = new ArrayList<>();
+    public static ArrayList<AthoraObject> inventory = new ArrayList<>();
 
     public static AthoraPlayer player = new AthoraPlayer(playerHealth, inventory);
 
     public static void AwaitMovement() throws IOException, ParseException {
 
-        AthoraScene.InitiateScenes("com/nulfy/athora/scenes/AthoraScenes.json");
+        AthoraScene.initiateScenes("com/nulfy/athora/scenes/AthoraScenes.json", "com/nulfy/athora/objects/AthoraObjects.json");
 
         System.out.println(look());
 
@@ -36,6 +36,8 @@ public class AthoraLogic {
             String command = input.nextLine().toLowerCase().trim();
             String verb = hasVerb(command, false);
 
+            String primary = command.replace(verb, "").trim();
+
             switch (verb) {
                 case "look" -> System.out.println(look());
                 case "north", "east", "south", "west", "up", "down" -> move(verb);
@@ -44,8 +46,28 @@ public class AthoraLogic {
                     if(direction == null) System.out.println("Where do you want to move?");
                     else move(direction);
                 }
+                case "pick", "pickup", "take" -> {
+                    if (primary.equals("")) {
+                        System.out.println("What do you want to pick up?");
+                    } else {
+                        player.pickup(primary);
+                    }
+                }
+                case "drop" -> {
+                    if (primary.equals("")) {
+                        System.out.println("What do you want to drop?");
+                    } else {
+                        player.drop(primary);
+                    }
+                }
+                case "inv", "inventory" -> {
+                    StringBuilder inventoryString = new StringBuilder();
+                    for(AthoraObject item : inventory){
+                        inventoryString.append("\n").append("* ").append(item.getName()).trimToSize();
+                    }
+                    System.out.println("Inventory" + inventoryString);
+                }
                 case "none" -> System.out.println("There is no verb in that sentence.");
-                case null -> System.out.println("Something is wrong with the input you provided.");
                 case default -> System.out.println("I don't understand \"" + command + "\"");
             }
         }
@@ -73,8 +95,8 @@ public class AthoraLogic {
         }
     }
 
-    public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "open", "move",
-            "inventory", "break", "kill", "look", "north", "east", "south", "west", "up", "down", "knife"
+    public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
+            "inventory", "inv", "break", "kill", "look", "north", "east", "south", "west", "up", "down", "knife"
     };
 
     public static String[] directions = {"north", "east", "south", "west", "up", "down"};

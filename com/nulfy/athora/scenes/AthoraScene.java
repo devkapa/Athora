@@ -1,5 +1,9 @@
 package com.nulfy.athora.scenes;
 
+import com.nulfy.athora.objects.AthoraInventoryItem;
+import com.nulfy.athora.objects.AthoraObject;
+import com.nulfy.athora.objects.AthoraObstacle;
+import com.nulfy.athora.objects.AthoraWeapon;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions) {
+public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions, ArrayList<AthoraObject> objects) {
 
     public String getName() {
         return name;
@@ -25,6 +29,10 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
     public long getDirectionHealthChange(int index) {
         if (directions.get(index).get("hp") != null) return (long) directions.get(index).get("hp");
         else return 100;
+    }
+
+    public ArrayList<AthoraObject> objects() {
+        return objects;
     }
 
     public String getDirectionMessage(int index) {
@@ -70,11 +78,12 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
     public static AthoraScene currentScene;
 
     @SuppressWarnings("unchecked")
-    public static void InitiateScenes(String scenesPath) throws IOException, ParseException {
+    public static void initiateScenes(String scenesPath, String objectsPath) throws IOException, ParseException {
 
         JSONParser parser = new JSONParser();
 
         JSONArray scenes = (JSONArray) parser.parse(new FileReader(scenesPath));
+        JSONObject objects = (JSONObject) parser.parse(new FileReader(objectsPath));
 
         for (Object scene : scenes) {
 
@@ -91,11 +100,33 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                     (Map<String, ?>) directionMap.get("down")
             );
 
+            JSONArray objectsArray = (JSONArray) objects.get(s.get("id").toString());
+            ArrayList<AthoraObject> objectArrayList = new ArrayList<>();
+
+            if(objectsArray != null){
+                objectArrayList.clear();
+                for (Object object : objectsArray) {
+                    JSONObject o = (JSONObject) object;
+                    switch ((String) o.get("type")) {
+                        case "weapon" -> objectArrayList.add(
+                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", true, (long) o.get("damage"))
+                        );
+                        case "item" -> objectArrayList.add(
+                                new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", true)
+                        );
+                        case "obstacle" -> objectArrayList.add(
+                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", true, (long) o.get("damage"), (long) o.get("health"))
+                        );
+                    }
+                }
+            }
+
             AthoraScene selectedScene = new AthoraScene(
                     (long) s.get("id"),
                     (String) s.get("name"),
                     (String) s.get("setting"),
-                    directions
+                    directions,
+                    objectArrayList
             );
 
             athoraScenes.add(selectedScene);

@@ -2,24 +2,24 @@ package com.nulfy.athora.objects;
 
 public class AthoraObstacle extends AthoraObject {
 
-    private final int damage;
-    private int health;
+    private final long damage;
+    private long health;
 
-    public AthoraObstacle(long id, String name, String type, boolean accessible, int damage, int health) {
+    public AthoraObstacle(long id, String name, String type, boolean accessible, long damage, long health) {
         super(id, name, type, accessible);
         this.damage = damage;
         this.health = health;
     }
 
-    public int getDamage() {
+    public long getDamage() {
         return damage;
     }
 
-    public int getHealth() {
+    public long getHealth() {
         return health;
     }
 
-    public void changeHealth(int amount) {
+    public void changeHealth(long amount) {
         health += amount;
     }
 

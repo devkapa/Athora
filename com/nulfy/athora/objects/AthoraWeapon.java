@@ -2,14 +2,14 @@ package com.nulfy.athora.objects;
 
 public class AthoraWeapon extends AthoraObject {
 
-    private final int damage;
+    private final long damage;
 
-    public AthoraWeapon(long id, String name, String type, boolean accessible, int damage) {
+    public AthoraWeapon(long id, String name, String type, boolean accessible, long damage) {
         super(id, name, type, accessible);
         this.damage = damage;
     }
 
-    public int getDamage() {
+    public long getDamage() {
         return damage;
     }
 

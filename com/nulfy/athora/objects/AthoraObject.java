@@ -5,7 +5,7 @@ public class AthoraObject {
     private final long id;
     private final String name;
     private final String type;
-    private final boolean accessible;
+    private boolean accessible;
 
     public AthoraObject(long id, String name, String type, boolean accessible) {
         this.id = id;
@@ -29,4 +29,7 @@ public class AthoraObject {
     public boolean isAccessible() {
         return accessible;
     }
+
+    public void accessible(boolean bool) { accessible = bool; }
+
 }
