@@ -2,136 +2,164 @@
   "0": [
     {
       "name": "McDonald's Cheeseburger",
-      "type": "item"
+      "type": "item",
+      "damage": 0.5
     },
     {
       "name": "Boat Guard",
       "type": "obstacle",
-      "hp": -10
+      "damage": -5,
+      "health": 10
     },
     {
       "name": "Knife",
-      "type": "weapon"
+      "type": "weapon",
+      "damage": 4
     }
   ],
   "2": [
     {
       "name": "McDonald's Cheeseburger",
-      "type": "item"
+      "type": "item",
+      "damage": 0.5
     }
   ],
   "3": [
     {
       "name": "Tickets",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ],
 
   "5": [
     {
       "name": "Porter",
-      "type": "obstacle"
+      "type": "obstacle",
+      "damage": 2,
+      "health": 5
     },
     {
       "name": "Suitcase",
-      "type": "item"
+      "type": "item",
+      "damage": 0.5
     }
   ],
 
   "7": [
     {
       "name": "Guard",
-      "type": "obstacle"
+      "type": "obstacle",
+      "damage": 5,
+      "health": 10
     },
     {
       "name": "Pepper Spray",
-      "type": "item"
+      "type": "item",
+      "damage": 5
     },
     {
       "name": "Baton",
-      "type": "item"
+      "type": "item",
+      "damage": 1
     },
     {
       "name": "Gun",
-      "type": "item"
+      "type": "item",
+      "damage": 15
     },
     {
       "name": "Taser",
-      "type": "item"
+      "type": "item",
+      "damage": 6
     }
   ],
 
   "8": [
     {
       "name": "Suitcase",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     },
     {
       "name": "Sheets of Paper",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ],
 
   "9": [
     {
       "name": "Guard",
-      "type": "obstacle"
+      "type": "obstacle",
+      "damage": 5,
+      "health": 10
     }
   ],
 
   "10": [
     {
       "name": "Wrench",
-      "type": "item"
+      "type": "item",
+      "damage": 1
     }
   ],
 
   "11": [
     {
       "name": "Life Boat",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ],
 
   "12": [
     {
       "name": "Water Pistol",
-      "type": "item"
+      "type": "item",
+      "damage": 5
     }
   ],
 
   "13": [
     {
       "name": "Guard",
-      "type": "obstacle"
+      "type": "obstacle",
+      "damage": 5,
+      "health": 10
     }
   ],
 
   "14": [
     {
       "name": "Allen Key",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ],
 
   "15": [
     {
       "name": "Toothpaste",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ],
 
   "16": [
     {
       "name": "Felon",
-      "type": "obstacle"
+      "type": "obstacle",
+      "damage": 50,
+      "health": 20
     }
   ],
 
   "17": [
     {
       "name": "Vial of Ink",
-      "type": "item"
+      "type": "item",
+      "damage": 0
     }
   ]
 }
