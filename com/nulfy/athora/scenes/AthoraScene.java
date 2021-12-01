@@ -104,7 +104,6 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
             ArrayList<AthoraObject> objectArrayList = new ArrayList<>();
 
             if(objectsArray != null){
-                objectArrayList.clear();
                 for (Object object : objectsArray) {
                     JSONObject o = (JSONObject) object;
                     switch ((String) o.get("type")) {
