@@ -25,7 +25,7 @@
         "message": "Did you bring a jackhammer?"
       }
     },
-    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. There is an exit to the east and an entrance to the west."
+    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. \nYou can see an exit to the east and an entrance to the west."
   },
   {
     "id": 1,
@@ -52,10 +52,11 @@
       },
       "down": {
         "value": 100,
-        "message": "You fell down a drain, good job. \nYou clamber back up, looking like an idiot who watched It one too many times."
+        "message": "You fell down a drain, good job. \nYou clamber back up, looking like an idiot who watched It one too many times.",
+        "hp": -5
       }
     },
-    "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore."
+    "setting": "You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see, a waste of space if you ask me, nobody has the money to buy a car anymore. \nGet back to the dock on the east."
   },
   {
     "id": 2,
@@ -85,7 +86,7 @@
         "message": "Tiles, cool \n You want a medal or something?"
       }
     },
-    "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? Get back to your mission, they dont sell the Filet-o-fish anymore."
+    "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? \nGet back to your mission, they dont sell the Filet-o-fish anymore."
   },
   {
     "id": 3,
@@ -143,12 +144,12 @@
         "message": "You planning to dig to China or something?"
       }
     },
-    "setting": "There are lots of boats here, You stare very intensely at the boats neatly lined up on the dock channeling your inner genius as they bob up and down in the water. Eventually your eyes land on a particularly large yacht to the east that looks very well maintained."
+    "setting": "There are lots of boats here, You stare very intensely at the boats neatly lined up on the dock channeling your inner Jeremy Clarkson as they bob up and down in the water. \nEventually your eyes land on a particularly large yacht to the east that looks very well maintained."
   },
   {
     "id": 5,
     "name": "Loading Bay",
-    "setting": "You watch as a guard loads luggage onto the yacht, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition.",
+    "setting": "You watch as a guard loads luggage into the yacht's cargo hold to the east, there's no way you'll get onto the boat though, he's very well equipped to injure you beyond recognition.",
     "directions": {
       "north": {
         "value": 6
@@ -176,7 +177,7 @@
   {
     "id": 6,
     "name": "Yacht",
-    "setting": "Standing next to the yacht is a bit awkward, you might trip the robot guards' suspicion detectors. Hurry up and move, the front of the yacht is up north and the rear is back south.",
+    "setting": "Standing next to the yacht is a bit awkward, you might make the robot guards suspicious. Hurry up and move, the front of the yacht is up north and the rear is back south.",
     "directions": {
       "north": {
         "value": 7
@@ -223,7 +224,7 @@
       },
       "up": {
         "value": 100,
-        "message": "No don't do that."
+        "message": "No, don't do that."
       },
       "down": {
         "value": 100,
@@ -249,7 +250,8 @@
         "message": "Nice wall you've got there."
       },
       "west": {
-        "value": 5
+        "value": 100,
+        "message": "The ship has just left the dock, you can't leave now."
       },
       "up": {
         "value": 9
@@ -259,7 +261,7 @@
         "message": "If you went any lower than this you'd end up in the water."
       }
     },
-    "setting": "You're surrounded by what looks like years of supplies and stacks of paperwork (perhaps relating to the acquisition and destruction of all the major printing companies on earth), maybe Felon was planning to escape and keep all the good stuff to himself. There is a staircase and an exit to the west."
+    "setting": "You're surrounded by what looks like years of supplies and stacks of paperwork, maybe Felon was planning to get off the grid. You hear the gentle hum of the ship's engine as it leaves the dock.\nThere is a staircase leading up."
   },
   {
     "id": 9,
@@ -357,7 +359,7 @@
         "message": "Walking into a wall of water guns isn't going to help you."
       },
       "east": {
-        "value": 13,
+        "value": 100,
         "message": "Thunk, This porthole is too small for you to jump out of."
       },
       "south": {
@@ -390,7 +392,8 @@
         "value": 14
       },
       "south": {
-        "value": 9
+        "value": 100,
+        "message": "There's nothing there mate."
       },
       "west": {
         "value": 15
@@ -477,14 +480,16 @@
         "value": 17
       },
       "south": {
-        "value": 13
+        "value": 100,
+        "message": "You successfully walk into a wall (again) but this time Muks hears you and you decide to make a run for it. Your extremities lock up in your immeasurable terror and you flop along to the deck like a little penguin. \nStill thinking you're a penguin, you jump overboard into the sea. \nHowever, unlike a penguin you don't know how to swim and you start to sink until -10 degree water slowly fills your lungs and you suffocate.",
+        "hp": -11
       },
       "west": {
         "value": 18
       },
       "up": {
         "value": 100,
-        "message": "You jump, and Muks hears you. He turns around, his fiery red eyes stare you down as he lifts up a The Interesting Company flamethrower. Oops, you're on fire.",
+        "message": "You jump, unfortunately, because of your complete lack of educated judgement, Muks hears you. \nTurning around, the surroundings reflect Felon's fiery red eyes as they stare you down. Muks walks to a cupboard and lifts up a The Interesting Company flamethrower. \nHe turns to face you in your last moments, his pale white skin orange in the glow of the flame that is about to snuff out your life. Oops, you're on fire.",
         "hp": -10000
       },
       "down": {
@@ -567,8 +572,7 @@
         "message": "Don't jump out the Mace Windu."
       },
       "south": {
-        "value": 100,
-        "message": "Learn to walk without crashing."
+        "value": 16
       },
       "west": {
         "value": 100,
