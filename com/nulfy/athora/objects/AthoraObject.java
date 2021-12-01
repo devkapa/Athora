@@ -14,10 +14,6 @@ public class AthoraObject {
         this.accessible = accessible;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }

@@ -1,8 +1,6 @@
 package com.nulfy.athora.player;
 
-import com.nulfy.athora.objects.AthoraInventoryItem;
 import com.nulfy.athora.objects.AthoraObject;
-import com.nulfy.athora.scenes.AthoraScene;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +20,6 @@ public class AthoraPlayer {
 
     public long getHealth() {
         return health;
-    }
-
-    public AthoraScene getScene() {
-        return AthoraScene.currentScene;
     }
 
     public void changeHealth(int amount) {
