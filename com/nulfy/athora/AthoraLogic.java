@@ -1,6 +1,7 @@
 package com.nulfy.athora;
 
 import com.nulfy.athora.assets.AthoraAssets;
+import com.nulfy.athora.objects.AthoraInventoryItem;
 import com.nulfy.athora.player.AthoraPlayer;
 import com.nulfy.athora.scenes.AthoraScene;
 import static com.nulfy.athora.scenes.AthoraScene.currentScene;
@@ -14,10 +15,10 @@ import java.util.Scanner;
 public class AthoraLogic {
 
     static Scanner input = new Scanner(System.in);
-    public static long playerHp = 10;
-    public static ArrayList<String> inventory = new ArrayList<>();
+    public static long playerHealth = 10;
+    public static ArrayList<AthoraInventoryItem> inventory = new ArrayList<>();
 
-    public static AthoraPlayer player = new AthoraPlayer(playerHp, inventory);
+    public static AthoraPlayer player = new AthoraPlayer(playerHealth, inventory);
 
     public static void AwaitMovement() throws IOException, ParseException {
 
@@ -27,7 +28,7 @@ public class AthoraLogic {
 
         while(true){
 
-            if (player.getHp() <= 0){
+            if (player.getHealth() <= 0){
                 System.out.println(AthoraAssets.diedMessage);
                 break;
             }
@@ -64,8 +65,8 @@ public class AthoraLogic {
             System.out.println(look());
         } else {
             if(healthChange != 100){
-                player.changeHp(Math.toIntExact(healthChange));
-                System.out.println(currentScene.getDirectionMessage(directionIndex) + " " + Math.toIntExact(healthChange) + " HP");
+                player.changeHealth(Math.toIntExact(healthChange));
+                System.out.println(currentScene.getDirectionMessage(directionIndex) + " (" + Math.toIntExact(healthChange) + " HP)");
             } else {
                 System.out.println(currentScene.getDirectionMessage(directionIndex));
             }
@@ -73,7 +74,7 @@ public class AthoraLogic {
     }
 
     public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "open", "move",
-            "inventory", "break", "kill", "look", "north", "east", "south", "west", "up", "down"
+            "inventory", "break", "kill", "look", "north", "east", "south", "west", "up", "down", "knife"
     };
 
     public static String[] directions = {"north", "east", "south", "west", "up", "down"};

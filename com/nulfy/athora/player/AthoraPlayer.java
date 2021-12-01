@@ -1,26 +1,31 @@
 package com.nulfy.athora.player;
 
+import com.nulfy.athora.objects.AthoraInventoryItem;
+import com.nulfy.athora.scenes.AthoraScene;
+
 import java.util.ArrayList;
 
 public class AthoraPlayer {
 
-    long hp;
-    ArrayList<String> inventory;
+    long health;
+    ArrayList<AthoraInventoryItem> inventory;
 
-    public AthoraPlayer(long hp, ArrayList<String> inventory) {
-        this.hp = hp;
+    public AthoraPlayer(long health, ArrayList<AthoraInventoryItem> inventory) {
+        this.health = health;
         this.inventory = inventory;
     }
 
-    public long getHp() {
-        return hp;
+    public long getHealth() {
+        return health;
     }
 
-    public void changeHp(int amount){
-        hp += amount;
+    public AthoraScene getScene() { return AthoraScene.currentScene; }
+
+    public void changeHealth(int amount){
+        health += amount;
     }
 
-    public ArrayList<String> getInventory(){
+    public ArrayList<AthoraInventoryItem> getInventory(){
         return inventory;
     }
 
