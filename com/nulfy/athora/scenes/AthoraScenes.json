@@ -2,6 +2,7 @@
   {
     "id": 0,
     "name": "Dock",
+    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. \nYou can see an exit to a parking lot on the west and a ticket booth to the west.",
     "directions": {
       "north": {
         "value": 100,
@@ -24,8 +25,7 @@
         "value": 100,
         "message": "Did you bring a jackhammer?"
       }
-    },
-    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. \nYou can see an exit to the east and an entrance to the west."
+    }
   },
   {
     "id": 1,
@@ -115,7 +115,7 @@
         "message": "If you put a hole in this floor, you would get to the ocean, you would also have to pay a hefty fine."
       }
     },
-    "setting": "You walk through the gates, hopefully you paid for your ticket, there's an exit to your north."
+    "setting": "You walk through the gates, hopefully you paid for your ticket, there's a doorway to the boats on your north."
   },
   {
     "id": 4,
@@ -292,7 +292,7 @@
   {
     "id": 10,
     "name": "Engine Bay",
-    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing. ",
+    "setting": "This seems to be the engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along. I don't think you can do much in this room, the only major skill on your CV is professional water slide testing.",
     "directions": {
       "north": {
         "value": 9
@@ -489,7 +489,7 @@
       },
       "up": {
         "value": 100,
-        "message": "You jump, unfortunately, because of your complete lack of educated judgement, Muks hears you. \nTurning around, the surroundings reflect Felon's fiery red eyes as they stare you down. Muks walks to a cupboard and lifts up a The Interesting Company flamethrower. \nHe turns to face you in your last moments, his pale white skin orange in the glow of the flame that is about to snuff out your life. Oops, you're on fire.",
+        "message": "You jump, unfortunately, because of your complete lack of educated judgement, Muks hears you. \nTurning around, the surroundings reflect in Felon's fiery red eyes as they stare you down. Muks walks to a cupboard and lifts up a The Interesting Company flamethrower. \nHe turns to face you in your last moments, his pale white skin orange in the glow of the flame that is about to snuff out your life. Oops, you're on fire.",
         "hp": -10000
       },
       "down": {
