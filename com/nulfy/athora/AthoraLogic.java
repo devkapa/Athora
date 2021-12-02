@@ -67,6 +67,17 @@ public class AthoraLogic {
                     }
                     System.out.println("Inventory" + inventoryString);
                 }
+                case "kill", "attack" -> {
+                    if (primary.equals("")) {
+                        System.out.println("What do you want to attack?");
+                    } else {
+                        if(primary.contains("with") || primary.contains("using")){
+                            player.swing(primary, player.findObstacle(primary));
+                        } else {
+                            System.out.println("What do you want to attack with?");
+                        }
+                    }
+                }
                 case "none" -> System.out.println("There is no verb in that sentence.");
                 case default -> System.out.println("I don't understand \"" + command + "\"");
             }
@@ -96,7 +107,7 @@ public class AthoraLogic {
     }
 
     public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
-            "inventory", "inv", "break", "kill", "look", "north", "east", "south", "west", "up", "down", "knife"
+            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife"
     };
 
     public static String[] directions = {"north", "east", "south", "west", "up", "down"};

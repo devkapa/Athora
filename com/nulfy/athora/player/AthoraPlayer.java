@@ -1,10 +1,14 @@
 package com.nulfy.athora.player;
 
 import com.nulfy.athora.objects.AthoraObject;
+import com.nulfy.athora.objects.AthoraObstacle;
+import com.nulfy.athora.objects.AthoraWeapon;
+import com.nulfy.athora.scenes.AthoraScene;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import static com.nulfy.athora.scenes.AthoraScene.currentScene;
 
@@ -21,6 +25,8 @@ public class AthoraPlayer {
     public long getHealth() {
         return health;
     }
+
+    public AthoraScene getScene() { return currentScene; }
 
     public void changeHealth(int amount) {
         health += amount;
@@ -71,5 +77,45 @@ public class AthoraPlayer {
         }
         if(!matched) System.out.println("You don't have a \"" + primary + "\".");
     }
+
+    public void swing(String primary, AthoraObstacle guard) {
+        Iterator<AthoraObject> iter = inventory.iterator();
+        boolean matched = false;
+        while (iter.hasNext()) {
+            AthoraWeapon w = (AthoraWeapon) iter.next();
+            String[] splitName = w.getName().split(" ");
+            for (String s : splitName) {
+                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
+                    matched = true;
+                    if(guard.isAlive()){
+                        w.attack(guard, w);
+                        System.out.println("You attacked the " + guard.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
+                        if(guard.isAlive()) System.out.println("The " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
+                        else System.out.println("The " + guard.getName() + " is now dead.");
+                        break;
+                    } else {
+                        System.out.println("That " + guard.getName() + " is already dead.");
+                    }
+                }
+            }
+        }
+        if(!matched) System.out.println("You can't attack with a weapon you don't have.");
+    }
+
+    public AthoraObstacle findObstacle(String primary) {
+        AthoraObstacle obstacle = null;
+        for (AthoraObject object : currentScene.objects()) {
+            String[] splitName = object.getName().split(" ");
+            for (String s : splitName) {
+                List<String> secondary = Arrays.asList(primary.split(" with "));
+                if (secondary.get(0).contains(s.toLowerCase())) {
+                    obstacle = (AthoraObstacle) object;
+                    break;
+                }
+            }
+        }
+        return obstacle;
+    }
+
 
 }

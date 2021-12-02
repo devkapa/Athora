@@ -1,5 +1,12 @@
 package com.nulfy.athora.objects;
 
+import com.nulfy.athora.player.AthoraPlayer;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+
 public class AthoraWeapon extends AthoraObject {
 
     private final long damage;

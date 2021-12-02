@@ -1,9 +1,22 @@
 {
+  "0": [
+    {
+      "name": "Knife",
+      "type": "weapon",
+      "damage": -5
+    },
+    {
+      "name": "Guard",
+      "type": "obstacle",
+      "damage": -5,
+      "health": 10
+    }
+  ],
   "2": [
     {
       "name": "McDonald's Cheeseburger",
       "type": "item",
-      "damage": 0.5
+      "damage": -0.5
     }
   ],
   "3": [
@@ -18,13 +31,13 @@
     {
       "name": "Porter",
       "type": "obstacle",
-      "damage": 2,
+      "damage": -2,
       "health": 5
     },
     {
       "name": "Suitcase",
       "type": "item",
-      "damage": 0.5
+      "damage": -0.5
     }
   ],
 
@@ -32,28 +45,28 @@
     {
       "name": "Guard",
       "type": "obstacle",
-      "damage": 5,
+      "damage": -5,
       "health": 10
     },
     {
       "name": "Pepper Spray",
       "type": "item",
-      "damage": 5
+      "damage": -5
     },
     {
       "name": "Baton",
       "type": "item",
-      "damage": 1
+      "damage": -10
     },
     {
       "name": "Gun",
       "type": "item",
-      "damage": 15
+      "damage": -15
     },
     {
       "name": "Taser",
       "type": "item",
-      "damage": 6
+      "damage": -6
     }
   ],
 
@@ -74,7 +87,7 @@
     {
       "name": "Guard",
       "type": "obstacle",
-      "damage": 5,
+      "damage": -5,
       "health": 10
     }
   ],
@@ -83,7 +96,7 @@
     {
       "name": "Wrench",
       "type": "item",
-      "damage": 1
+      "damage": -1
     }
   ],
 
@@ -99,7 +112,7 @@
     {
       "name": "Water Pistol",
       "type": "item",
-      "damage": 5
+      "damage": -5
     }
   ],
 
@@ -107,7 +120,7 @@
     {
       "name": "Guard",
       "type": "obstacle",
-      "damage": 5,
+      "damage": -5,
       "health": 10
     }
   ],
@@ -132,7 +145,7 @@
     {
       "name": "Felon",
       "type": "obstacle",
-      "damage": 50,
+      "damage": -50,
       "health": 20
     }
   ],

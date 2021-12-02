@@ -1,5 +1,8 @@
 package com.nulfy.athora.objects;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class AthoraObstacle extends AthoraObject {
 
     private final long damage;
@@ -9,6 +12,10 @@ public class AthoraObstacle extends AthoraObject {
         super(id, name, type, accessible);
         this.damage = damage;
         this.health = health;
+    }
+
+    public boolean isAlive() {
+        return health > 0;
     }
 
     public long getDamage() {
