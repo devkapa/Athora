@@ -26,14 +26,22 @@ public class AthoraPlayer {
         return health;
     }
 
-    public AthoraScene getScene() { return currentScene; }
-
     public void changeHealth(int amount) {
         health += amount;
     }
 
     public ArrayList<AthoraObject> getInventory() {
         return inventory;
+    }
+
+    public ArrayList<AthoraWeapon> getWeapons() {
+        ArrayList<AthoraWeapon> weapons = new ArrayList<>();
+        for(AthoraObject item : inventory){
+            if(item.getType().equals("weapon")){
+                weapons.add((AthoraWeapon) item);
+            }
+        }
+        return weapons;
     }
 
     public void pickup(String primary) {
@@ -60,10 +68,10 @@ public class AthoraPlayer {
     }
 
     public void drop(String primary) {
-        Iterator<AthoraObject> iter = inventory.iterator();
+        Iterator<AthoraWeapon> iter = getWeapons().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraWeapon o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -79,10 +87,10 @@ public class AthoraPlayer {
     }
 
     public void swing(String primary, AthoraObstacle guard) {
-        Iterator<AthoraObject> iter = inventory.iterator();
+        Iterator<AthoraWeapon> iter = getWeapons().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraWeapon w = (AthoraWeapon) iter.next();
+            AthoraWeapon w = iter.next();
             String[] splitName = w.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -99,7 +107,10 @@ public class AthoraPlayer {
                 }
             }
         }
-        if(!matched) System.out.println("You can't attack with a weapon you don't have.");
+        List<String> secondary = Arrays.asList(primary.split(" with "));
+        String secondaryWord;
+        if(secondary.size() < 2) secondaryWord = "nothing"; else secondaryWord = secondary.get(1);
+        if(!matched) System.out.println("You can't attack a " + guard.getName() + " with a " + secondaryWord);
     }
 
     public AthoraObstacle findObstacle(String primary) {
