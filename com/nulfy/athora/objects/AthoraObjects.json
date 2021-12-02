@@ -1,22 +1,4 @@
 {
-  "0": [
-    {
-      "name": "McDonald's Cheeseburger",
-      "type": "item",
-      "damage": 0.5
-    },
-    {
-      "name": "Boat Guard",
-      "type": "obstacle",
-      "damage": -5,
-      "health": 10
-    },
-    {
-      "name": "Knife",
-      "type": "weapon",
-      "damage": 4
-    }
-  ],
   "2": [
     {
       "name": "McDonald's Cheeseburger",
