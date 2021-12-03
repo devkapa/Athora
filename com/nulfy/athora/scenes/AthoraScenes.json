@@ -83,7 +83,7 @@
       },
       "down": {
         "value": 100,
-        "message": "Tiles, cool \n You want a medal or something?"
+        "message": "Tiles, cool \nYou want a medal or something?"
       }
     },
     "setting": "One of the last standing McDonald's in California, is this really the time to be thinking about food though? \nGet back to your mission, they dont sell the Filet-o-fish anymore."
@@ -591,7 +591,7 @@
   {
     "id": 20,
     "name": "More confidential dock",
-    "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n \n Oh there he is. \n You hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south.",
+    "setting": "You're here, so close to the end of your mission. All you've got to do now is wait for the one hundred percent trustworthy associate that we've randomly selected from the California electorate roll (basically a jury yes). \n\nOh there he is. \nYou hand over the vials and money, finally you're free to go. Hold on, I lied. Get back on your boat, you parked it to your south.",
     "directions": {
       "north": {
         "value": 100,

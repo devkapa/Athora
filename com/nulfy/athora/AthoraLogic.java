@@ -78,8 +78,7 @@ public class AthoraLogic {
                         }
                     }
                 }
-                case "none" -> System.out.println("There is no verb in that sentence.");
-                case default -> System.out.println("I don't understand \"" + command + "\"");
+                case "none", default -> System.out.println("I don't understand \"" + command + "\".");
             }
         }
     }

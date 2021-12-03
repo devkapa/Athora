@@ -105,13 +105,13 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                     JSONObject o = (JSONObject) object;
                     switch ((String) o.get("type")) {
                         case "weapon" -> objectArrayList.add(
-                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", true, (long) o.get("damage"))
+                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"))
                         );
                         case "item" -> objectArrayList.add(
-                                new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", true)
+                                new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", (boolean) o.get("accessible"))
                         );
                         case "obstacle" -> objectArrayList.add(
-                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", true, (long) o.get("damage"), (long) o.get("health"))
+                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"))
                         );
                     }
                 }

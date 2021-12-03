@@ -2,26 +2,30 @@
   "2": [
     {
       "name": "McDonald's Cheeseburger",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
   "3": [
     {
-      "name": "Tickets",
-      "type": "item"
+      "name": "Ticket",
+      "type": "item",
+      "accessible": true
     }
   ],
 
   "5": [
     {
-      "name": "Porter",
+      "name": "Porter Guard",
       "type": "obstacle",
       "damage": -2,
-      "health": 5
+      "health": 5,
+      "accessible": true
     },
     {
       "name": "Suitcase",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
 
@@ -29,48 +33,56 @@
     {
       "name": "Guard",
       "type": "obstacle",
-      "damage": -5,
-      "health": 10
+      "damage": -10,
+      "health": 10,
+      "accessible": true
     },
     {
       "name": "Pepper Spray",
       "type": "weapon",
-      "damage": -5
+      "damage": -5,
+      "accessible": true
     },
     {
       "name": "Baton",
       "type": "weapon",
-      "damage": -10
+      "damage": -10,
+      "accessible": false
     },
     {
       "name": "Gun",
       "type": "weapon",
-      "damage": -15
+      "damage": -15,
+      "accessible": false
     },
     {
       "name": "Taser",
       "type": "weapon",
-      "damage": -6
+      "damage": -6,
+      "accessible": false
     }
   ],
 
   "8": [
     {
       "name": "Suitcase",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     },
     {
       "name": "Sheets of Paper",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
 
   "9": [
     {
-      "name": "Guard",
+      "name": "Robot Guard",
       "type": "obstacle",
       "damage": -5,
-      "health": 10
+      "health": 10,
+      "accessible": true
     }
   ],
 
@@ -78,14 +90,16 @@
     {
       "name": "Wrench",
       "type": "weapon",
-      "damage": -1
+      "damage": -1,
+      "accessible": true
     }
   ],
 
   "11": [
     {
       "name": "Life Boat",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
 
@@ -93,46 +107,52 @@
     {
       "name": "Water Pistol",
       "type": "weapon",
-      "damage": -5
+      "damage": -5,
+      "accessible": true
     }
   ],
 
   "13": [
     {
-      "name": "Guard",
+      "name": "Robot Guard",
       "type": "obstacle",
       "damage": -5,
-      "health": 10
+      "health": 10,
+      "accessible": true
     }
   ],
 
   "14": [
     {
       "name": "Allen Key",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
 
   "15": [
     {
       "name": "Toothpaste",
-      "type": "item"
+      "type": "item",
+      "accessible": true
     }
   ],
 
   "16": [
     {
-      "name": "Felon",
+      "name": "Felon Muks",
       "type": "obstacle",
       "damage": -50,
-      "health": 20
+      "health": 20,
+      "accessible": true
     }
   ],
 
   "17": [
     {
       "name": "[LEGENDARY] Vial of Ink",
-      "type": "item"
+      "type": "item",
+      "accessible": false
     }
   ]
 }

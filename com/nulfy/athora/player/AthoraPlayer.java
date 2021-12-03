@@ -3,7 +3,6 @@ package com.nulfy.athora.player;
 import com.nulfy.athora.objects.AthoraObject;
 import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.objects.AthoraWeapon;
-import com.nulfy.athora.scenes.AthoraScene;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,10 +67,10 @@ public class AthoraPlayer {
     }
 
     public void drop(String primary) {
-        Iterator<AthoraWeapon> iter = getWeapons().iterator();
+        Iterator<AthoraObject> iter = inventory.iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraWeapon o = iter.next();
+            AthoraObject o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -87,6 +86,10 @@ public class AthoraPlayer {
     }
 
     public void swing(String primary, AthoraObstacle guard) {
+        if(guard == null){
+            System.out.println("There is either no enemy here or that object can't be attacked.");
+            return;
+        }
         Iterator<AthoraWeapon> iter = getWeapons().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
@@ -98,8 +101,12 @@ public class AthoraPlayer {
                     if(guard.isAlive()){
                         w.attack(guard, w);
                         System.out.println("You attacked the " + guard.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
-                        if(guard.isAlive()) System.out.println("The " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
-                        else System.out.println("The " + guard.getName() + " is now dead.");
+                        if(guard.isAlive()) {
+                            System.out.println("He swings back at you, dealing " + guard.getDamage() + " damage to you.\nThe " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
+                            this.changeHealth((int) guard.getDamage());
+                        } else {
+                            System.out.println("The " + guard.getName() + " is now dead.");
+                        }
                         break;
                     } else {
                         System.out.println("That " + guard.getName() + " is already dead.");
@@ -120,8 +127,10 @@ public class AthoraPlayer {
             for (String s : splitName) {
                 List<String> secondary = Arrays.asList(primary.split(" with "));
                 if (secondary.get(0).contains(s.toLowerCase())) {
-                    obstacle = (AthoraObstacle) object;
-                    break;
+                    if(object.getType().equals("obstacle")) {
+                        obstacle = (AthoraObstacle) object;
+                        break;
+                    }
                 }
             }
         }
