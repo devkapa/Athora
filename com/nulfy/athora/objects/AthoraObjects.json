@@ -13,7 +13,6 @@
       "accessible": true
     }
   ],
-
   "5": [
     {
       "name": "Porter Guard",
@@ -47,19 +46,22 @@
       "name": "Baton",
       "type": "weapon",
       "damage": -10,
-      "accessible": false
+      "accessible": false,
+      "message": ""
     },
     {
       "name": "Gun",
       "type": "weapon",
       "damage": -15,
-      "accessible": false
+      "accessible": false,
+      "message": ""
     },
     {
       "name": "Taser",
       "type": "weapon",
       "damage": -6,
-      "accessible": false
+      "accessible": false,
+      "message": ""
     }
   ],
 
