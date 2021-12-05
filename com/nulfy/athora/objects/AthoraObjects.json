@@ -59,7 +59,7 @@
     {
       "name": "Taser",
       "type": "weapon",
-      "damage": -6,
+      "damage": -10,
       "accessible": false,
       "event": "Good luck with that, the guard has his taser holstered, he marvels at your bad judgement until he knocks you out permanently with his baton."
     }
