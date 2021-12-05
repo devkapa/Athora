@@ -83,6 +83,7 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
+      "position": [1, 4],
       "accessible": true
     }
   ],
@@ -119,6 +120,7 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
+      "position": [0, 1, 4],
       "accessible": true
     }
   ],
@@ -145,6 +147,14 @@
       "type": "obstacle",
       "damage": -50,
       "health": 20,
+      "accessible": true
+    },
+    {
+      "name": "Robot Guard",
+      "type": "obstacle",
+      "damage": -5,
+      "health": 10,
+      "position": 1,
       "accessible": true
     }
   ],

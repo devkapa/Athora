@@ -386,7 +386,8 @@
     "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south.",
     "directions": {
       "north": {
-        "value": 16
+        "value": 100,
+        "message": "Just a cupboard here"
       },
       "east": {
         "value": 14
