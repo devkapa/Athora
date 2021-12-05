@@ -70,12 +70,12 @@ public class AthoraLogic {
                 case "kill", "attack" -> {
                     if (primary.equals("")) {
                         System.out.println("What do you want to attack?");
+                        break;
+                    }
+                    if(primary.contains("with") || primary.contains("using")){
+                        player.swing(primary, player.findObstacle(primary));
                     } else {
-                        if(primary.contains("with") || primary.contains("using")){
-                            player.swing(primary, player.findObstacle(primary));
-                        } else {
-                            System.out.println("What do you want to attack with?");
-                        }
+                        System.out.println("What do you want to attack with?");
                     }
                 }
                 case "none", default -> System.out.println("I don't understand \"" + command + "\".");
