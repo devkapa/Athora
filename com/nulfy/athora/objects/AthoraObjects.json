@@ -19,6 +19,7 @@
       "type": "obstacle",
       "damage": -2,
       "health": 5,
+      "position": [1],
       "accessible": true
     },
     {
@@ -34,6 +35,7 @@
       "type": "obstacle",
       "damage": -10,
       "health": 10,
+      "position": [100],
       "accessible": true
     },
     {
@@ -145,6 +147,7 @@
     {
       "name": "Felon Muks",
       "type": "obstacle",
+      "position": [100],
       "damage": -50,
       "health": 20,
       "accessible": true
@@ -154,7 +157,7 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
-      "position": 1,
+      "position": [1],
       "accessible": true
     }
   ],
