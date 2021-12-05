@@ -47,24 +47,23 @@
       "type": "weapon",
       "damage": -10,
       "accessible": false,
-      "message": ""
+      "event": "Good luck with that, the guard has his baton holstered, he can't believe you'd do something that unintelligent until he knocks you out permanently with his baton."
     },
     {
       "name": "Gun",
       "type": "weapon",
       "damage": -15,
       "accessible": false,
-      "message": ""
+      "event": "Nice try, the guard has his gun holstered, he pities your obtuse brain until he knocks you out permanently with his baton."
     },
     {
       "name": "Taser",
       "type": "weapon",
       "damage": -6,
       "accessible": false,
-      "message": ""
+      "event": "Good luck with that, the guard has his taser holstered, he marvels at your bad judgement until he knocks you out permanently with his baton."
     }
   ],
-
   "8": [
     {
       "name": "Suitcase",
@@ -154,7 +153,8 @@
     {
       "name": "[LEGENDARY] Vial of Ink",
       "type": "item",
-      "accessible": false
+      "accessible": false,
+      "message": "You gotta unlock the safe first."
     }
   ]
 }
