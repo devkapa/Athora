@@ -105,7 +105,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                     JSONObject o = (JSONObject) object;
                     switch ((String) o.get("type")) {
                         case "weapon" -> objectArrayList.add(
-                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"))
+                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"), (String) o.get("event"))
                         );
                         case "item" -> objectArrayList.add(
                                 new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", (boolean) o.get("accessible"))

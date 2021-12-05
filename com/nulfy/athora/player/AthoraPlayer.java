@@ -52,13 +52,17 @@ public class AthoraPlayer {
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
                     matched = true;
-                    if (o.isAccessible() && o.getType().equals("item") || o.getType().equals("weapon")) {
+                    if (o.isAccessible() && o.getType().equals("item") || o.isAccessible() && o.getType().equals("weapon")) {
                         this.getInventory().add(o);
                         iter.remove();
                         System.out.println("You picked up " + o.getName());
                         break;
                     } else {
-                        System.out.println("You cannot pick up a " + o.getName() + "!");
+                        if(o.getType().equals("weapon")) {
+                            AthoraWeapon w = (AthoraWeapon) o;
+                            w.executeEvent(this);
+                        }
+                        else System.out.println("You cannot pick up a " + o.getName() + "!");
                     }
                 }
             }
