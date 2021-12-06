@@ -2,15 +2,14 @@ package com.nulfy.athora;
 
 import com.nulfy.athora.assets.AthoraAssets;
 import com.nulfy.athora.objects.AthoraObject;
+import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.player.AthoraPlayer;
 import com.nulfy.athora.scenes.AthoraScene;
 import static com.nulfy.athora.scenes.AthoraScene.currentScene;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class AthoraLogic {
 
@@ -53,29 +52,30 @@ public class AthoraLogic {
                         player.pickup(primary);
                     }
                 }
-                case "drop" -> {
+                case "drop", "rid" -> {
                     if (primary.equals("")) {
-                        System.out.println("What do you want to drop?");
+                        System.out.println("Specify what you want to drop.");
                     } else {
                         player.drop(primary);
                     }
                 }
-                case "inv", "inventory" -> {
+                case "inv", "inventory", "items" -> {
                     StringBuilder inventoryString = new StringBuilder();
                     for(AthoraObject item : inventory){
                         inventoryString.append("\n").append("* ").append(item.getName()).trimToSize();
                     }
+                    if(inventoryString.isEmpty()) inventoryString.append("(none)");
                     System.out.println("Inventory" + inventoryString);
                 }
-                case "kill", "attack" -> {
+                case "kill", "attack", "knife", "stab", "hit", "murder" -> {
                     if (primary.equals("")) {
-                        System.out.println("What do you want to attack?");
+                        System.out.println("Specify what you want to attack.");
                         break;
                     }
                     if(primary.contains("with") || primary.contains("using")){
                         player.swing(primary, player.findObstacle(primary));
                     } else {
-                        System.out.println("What do you want to attack with?");
+                        System.out.println("Specify what you want to attack with.");
                     }
                 }
                 case "none", default -> System.out.println("I don't understand \"" + command + "\".");
@@ -84,14 +84,28 @@ public class AthoraLogic {
     }
 
     public static String look() {
-        return currentScene.getName() + "\n" + currentScene.getSetting();
+        List<AthoraObject> sceneObjects = currentScene.objects();
+        if(sceneObjects.isEmpty()) return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + "There is nothing here.";
+        StringJoiner objects = new StringJoiner(", a ", "There is a ", " here.");
+        for(AthoraObject obj : sceneObjects){
+            objects.add(obj.getName());
+        }
+        return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + objects;
     }
 
     public static void move(String direction) {
+        List<AthoraObject> sceneObjects = currentScene.objects();
         int directionIndex = currentScene.indexFromDirection(direction);
         if(directionIndex == 100) return;
         long directionValue = currentScene.getDirectionValue(directionIndex);
         long healthChange = currentScene.getDirectionHealthChange(directionIndex);
+        for(AthoraObject object : sceneObjects){
+            if(object.getType().equals("obstacle")){
+                AthoraObstacle o = (AthoraObstacle) object;
+                if(o.getPositions() == null) break;
+                if(Arrays.stream(o.getPositions()).anyMatch(i -> i == directionIndex)) System.out.println("There is an obstacle there."); return;
+            }
+        }
         if(directionValue != 100) {
             currentScene.moveTo(directionValue);
             System.out.println(look());
@@ -106,7 +120,8 @@ public class AthoraLogic {
     }
 
     public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
-            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife"
+            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife",
+            "stab", "hit", "murder", "items", "walk"
     };
 
     public static String[] directions = {"north", "east", "south", "west", "up", "down"};
