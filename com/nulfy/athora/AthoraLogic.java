@@ -103,7 +103,14 @@ public class AthoraLogic {
             if(object.getType().equals("obstacle")){
                 AthoraObstacle o = (AthoraObstacle) object;
                 if(o.getPositions() == null) break;
-                if(Arrays.stream(o.getPositions()).anyMatch(i -> i == directionIndex)) System.out.println("There is an obstacle there."); return;
+                for(Object i : o.getPositions()){
+                    long pos = (long) i;
+                    if(directionIndex == pos) {
+                        System.out.println("There is a guard there.");
+                        return;
+                    }
+                }
+
             }
         }
         if(directionValue != 100) {

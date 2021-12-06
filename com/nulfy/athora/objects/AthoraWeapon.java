@@ -2,6 +2,8 @@ package com.nulfy.athora.objects;
 
 import com.nulfy.athora.player.AthoraPlayer;
 
+import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+
 public class AthoraWeapon extends AthoraObject {
 
     private final long damage;
@@ -24,6 +26,7 @@ public class AthoraWeapon extends AthoraObject {
 
     public void attack(AthoraObstacle enemy, AthoraWeapon weapon) {
         enemy.changeHealth(weapon.getDamage());
+        currentScene.objects().remove(enemy);
     }
 
 }

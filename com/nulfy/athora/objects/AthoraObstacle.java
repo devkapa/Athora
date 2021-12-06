@@ -1,12 +1,14 @@
 package com.nulfy.athora.objects;
 
+import org.json.simple.JSONArray;
+
 public class AthoraObstacle extends AthoraObject {
 
     private final long damage;
     private long health;
-    private final int[] positions;
+    private final JSONArray positions;
 
-    public AthoraObstacle(long id, String name, String type, boolean accessible, long damage, long health, int[] positions) {
+    public AthoraObstacle(long id, String name, String type, boolean accessible, long damage, long health, JSONArray positions) {
         super(id, name, type, accessible);
         this.damage = damage;
         this.health = health;
@@ -29,7 +31,8 @@ public class AthoraObstacle extends AthoraObject {
         health += amount;
     }
 
-    public int[] getPositions() {
+    public JSONArray getPositions() {
         return positions;
     }
+
 }

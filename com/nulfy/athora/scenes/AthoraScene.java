@@ -111,7 +111,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                                 new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", (boolean) o.get("accessible"))
                         );
                         case "obstacle" -> objectArrayList.add(
-                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"), (int[]) o.get("positions"))
+                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))
                         );
                     }
                 }
