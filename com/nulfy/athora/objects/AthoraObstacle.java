@@ -8,8 +8,8 @@ public class AthoraObstacle extends AthoraObject {
     private long health;
     private final JSONArray positions;
 
-    public AthoraObstacle(long id, String name, String type, boolean accessible, long damage, long health, JSONArray positions) {
-        super(id, name, type, accessible);
+    public AthoraObstacle(String name, String type, boolean accessible, long damage, long health, JSONArray positions) {
+        super(name, type, accessible);
         this.damage = damage;
         this.health = health;
         this.positions = positions;

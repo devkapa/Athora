@@ -168,6 +168,15 @@
       "type": "item",
       "accessible": false,
       "message": "You gotta unlock the safe first."
+    },
+    {
+      "name": "Safe",
+      "type": "interactive",
+      "health": 1000000000000,
+      "accessible": false,
+      "access": {
+        "code": 1234
+      }
     }
   ]
 }

@@ -2,8 +2,8 @@ package com.nulfy.athora.objects;
 
 public class AthoraInventoryItem extends AthoraObject {
 
-    public AthoraInventoryItem(long id, String name, String type, boolean accessible) {
-        super(id, name, type, accessible);
+    public AthoraInventoryItem(String name, String type, boolean accessible) {
+        super(name, type, accessible);
     }
 
 }

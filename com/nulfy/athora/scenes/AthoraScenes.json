@@ -2,7 +2,7 @@
   {
     "id": 0,
     "name": "Dock",
-    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries are visible. \nYou can see an exit to a parking lot on the west and a ticket booth to the east.",
+    "setting": "You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries. \nYou can see an exit to a parking lot on the west and a ticket booth to the east.",
     "directions": {
       "north": {
         "value": 100,

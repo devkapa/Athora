@@ -75,61 +75,68 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
     public static AthoraScene currentScene;
 
     @SuppressWarnings("unchecked")
-    public static void initiateScenes(String scenesPath, String objectsPath) throws IOException, ParseException {
+    public static void initiateScenes(String scenesPath, String objectsPath) {
 
-        JSONParser parser = new JSONParser();
+        try {
 
-        JSONArray scenes = (JSONArray) parser.parse(new FileReader(scenesPath));
-        JSONObject objects = (JSONObject) parser.parse(new FileReader(objectsPath));
+            JSONParser parser = new JSONParser();
 
-        for (Object scene : scenes) {
+            JSONArray scenes = (JSONArray) parser.parse(new FileReader(scenesPath));
+            JSONObject objects = (JSONObject) parser.parse(new FileReader(objectsPath));
 
-            JSONObject s = (JSONObject) scene;
+            for (Object scene : scenes) {
 
-            JSONObject directionMap = new JSONObject((Map<String, ?>) s.get("directions"));
+                JSONObject s = (JSONObject) scene;
 
-            List<Map<String, ?>> directions = Arrays.asList(
-                    (Map<String, ?>) directionMap.get("north"),
-                    (Map<String, ?>) directionMap.get("east"),
-                    (Map<String, ?>) directionMap.get("south"),
-                    (Map<String, ?>) directionMap.get("west"),
-                    (Map<String, ?>) directionMap.get("up"),
-                    (Map<String, ?>) directionMap.get("down")
-            );
+                JSONObject directionMap = new JSONObject((Map<String, ?>) s.get("directions"));
 
-            JSONArray objectsArray = (JSONArray) objects.get(s.get("id").toString());
-            ArrayList<AthoraObject> objectArrayList = new ArrayList<>();
+                List<Map<String, ?>> directions = Arrays.asList(
+                        (Map<String, ?>) directionMap.get("north"),
+                        (Map<String, ?>) directionMap.get("east"),
+                        (Map<String, ?>) directionMap.get("south"),
+                        (Map<String, ?>) directionMap.get("west"),
+                        (Map<String, ?>) directionMap.get("up"),
+                        (Map<String, ?>) directionMap.get("down")
+                );
 
-            if(objectsArray != null){
-                for (Object object : objectsArray) {
-                    JSONObject o = (JSONObject) object;
-                    switch ((String) o.get("type")) {
-                        case "weapon" -> objectArrayList.add(
-                                new AthoraWeapon((long) s.get("id"), (String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"), (String) o.get("event"))
-                        );
-                        case "item" -> objectArrayList.add(
-                                new AthoraInventoryItem((long) s.get("id"), (String) o.get("name"), "item", (boolean) o.get("accessible"))
-                        );
-                        case "obstacle" -> objectArrayList.add(
-                                new AthoraObstacle((long) s.get("id"), (String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))
-                        );
+                JSONArray objectsArray = (JSONArray) objects.get(s.get("id").toString());
+                ArrayList<AthoraObject> objectArrayList = new ArrayList<>();
+
+                if (objectsArray != null) {
+                    for (Object object : objectsArray) {
+                        JSONObject o = (JSONObject) object;
+                        switch ((String) o.get("type")) {
+                            case "weapon" -> objectArrayList.add(
+                                    new AthoraWeapon((String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"), (String) o.get("event"))
+                            );
+                            case "item" -> objectArrayList.add(
+                                    new AthoraInventoryItem((String) o.get("name"), "item", (boolean) o.get("accessible"))
+                            );
+                            case "obstacle" -> objectArrayList.add(
+                                    new AthoraObstacle((String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))
+                            );
+                        }
                     }
                 }
+
+                AthoraScene selectedScene = new AthoraScene(
+                        (long) s.get("id"),
+                        (String) s.get("name"),
+                        (String) s.get("setting"),
+                        directions,
+                        objectArrayList
+                );
+
+                athoraScenes.add(selectedScene);
+
             }
 
-            AthoraScene selectedScene = new AthoraScene(
-                    (long) s.get("id"),
-                    (String) s.get("name"),
-                    (String) s.get("setting"),
-                    directions,
-                    objectArrayList
-            );
+            currentScene = athoraScenes.get(0);
 
-            athoraScenes.add(selectedScene);
-
+        } catch(IOException | ParseException e) {
+            System.out.println("There was an error initiating the scenes of the game. Error is as follows:\n");
+            e.printStackTrace();
         }
-
-        currentScene = athoraScenes.get(0);
 
     }
 

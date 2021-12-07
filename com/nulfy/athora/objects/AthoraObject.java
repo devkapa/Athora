@@ -2,13 +2,11 @@ package com.nulfy.athora.objects;
 
 public class AthoraObject {
 
-    private final long id;
     private final String name;
     private final String type;
     private boolean accessible;
 
-    public AthoraObject(long id, String name, String type, boolean accessible) {
-        this.id = id;
+    public AthoraObject(String name, String type, boolean accessible) {
         this.name = name;
         this.type = type;
         this.accessible = accessible;

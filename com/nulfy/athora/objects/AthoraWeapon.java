@@ -9,8 +9,8 @@ public class AthoraWeapon extends AthoraObject {
     private final long damage;
     private final String event;
 
-    public AthoraWeapon(long id, String name, String type, boolean accessible, long damage, String event) {
-        super(id, name, type, accessible);
+    public AthoraWeapon(String name, String type, boolean accessible, long damage, String event) {
+        super(name, type, accessible);
         this.damage = damage;
         this.event = event;
     }
@@ -26,7 +26,7 @@ public class AthoraWeapon extends AthoraObject {
 
     public void attack(AthoraObstacle enemy, AthoraWeapon weapon) {
         enemy.changeHealth(weapon.getDamage());
-        currentScene.objects().remove(enemy);
+        if(!enemy.isAlive()) currentScene.objects().remove(enemy);
     }
 
 }

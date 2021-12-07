@@ -6,9 +6,7 @@ import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.player.AthoraPlayer;
 import com.nulfy.athora.scenes.AthoraScene;
 import static com.nulfy.athora.scenes.AthoraScene.currentScene;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.*;
 
 public class AthoraLogic {
@@ -19,7 +17,7 @@ public class AthoraLogic {
 
     public static AthoraPlayer player = new AthoraPlayer(playerHealth, inventory);
 
-    public static void AwaitMovement() throws IOException, ParseException {
+    public static void startGame() {
 
         AthoraScene.initiateScenes("com/nulfy/athora/scenes/AthoraScenes.json", "com/nulfy/athora/objects/AthoraObjects.json");
 
@@ -85,7 +83,7 @@ public class AthoraLogic {
 
     public static String look() {
         List<AthoraObject> sceneObjects = currentScene.objects();
-        if(sceneObjects.isEmpty()) return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + "There is nothing here.";
+        if(sceneObjects.isEmpty()) return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + "There are no items here.";
         StringJoiner objects = new StringJoiner(", a ", "There is a ", " here.");
         for(AthoraObject obj : sceneObjects){
             objects.add(obj.getName());
