@@ -2,7 +2,9 @@
   "2": [
     {
       "name": "McDonald's Cheeseburger",
-      "type": "item",
+      "type": "food",
+      "mass": 2,
+      "damage": -0.5,
       "accessible": true
     }
   ],
@@ -10,6 +12,8 @@
     {
       "name": "Ticket",
       "type": "item",
+      "mass": 1,
+      "damage": 0,
       "accessible": true
     }
   ],
@@ -19,12 +23,16 @@
       "type": "obstacle",
       "damage": -2,
       "health": 5,
+      "mass": 10,
       "position": [1],
       "accessible": true
     },
     {
       "name": "Suitcase",
-      "type": "item",
+      "type": "container",
+      "mass": 3,
+      "maxMass": 10,
+      "damage": -1,
       "accessible": true
     }
   ],
@@ -35,12 +43,14 @@
       "type": "obstacle",
       "damage": -10,
       "health": 10,
+      "mass": 10,
       "position": [100],
       "accessible": true
     },
     {
       "name": "Pepper Spray",
       "type": "weapon",
+      "mass": 2,
       "damage": -5,
       "accessible": true
     },
@@ -48,6 +58,7 @@
       "name": "Baton",
       "type": "weapon",
       "damage": -10,
+      "mass": 2,
       "accessible": false,
       "event": "Good luck with that, the guard has his baton holstered, he can't believe you'd do something that unintelligent until he knocks you out permanently with his baton."
     },
@@ -56,6 +67,7 @@
       "type": "weapon",
       "damage": -15,
       "accessible": false,
+      "mass": 2,
       "event": "Nice try, the guard has his gun holstered, he pities your obtuse brain until he knocks you out permanently with his baton."
     },
     {
@@ -63,18 +75,24 @@
       "type": "weapon",
       "damage": -10,
       "accessible": false,
+      "mass": 2,
       "event": "Good luck with that, the guard has his taser holstered, he marvels at your bad judgement until he knocks you out permanently with his baton."
     }
   ],
   "8": [
     {
       "name": "Suitcase",
-      "type": "item",
-      "accessible": true
+      "type": "container",
+      "accessible": true,
+      "mass": 2,
+      "damage": -1,
+      "maxMass": 10
     },
     {
-      "name": "Sheets of Paper",
+      "name": "Stack of Paper",
       "type": "item",
+      "mass": 6,
+      "damage": 0,
       "accessible": true
     }
   ],
@@ -85,6 +103,7 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
+      "mass": 10,
       "position": [1, 4],
       "accessible": true
     }
@@ -95,14 +114,7 @@
       "name": "Wrench",
       "type": "weapon",
       "damage": -1,
-      "accessible": true
-    }
-  ],
-
-  "11": [
-    {
-      "name": "Life Boat",
-      "type": "item",
+      "mass": 2,
       "accessible": true
     }
   ],
@@ -112,6 +124,7 @@
       "name": "Water Pistol",
       "type": "weapon",
       "damage": -5,
+      "mass": 2,
       "accessible": true
     }
   ],
@@ -122,6 +135,7 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
+      "mass": 10,
       "position": [0, 1, 4],
       "accessible": true
     }
@@ -131,7 +145,16 @@
     {
       "name": "Allen Key",
       "type": "item",
-      "accessible": true
+      "accessible": true,
+      "damage": 0,
+      "mass": 1
+    },
+    {
+      "name": "Server Rack",
+      "type": "container",
+      "accessible": false,
+      "damage": 3,
+      "mass": 10
     }
   ],
 
@@ -139,7 +162,9 @@
     {
       "name": "Toothpaste",
       "type": "item",
-      "accessible": true
+      "accessible": true,
+      "damage": 0,
+      "mass": 2
     }
   ],
 
@@ -148,8 +173,9 @@
       "name": "Felon Muks",
       "type": "obstacle",
       "position": [100],
-      "damage": -50,
+      "damage": -5,
       "health": 20,
+      "mass": 10,
       "accessible": true
     },
     {
@@ -158,6 +184,7 @@
       "damage": -5,
       "health": 10,
       "position": [1],
+      "mass": 10,
       "accessible": true
     }
   ],
@@ -167,16 +194,20 @@
       "name": "[LEGENDARY] Vial of Ink",
       "type": "item",
       "accessible": false,
+      "mass": 1,
+      "damage": -1,
       "message": "You gotta unlock the safe first."
     },
     {
       "name": "Safe",
-      "type": "interactive",
+      "type": "locked_container",
       "health": 1000000000000,
       "accessible": false,
       "access": {
         "code": 1234
-      }
+      },
+      "mass": 10,
+      "damage": 0
     }
   ]
 }
