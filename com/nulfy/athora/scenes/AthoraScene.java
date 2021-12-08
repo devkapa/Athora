@@ -115,6 +115,9 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                             case "container" -> objectArrayList.add(
                                     new AthoraContainer((String) o.get("name"), "container", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (long) o.get("maxMass"), new ArrayList<>())
                             );
+                            case "food" -> objectArrayList.add(
+                                    new AthoraFood((String) o.get("name"), "food", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (long) o.get("saturation"))
+                            );
                         }
                     }
                 }

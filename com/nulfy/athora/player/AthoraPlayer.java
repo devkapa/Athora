@@ -1,5 +1,6 @@
 package com.nulfy.athora.player;
 
+import com.nulfy.athora.objects.AthoraFood;
 import com.nulfy.athora.objects.AthoraObject;
 import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.objects.AthoraWeapon;
@@ -52,7 +53,7 @@ public class AthoraPlayer {
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
                     matched = true;
-                    if (o.isAccessible() && o.getType().equals("item") || o.isAccessible() && o.getType().equals("weapon")) {
+                    if (o.isAccessible() && o.getType().equals("item") || o.isAccessible() && o.getType().equals("weapon") || o.isAccessible() && o.getType().equals("container") || o.isAccessible() && o.getType().equals("food")) {
                         this.getInventory().add(o);
                         iter.remove();
                         System.out.println("You picked up " + o.getName());
@@ -68,6 +69,34 @@ public class AthoraPlayer {
             }
         }
         if(!matched) System.out.println("Theres no \"" + primary + "\" here.");
+    }
+
+    public void eat(String primary) {
+        Iterator<AthoraObject> iter = inventory.iterator();
+        boolean matched = false;
+        while (iter.hasNext()) {
+            AthoraObject o = iter.next();
+            String[] splitName = o.getName().split(" ");
+            for (String s : splitName) {
+                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
+                    matched = true;
+                    if (o.isAccessible() && o.getType().equals("food")) {
+                        AthoraFood f = (AthoraFood) o;
+                        this.changeHealth((int) f.getSaturation());
+                        if(this.getHealth() > 10) this.health = 10;
+                        System.out.println("You ate " + f.getName() +
+                                ". It tasted good. You gained " + f.getSaturation() + " HP." +
+                                "\nYou are now on " + this.getHealth() + " HP."
+                        );
+                        iter.remove();
+                        break;
+                    } else {
+                        System.out.println("You cannot eat a " + o.getName() + "!");
+                    }
+                }
+            }
+        }
+        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
     }
 
     public void drop(String primary) {

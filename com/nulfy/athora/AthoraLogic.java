@@ -5,13 +5,16 @@ import com.nulfy.athora.objects.AthoraObject;
 import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.player.AthoraPlayer;
 import com.nulfy.athora.scenes.AthoraScene;
-import static com.nulfy.athora.scenes.AthoraScene.currentScene;
 
 import java.util.*;
 
+import static com.nulfy.athora.assets.AthoraAssets.directions;
+import static com.nulfy.athora.assets.AthoraAssets.verbs;
+import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+
 public class AthoraLogic {
 
-    static Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
     public static long playerHealth = 10;
     public static ArrayList<AthoraObject> inventory = new ArrayList<>();
 
@@ -20,12 +23,11 @@ public class AthoraLogic {
     public static void startGame() {
 
         AthoraScene.initiateScenes("com/nulfy/athora/scenes/AthoraScenes.json", "com/nulfy/athora/objects/AthoraObjects.json");
-
         System.out.println(look());
 
-        while(true){
+        main: while (true) {
 
-            if (player.getHealth() <= 0){
+            if (player.getHealth() <= 0) {
                 System.out.println(AthoraAssets.diedMessage);
                 break;
             }
@@ -40,7 +42,7 @@ public class AthoraLogic {
                 case "north", "east", "south", "west", "up", "down" -> move(verb);
                 case "move", "go", "walk" -> {
                     String direction = hasVerb(command, true);
-                    if(direction == null) System.out.println("Where do you want to move?");
+                    if (direction == null) System.out.println("Where do you want to move?");
                     else move(direction);
                 }
                 case "pick", "pickup", "take" -> {
@@ -50,6 +52,9 @@ public class AthoraLogic {
                         player.pickup(primary);
                     }
                 }
+                case "exit", "stop" -> {
+                    break main;
+                }
                 case "drop", "rid" -> {
                     if (primary.equals("")) {
                         System.out.println("Specify what you want to drop.");
@@ -57,20 +62,27 @@ public class AthoraLogic {
                         player.drop(primary);
                     }
                 }
-                case "inv", "inventory", "items" -> {
+                case "eat", "consume", "drink" -> {
+                    if (primary.equals("")) {
+                        System.out.println("Specify what you want to eat.");
+                    } else {
+                        player.eat(primary);
+                    }
+                }
+                case "inv", "inventory", "items", "health", "hp" -> {
                     StringBuilder inventoryString = new StringBuilder();
-                    for(AthoraObject item : inventory){
+                    for (AthoraObject item : inventory) {
                         inventoryString.append("\n").append("* ").append(item.getName()).trimToSize();
                     }
-                    if(inventoryString.isEmpty()) inventoryString.append("(none)");
-                    System.out.println("Inventory" + inventoryString);
+                    if (inventoryString.isEmpty()) inventoryString.append("(none)");
+                    System.out.println("Inventory: " + inventoryString + "\nHealth: " + player.getHealth());
                 }
                 case "kill", "attack", "knife", "stab", "hit", "murder" -> {
                     if (primary.equals("")) {
                         System.out.println("Specify what you want to attack.");
                         break;
                     }
-                    if(primary.contains("with") || primary.contains("using")){
+                    if (primary.contains("with") || primary.contains("using")) {
                         player.swing(primary, player.findObstacle(primary));
                     } else {
                         System.out.println("Specify what you want to attack with.");
@@ -83,27 +95,28 @@ public class AthoraLogic {
 
     public static String look() {
         List<AthoraObject> sceneObjects = currentScene.objects();
-        if(sceneObjects.isEmpty()) return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + "There are no items here.";
+        if (sceneObjects.isEmpty())
+            return currentScene.getName() + "\n" + currentScene.getSetting() + "\n" + "There are no items here.";
         StringJoiner objects = new StringJoiner(", a ", "There is a ", " here.");
-        for(AthoraObject obj : sceneObjects){
+        for (AthoraObject obj : sceneObjects) {
             objects.add(obj.getName());
         }
-        return currentScene.getName() + "\n" + currentScene.getSetting() + "\n\n" + objects;
+        return currentScene.getName() + "\n" + currentScene.getSetting() + "\n" + objects;
     }
 
     public static void move(String direction) {
         List<AthoraObject> sceneObjects = currentScene.objects();
         int directionIndex = currentScene.indexFromDirection(direction);
-        if(directionIndex == 100) return;
+        if (directionIndex == 100) return;
         long directionValue = currentScene.getDirectionValue(directionIndex);
         long healthChange = currentScene.getDirectionHealthChange(directionIndex);
-        for(AthoraObject object : sceneObjects){
-            if(object.getType().equals("obstacle")){
+        for (AthoraObject object : sceneObjects) {
+            if (object.getType().equals("obstacle")) {
                 AthoraObstacle o = (AthoraObstacle) object;
-                if(o.getPositions() == null) break;
-                for(Object i : o.getPositions()){
+                if (o.getPositions() == null) break;
+                for (Object i : o.getPositions()) {
                     long pos = (long) i;
-                    if(directionIndex == pos) {
+                    if (directionIndex == pos) {
                         System.out.println("There is a guard there.");
                         return;
                     }
@@ -111,11 +124,11 @@ public class AthoraLogic {
 
             }
         }
-        if(directionValue != 100) {
+        if (directionValue != 100) {
             currentScene.moveTo(directionValue);
             System.out.println(look());
         } else {
-            if(healthChange != 100){
+            if (healthChange != 100) {
                 player.changeHealth(Math.toIntExact(healthChange));
                 System.out.println(currentScene.getDirectionMessage(directionIndex) + " (" + Math.toIntExact(healthChange) + " HP)");
             } else {
@@ -124,16 +137,11 @@ public class AthoraLogic {
         }
     }
 
-    public static String[] verbs = {"restart", "quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
-            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife",
-            "stab", "hit", "murder", "items", "walk"
-    };
 
-    public static String[] directions = {"north", "east", "south", "west", "up", "down"};
 
-    public static String hasVerb(String input, boolean movement){
+    public static String hasVerb(String input, boolean movement) {
         ArrayList<String> args = new ArrayList<>(Arrays.asList(input.split(" ")));
-        if(movement) {
+        if (movement) {
             args.remove(0);
             for (String direction : directions) {
                 if (args.contains(direction)) return direction;

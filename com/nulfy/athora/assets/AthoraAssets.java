@@ -19,6 +19,13 @@ public class AthoraAssets {
 
     public static String str;
 
+    public static String[] verbs = {"quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
+            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife",
+            "stab", "hit", "murder", "items", "walk", "rid", "eat", "consume", "drink", "hp", "health", "exit", "stop"
+    };
+
+    public static String[] directions = {"north", "east", "south", "west", "up", "down"};
+
     static {
         try {
             str = Files.readString(Paths.get("com/nulfy/athora/assets/AthoraLogo.txt"));
