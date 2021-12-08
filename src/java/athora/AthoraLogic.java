@@ -1,17 +1,16 @@
-package com.nulfy.athora;
+package athora;
 
-import com.nulfy.athora.assets.AthoraAssets;
-import com.nulfy.athora.objects.AthoraContainer;
-import com.nulfy.athora.objects.AthoraObject;
-import com.nulfy.athora.objects.AthoraObstacle;
-import com.nulfy.athora.player.AthoraPlayer;
-import com.nulfy.athora.scenes.AthoraScene;
+import athora.assets.AthoraAssets;
+import athora.objects.AthoraContainer;
+import athora.objects.AthoraObject;
+import athora.objects.AthoraObstacle;
+import athora.player.AthoraPlayer;
+import athora.scenes.AthoraScene;
 
 import java.util.*;
 
-import static com.nulfy.athora.assets.AthoraAssets.directions;
-import static com.nulfy.athora.assets.AthoraAssets.verbs;
-import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+import static athora.assets.AthoraAssets.*;
+import static athora.scenes.AthoraScene.currentScene;
 
 public class AthoraLogic {
 
@@ -23,32 +22,33 @@ public class AthoraLogic {
 
     public static void startGame() {
 
-        AthoraScene.initiateScenes("com/nulfy/athora/scenes/AthoraScenes.json", "com/nulfy/athora/objects/AthoraObjects.json");
-        System.out.println(look());
+        AthoraScene.initiateScenes(AthoraLogic.class.getResourceAsStream("/AthoraScenes.json"), AthoraLogic.class.getResourceAsStream("/AthoraObjects.json"));
+        System.out.println(ANSI_RESET +look());
 
         main: while (true) {
 
             if (player.getHealth() <= 0) {
-                System.out.println(AthoraAssets.diedMessage);
+                System.out.println(ANSI_RESET +AthoraAssets.diedMessage);
                 break;
             }
 
+            System.out.print("> " + ANSI_GREEN);
             String command = input.nextLine().toLowerCase().trim();
             String verb = hasVerb(command, false);
 
             String primary = command.replace(verb, "").trim();
 
             switch (verb) {
-                case "look" -> System.out.println(look());
+                case "look" -> System.out.println(ANSI_RESET +look());
                 case "north", "east", "south", "west", "up", "down" -> move(verb);
                 case "move", "go", "walk" -> {
                     String direction = hasVerb(command, true);
-                    if (direction == null) System.out.println("Where do you want to move?");
+                    if (direction == null) System.out.println(ANSI_RESET +"Where do you want to move?");
                     else move(direction);
                 }
                 case "pick", "pickup", "take" -> {
                     if (primary.equals("")) {
-                        System.out.println("What do you want to pick up?");
+                        System.out.println(ANSI_RESET +"What do you want to pick up?");
                     } else {
                         player.pickup(primary);
                     }
@@ -58,38 +58,38 @@ public class AthoraLogic {
                 }
                 case "drop", "rid" -> {
                     if (primary.equals("")) {
-                        System.out.println("Specify what you want to drop.");
+                        System.out.println(ANSI_RESET +"Specify what you want to drop.");
                     } else {
                         player.drop(primary);
                     }
                 }
                 case "eat", "consume", "drink" -> {
                     if (primary.equals("")) {
-                        System.out.println("Specify what you want to eat.");
+                        System.out.println(ANSI_RESET +"Specify what you want to eat.");
                     } else {
                         player.eat(primary);
                     }
                 }
                 case "put", "place", "insert" -> {
                     if (primary.equals("")) {
-                        System.out.println("Specify what you want to put.");
+                        System.out.println(ANSI_RESET +"Specify what you want to put.");
                         break;
                     }
                     if (primary.contains("in")) {
                         player.addToContents(primary, player.getContainer(primary));
                     } else {
-                        System.out.println("Specify what you want to put that in.");
+                        System.out.println(ANSI_RESET +"Specify what you want to put that in.");
                     }
                 }
                 case "remove" -> {
                     if (primary.equals("")) {
-                        System.out.println("Specify what you want to remove.");
+                        System.out.println(ANSI_RESET +"Specify what you want to remove.");
                         break;
                     }
                     if (primary.contains("out") || primary.contains("from")) {
                         player.removeFromContents(primary, player.getContainer(primary));
                     } else {
-                        System.out.println("Specify what you want to take that out of.");
+                        System.out.println(ANSI_RESET +"Specify what you want to take that out of.");
                     }
                 }
                 case "inv", "inventory", "items", "health", "hp" -> {
@@ -106,20 +106,20 @@ public class AthoraLogic {
                         }
                     }
                     if (inventoryString.isEmpty()) inventoryString.append("(none)");
-                    System.out.println("Inventory: " + inventoryString + "\nHealth: " + player.getHealth());
+                    System.out.println(ANSI_RESET +"Inventory: " + inventoryString + "\nHealth: " + player.getHealth());
                 }
                 case "kill", "attack", "knife", "stab", "hit", "murder" -> {
                     if (primary.equals("")) {
-                        System.out.println("Specify what you want to attack.");
+                        System.out.println(ANSI_RESET +"Specify what you want to attack.");
                         break;
                     }
                     if (primary.contains("with") || primary.contains("using")) {
                         player.swing(primary, player.findObstacle(primary));
                     } else {
-                        System.out.println("Specify what you want to attack with.");
+                        System.out.println(ANSI_RESET +"Specify what you want to attack with.");
                     }
                 }
-                case "none", default -> System.out.println("I don't understand \"" + command + "\".");
+                case "none", default -> System.out.println(ANSI_RESET +"I don't understand \"" + command + "\".");
             }
         }
     }
@@ -148,7 +148,7 @@ public class AthoraLogic {
                 for (Object i : o.getPositions()) {
                     long pos = (long) i;
                     if (directionIndex == pos) {
-                        System.out.println("There is a guard there.");
+                        System.out.println(ANSI_RESET +"There is a guard there.");
                         return;
                     }
                 }
@@ -157,13 +157,13 @@ public class AthoraLogic {
         }
         if (directionValue != 100) {
             currentScene.moveTo(directionValue);
-            System.out.println(look());
+            System.out.println(ANSI_RESET +look());
         } else {
             if (healthChange != 100) {
                 player.changeHealth(Math.toIntExact(healthChange));
-                System.out.println(currentScene.getDirectionMessage(directionIndex) + " (" + Math.toIntExact(healthChange) + " HP)");
+                System.out.println(ANSI_RESET +currentScene.getDirectionMessage(directionIndex) + " (" + Math.toIntExact(healthChange) + " HP)");
             } else {
-                System.out.println(currentScene.getDirectionMessage(directionIndex));
+                System.out.println(ANSI_RESET +currentScene.getDirectionMessage(directionIndex));
             }
         }
     }

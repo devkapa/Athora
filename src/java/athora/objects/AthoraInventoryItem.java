@@ -1,4 +1,4 @@
-package com.nulfy.athora.objects;
+package athora.objects;
 
 public class AthoraInventoryItem extends AthoraObject {
 

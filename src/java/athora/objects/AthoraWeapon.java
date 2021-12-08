@@ -1,8 +1,8 @@
-package com.nulfy.athora.objects;
+package athora.objects;
 
-import com.nulfy.athora.player.AthoraPlayer;
+import athora.player.AthoraPlayer;
 
-import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+import static athora.assets.AthoraAssets.ANSI_RESET;
 
 public class AthoraWeapon extends AthoraObject {
 
@@ -17,7 +17,7 @@ public class AthoraWeapon extends AthoraObject {
 
     public void executeEvent(AthoraPlayer player) {
         player.changeHealth((int) damage);
-        System.out.println(event + " " + damage + " HP");
+        System.out.println(ANSI_RESET + event + " " + damage + " HP");
     }
 
 }

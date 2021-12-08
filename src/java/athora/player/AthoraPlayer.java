@@ -1,13 +1,14 @@
-package com.nulfy.athora.player;
+package athora.player;
 
-import com.nulfy.athora.objects.*;
+import athora.objects.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+import static athora.assets.AthoraAssets.ANSI_RESET;
+import static athora.scenes.AthoraScene.currentScene;
 
 public class AthoraPlayer {
 
@@ -60,7 +61,7 @@ public class AthoraPlayer {
 
     public void addToContents(String primary, AthoraContainer container){
         if(container == null){
-            System.out.println("You must have the container in your inventory.");
+            System.out.println(ANSI_RESET +"You must have the container in your inventory.");
             return;
         }
         Iterator<AthoraObject> iter = inventory.iterator();
@@ -74,18 +75,18 @@ public class AthoraPlayer {
                     if(o.getMass() + container.getMass() < container.getMaxMass()) {
                         container.getContents().add(o);
                         iter.remove();
-                        System.out.println("You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                        System.out.println(ANSI_RESET +"You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
                     }
-                    else System.out.println(o.getName() + " can't fit in the " + container.getName() + " because it is too heavy.");
+                    else System.out.println(ANSI_RESET +o.getName() + " can't fit in the " + container.getName() + " because it is too heavy.");
                 }
             }
         }
-        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
+        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
     public void removeFromContents(String primary, AthoraContainer container){
         if(container == null){
-            System.out.println("You must have the container in your inventory.");
+            System.out.println(ANSI_RESET +"You must have the container in your inventory.");
             return;
         }
         Iterator<AthoraObject> iter = container.getContents().iterator();
@@ -98,11 +99,11 @@ public class AthoraPlayer {
                     matched = true;
                     iter.remove();
                     inventory.add(o);
-                    System.out.println("You took " + o.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                    System.out.println(ANSI_RESET +"You took " + o.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
                 }
             }
         }
-        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
+        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
     public void pickup(String primary) {
@@ -117,19 +118,19 @@ public class AthoraPlayer {
                     if (o.isAccessible() && o.getType().equals("item") || o.isAccessible() && o.getType().equals("weapon") || o.isAccessible() && o.getType().equals("container") || o.isAccessible() && o.getType().equals("food")) {
                         this.getInventory().add(o);
                         iter.remove();
-                        System.out.println("You picked up " + o.getName());
+                        System.out.println(ANSI_RESET +"You picked up " + o.getName());
                         break;
                     } else {
                         if(o.getType().equals("weapon")) {
                             AthoraWeapon w = (AthoraWeapon) o;
                             w.executeEvent(this);
                         }
-                        else System.out.println("You cannot pick up a " + o.getName() + "!");
+                        else System.out.println(ANSI_RESET +"You cannot pick up a " + o.getName() + "!");
                     }
                 }
             }
         }
-        if(!matched) System.out.println("Theres no \"" + primary + "\" here.");
+        if(!matched) System.out.println(ANSI_RESET +"Theres no \"" + primary + "\" here.");
     }
 
     public void eat(String primary) {
@@ -145,19 +146,19 @@ public class AthoraPlayer {
                         AthoraFood f = (AthoraFood) o;
                         this.changeHealth((int) f.getSaturation());
                         if(this.getHealth() > 10) this.health = 10;
-                        System.out.println("You ate " + f.getName() +
+                        System.out.println(ANSI_RESET +"You ate " + f.getName() +
                                 ". It tasted good. You gained " + f.getSaturation() + " HP." +
                                 "\nYou are now on " + this.getHealth() + " HP."
                         );
                         iter.remove();
                         break;
                     } else {
-                        System.out.println("You cannot eat a " + o.getName() + "!");
+                        System.out.println(ANSI_RESET +"You cannot eat a " + o.getName() + "!");
                     }
                 }
             }
         }
-        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
+        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
     public void drop(String primary) {
@@ -171,17 +172,17 @@ public class AthoraPlayer {
                     matched = true;
                     iter.remove();
                     currentScene.objects().add(o);
-                    System.out.println("Dropped " + o.getName());
+                    System.out.println(ANSI_RESET +"Dropped " + o.getName());
                     break;
                 }
             }
         }
-        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
+        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
     public void swing(String primary, AthoraObstacle guard) {
         if(guard == null){
-            System.out.println("There is either no enemy here or that object can't be attacked.");
+            System.out.println(ANSI_RESET +"There is either no enemy here or that object can't be attacked.");
             return;
         }
         Iterator<AthoraObject> iter = getWeapons().iterator();
@@ -194,16 +195,16 @@ public class AthoraPlayer {
                     matched = true;
                     if(guard.isAlive()){
                         w.attack(guard, w);
-                        System.out.println("You attacked the " + guard.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
+                        System.out.println(ANSI_RESET +"You attacked the " + guard.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
                         if(guard.isAlive()) {
-                            System.out.println("He swings back at you, dealing " + guard.getDamage() + " damage to you.\nThe " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
+                            System.out.println(ANSI_RESET +"He swings back at you, dealing " + guard.getDamage() + " damage to you.\nThe " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
                             this.changeHealth((int) guard.getDamage());
                         } else {
-                            System.out.println("The " + guard.getName() + " is now dead.");
+                            System.out.println(ANSI_RESET +"The " + guard.getName() + " is now dead.");
                         }
                         break;
                     } else {
-                        System.out.println("That " + guard.getName() + " is already dead.");
+                        System.out.println(ANSI_RESET +"That " + guard.getName() + " is already dead.");
                     }
                 }
             }
@@ -211,7 +212,7 @@ public class AthoraPlayer {
         List<String> secondary = Arrays.asList(primary.split(" with "));
         String secondaryWord;
         if(secondary.size() < 2) secondaryWord = "nothing"; else secondaryWord = secondary.get(1);
-        if(!matched) System.out.println("You can't attack a " + guard.getName() + " with a " + secondaryWord);
+        if(!matched) System.out.println(ANSI_RESET +"You can't attack a " + guard.getName() + " with a " + secondaryWord);
     }
 
     public AthoraObstacle findObstacle(String primary) {

@@ -1,6 +1,6 @@
-package com.nulfy.athora.scenes;
+package athora.scenes;
 
-import com.nulfy.athora.objects.*;
+import athora.objects.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -8,7 +8,11 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
+
+import static athora.assets.AthoraAssets.ANSI_RESET;
 
 public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions, ArrayList<AthoraObject> objects) {
 
@@ -58,7 +62,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                 return 5;
             }
             default -> {
-                System.out.println("Where do you want to go?");
+                System.out.println(ANSI_RESET +"Where do you want to go?");
                 return 100;
             }
         }
@@ -72,14 +76,14 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
     public static AthoraScene currentScene;
 
     @SuppressWarnings("unchecked")
-    public static void initiateScenes(String scenesPath, String objectsPath) {
+    public static void initiateScenes(InputStream scenesPath, InputStream objectsPath) {
 
         try {
 
             JSONParser parser = new JSONParser();
 
-            JSONArray scenes = (JSONArray) parser.parse(new FileReader(scenesPath));
-            JSONObject objects = (JSONObject) parser.parse(new FileReader(objectsPath));
+            JSONArray scenes = (JSONArray) parser.parse(new InputStreamReader(scenesPath));
+            JSONObject objects = (JSONObject) parser.parse(new InputStreamReader(objectsPath));
 
             for (Object scene : scenes) {
 
@@ -137,7 +141,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
             currentScene = athoraScenes.get(0);
 
         } catch(IOException | ParseException e) {
-            System.out.println("There was an error initiating the scenes of the game. Error is as follows:\n");
+            System.out.println(ANSI_RESET +"There was an error initiating the scenes of the game. Error is as follows:\n");
             e.printStackTrace();
         }
 

@@ -1,6 +1,6 @@
-package com.nulfy.athora.objects;
+package athora.objects;
 
-import static com.nulfy.athora.scenes.AthoraScene.currentScene;
+import static athora.scenes.AthoraScene.currentScene;
 
 public class AthoraObject {
 

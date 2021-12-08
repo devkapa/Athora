@@ -1,4 +1,4 @@
-package com.nulfy.athora.objects;
+package athora.objects;
 
 import java.util.ArrayList;
 

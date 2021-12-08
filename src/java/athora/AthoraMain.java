@@ -1,8 +1,6 @@
-package com.nulfy.athora;
+package athora;
 
-import com.nulfy.athora.assets.AthoraAssets;
-
-import java.io.InputStream;
+import athora.assets.AthoraAssets;
 
 import static java.lang.System.out;
 

@@ -1,4 +1,4 @@
-package com.nulfy.athora.objects;
+package athora.objects;
 
 import org.json.simple.JSONArray;
 
