@@ -21,7 +21,8 @@ public class AthoraAssets {
 
     public static String[] verbs = {"quit", "go", "enter", "get", "take", "pick", "pickup", "drop", "open", "move",
             "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife",
-            "stab", "hit", "murder", "items", "walk", "rid", "eat", "consume", "drink", "hp", "health", "exit", "stop"
+            "stab", "hit", "murder", "items", "walk", "rid", "eat", "consume", "drink", "hp", "health", "exit", "stop", "put",
+            "place", "insert", "remove"
     };
 
     public static String[] directions = {"north", "east", "south", "west", "up", "down"};

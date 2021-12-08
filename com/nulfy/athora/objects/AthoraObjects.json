@@ -25,7 +25,9 @@
       "damage": -2,
       "health": 5,
       "mass": 10,
-      "position": [1],
+      "position": [
+        1
+      ],
       "accessible": true
     },
     {
@@ -37,7 +39,6 @@
       "accessible": true
     }
   ],
-
   "7": [
     {
       "name": "Guard",
@@ -45,7 +46,9 @@
       "damage": -10,
       "health": 10,
       "mass": 10,
-      "position": [100],
+      "position": [
+        100
+      ],
       "accessible": true
     },
     {
@@ -97,7 +100,6 @@
       "accessible": true
     }
   ],
-
   "9": [
     {
       "name": "Robot Guard",
@@ -105,11 +107,13 @@
       "damage": -5,
       "health": 10,
       "mass": 10,
-      "position": [1, 4],
+      "position": [
+        1,
+        4
+      ],
       "accessible": true
     }
   ],
-
   "10": [
     {
       "name": "Wrench",
@@ -119,7 +123,6 @@
       "accessible": true
     }
   ],
-
   "12": [
     {
       "name": "Water Pistol",
@@ -129,7 +132,6 @@
       "accessible": true
     }
   ],
-
   "13": [
     {
       "name": "Robot Guard",
@@ -137,11 +139,14 @@
       "damage": -5,
       "health": 10,
       "mass": 10,
-      "position": [0, 1, 4],
+      "position": [
+        0,
+        1,
+        4
+      ],
       "accessible": true
     }
   ],
-
   "14": [
     {
       "name": "Allen Key",
@@ -159,7 +164,6 @@
       "maxMass": 20
     }
   ],
-
   "15": [
     {
       "name": "Toothpaste",
@@ -169,12 +173,13 @@
       "mass": 2
     }
   ],
-
   "16": [
     {
       "name": "Felon Muks",
       "type": "obstacle",
-      "position": [100],
+      "position": [
+        100
+      ],
       "damage": -5,
       "health": 20,
       "mass": 10,
@@ -185,12 +190,13 @@
       "type": "obstacle",
       "damage": -5,
       "health": 10,
-      "position": [1],
+      "position": [
+        1
+      ],
       "mass": 10,
       "accessible": true
     }
   ],
-
   "17": [
     {
       "name": "[LEGENDARY] Vial of Ink",
@@ -210,6 +216,64 @@
       },
       "mass": 10,
       "damage": 0
+    }
+  ],
+  "23": [
+    {
+      "name": "Apple",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 5
+    },
+    {
+      "name": "Banana",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 8
+    },
+    {
+      "name": "Lettuce",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 3
+    },
+    {
+      "name": "Chocolate",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 1
+    },
+    {
+      "name": "Biscuits",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 5
+    },
+    {
+      "name": "Mentos",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 0
+    },
+    {
+      "name": "Orange",
+      "type": "food",
+      "mass": 1,
+      "damage": 0,
+      "accessible": true,
+      "saturation": 6
     }
   ]
 }

@@ -1,9 +1,6 @@
 package com.nulfy.athora.player;
 
-import com.nulfy.athora.objects.AthoraFood;
-import com.nulfy.athora.objects.AthoraObject;
-import com.nulfy.athora.objects.AthoraObstacle;
-import com.nulfy.athora.objects.AthoraWeapon;
+import com.nulfy.athora.objects.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +39,70 @@ public class AthoraPlayer {
             }
         }
         return weapons;
+    }
+
+    public AthoraContainer getContainer(String primary) {
+        AthoraContainer container = null;
+        for (AthoraObject o : inventory) {
+            String[] splitName = o.getName().split(" ");
+            for (String s : splitName) {
+                List<String> secondary = Arrays.asList(primary.split(" "));
+                if (secondary.contains(s.toLowerCase())) {
+                    if(o.getType().equals("container")) {
+                        container = (AthoraContainer) o;
+                        break;
+                    }
+                }
+            }
+        }
+        return container;
+    }
+
+    public void addToContents(String primary, AthoraContainer container){
+        if(container == null){
+            System.out.println("You must have the container in your inventory.");
+            return;
+        }
+        Iterator<AthoraObject> iter = inventory.iterator();
+        boolean matched = false;
+        while (iter.hasNext()) {
+            AthoraObject o = iter.next();
+            String[] splitName = o.getName().split(" ");
+            for (String s : splitName) {
+                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
+                    matched = true;
+                    if(o.getMass() + container.getMass() < container.getMaxMass()) {
+                        container.getContents().add(o);
+                        iter.remove();
+                        System.out.println("You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                    }
+                    else System.out.println(o.getName() + " can't fit in the " + container.getName() + " because it is too heavy.");
+                }
+            }
+        }
+        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
+    }
+
+    public void removeFromContents(String primary, AthoraContainer container){
+        if(container == null){
+            System.out.println("You must have the container in your inventory.");
+            return;
+        }
+        Iterator<AthoraObject> iter = container.getContents().iterator();
+        boolean matched = false;
+        while (iter.hasNext()) {
+            AthoraObject o = iter.next();
+            String[] splitName = o.getName().split(" ");
+            for (String s : splitName) {
+                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
+                    matched = true;
+                    iter.remove();
+                    inventory.add(o);
+                    System.out.println("You took " + o.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                }
+            }
+        }
+        if(!matched) System.out.println("You don't have a \"" + primary + "\".");
     }
 
     public void pickup(String primary) {
@@ -158,7 +219,7 @@ public class AthoraPlayer {
         for (AthoraObject object : currentScene.objects()) {
             String[] splitName = object.getName().split(" ");
             for (String s : splitName) {
-                List<String> secondary = Arrays.asList(primary.split(" with "));
+                List<String> secondary = Arrays.asList(primary.split(" "));
                 if (secondary.get(0).contains(s.toLowerCase())) {
                     if(object.getType().equals("obstacle")) {
                         obstacle = (AthoraObstacle) object;

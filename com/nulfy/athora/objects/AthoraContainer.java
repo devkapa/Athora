@@ -1,6 +1,8 @@
 package com.nulfy.athora.objects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class AthoraContainer extends AthoraObject {
 
@@ -21,9 +23,13 @@ public class AthoraContainer extends AthoraObject {
         return maxMass;
     }
 
-    public void addToContents(AthoraObject obj){
-        if(obj.getMass() + getMass() < getMaxMass()) contents.add(obj);
-        else System.out.println(obj.getName() + " can't fit in the " + this.getName() + " because it is too heavy.");
+    @Override
+    public long getDamage() {
+        long n = super.getDamage();
+        for(AthoraObject o : contents){
+            n -= o.getMass();
+        }
+        return n;
     }
 
 }

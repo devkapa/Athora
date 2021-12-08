@@ -1,6 +1,7 @@
 package com.nulfy.athora;
 
 import com.nulfy.athora.assets.AthoraAssets;
+import com.nulfy.athora.objects.AthoraContainer;
 import com.nulfy.athora.objects.AthoraObject;
 import com.nulfy.athora.objects.AthoraObstacle;
 import com.nulfy.athora.player.AthoraPlayer;
@@ -69,10 +70,40 @@ public class AthoraLogic {
                         player.eat(primary);
                     }
                 }
+                case "put", "place", "insert" -> {
+                    if (primary.equals("")) {
+                        System.out.println("Specify what you want to put.");
+                        break;
+                    }
+                    if (primary.contains("in")) {
+                        player.addToContents(primary, player.getContainer(primary));
+                    } else {
+                        System.out.println("Specify what you want to put that in.");
+                    }
+                }
+                case "remove" -> {
+                    if (primary.equals("")) {
+                        System.out.println("Specify what you want to remove.");
+                        break;
+                    }
+                    if (primary.contains("out") || primary.contains("from")) {
+                        player.removeFromContents(primary, player.getContainer(primary));
+                    } else {
+                        System.out.println("Specify what you want to take that out of.");
+                    }
+                }
                 case "inv", "inventory", "items", "health", "hp" -> {
                     StringBuilder inventoryString = new StringBuilder();
                     for (AthoraObject item : inventory) {
+                        if(!item.getType().equals("container"))
                         inventoryString.append("\n").append("* ").append(item.getName()).trimToSize();
+                        else {
+                            inventoryString.append("\n").append("* ").append(item.getName()).append(" (to take items out type remove)").trimToSize();
+                            AthoraContainer c = (AthoraContainer) item;
+                            for(AthoraObject o : c.getContents()){
+                                inventoryString.append("\n   - ").append(o.getName());
+                            }
+                        }
                     }
                     if (inventoryString.isEmpty()) inventoryString.append("(none)");
                     System.out.println("Inventory: " + inventoryString + "\nHealth: " + player.getHealth());

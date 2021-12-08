@@ -383,11 +383,10 @@
   {
     "id": 13,
     "name": "Level Two Hallway",
-    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east and west as well as another staircase to the north. You could also go down the stairs you just climbed up to the south.",
+    "setting": "Once again, you've found yourself in a nice looking hallway. There is a door on the east, west and north as well as another staircase going up. You could also go down the stairs you just climbed up.",
     "directions": {
       "north": {
-        "value": 100,
-        "message": "Just a cupboard here"
+        "value": 23
       },
       "east": {
         "value": 14
@@ -677,6 +676,36 @@
       "down": {
         "value": 100,
         "message": "Did you notice the floor was still there? Anyways you finished the game. GG. :)"
+      }
+    }
+  },
+  {
+    "id": 23,
+    "name": "Kitchen",
+    "setting": "You walk into a clean kitchen, surrounded by cupboards full of fresh food and snacks.\nFelon seems to be dieting.\nThere is an exit to the south.",
+    "directions": {
+      "north": {
+        "value": 100,
+        "message": "Careful, you'll trip over that bag of potatoes."
+      },
+      "east": {
+        "value": 100,
+        "message": "Cupboards, cool."
+      },
+      "south": {
+        "value": 13
+      },
+      "west": {
+        "value": 100,
+        "message": "Take some food and stop walking into walls."
+      },
+      "up": {
+        "value": 100,
+        "message": "I get you're hungry but eating the ceiling won't do you well here."
+      },
+      "down": {
+        "value": 100,
+        "message": "Aren't you hungry? Now's not the time to be judging the floor's hygiene."
       }
     }
   }
