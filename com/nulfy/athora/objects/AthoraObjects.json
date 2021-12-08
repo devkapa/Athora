@@ -178,7 +178,7 @@
       "name": "Felon Muks",
       "type": "obstacle",
       "position": [
-        100
+        0, 1, 2
       ],
       "damage": -5,
       "health": 20,
@@ -191,7 +191,7 @@
       "damage": -5,
       "health": 10,
       "position": [
-        1
+        0, 1
       ],
       "mass": 10,
       "accessible": true
