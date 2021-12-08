@@ -4,7 +4,7 @@ Welcome to Athora. Athora is a strategy based puzzle game designed to be played 
 
 # Story
 
-In Athora, you play through the perspective of an agent in a near distant future, where multi billionaire businessman Felon Muks (CEO of Tesca, The Interesting Company and SpaceF) has strengthened his iron grip on a failing humanity and a shortage of magenta ink. The secret organisation who hired you eagerly watch as the fate of life on Earth unfolds beneath your fingers...
+In Athora, you play through the perspective of an agent in a near distant future, where multi billionaire businessman Felon Muks (CEO of Tesca, The Interesting Company and SpaceF) has strengthened his iron grip on a failing humanity and a shortage of magenta ink. A secret organisation led by rebellious hackers hired you to save Earth. They eagerly watch as the fate of life unfolds beneath your fingers...
 
 Play to find out more!
 
