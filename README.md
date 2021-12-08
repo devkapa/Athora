@@ -10,7 +10,7 @@ Play to find out more!
 
 # How to play
 
-This game is still in development. Check back later to find out how to play!
+Download the .exe file in the releases section! Java 17 is required to run the game. Once you've started the game, simply type what you want to do to progress.
 
 # About us
 
