@@ -154,7 +154,8 @@
       "type": "container",
       "accessible": false,
       "damage": 3,
-      "mass": 10
+      "mass": 10,
+      "maxMass": 20
     }
   ],
 

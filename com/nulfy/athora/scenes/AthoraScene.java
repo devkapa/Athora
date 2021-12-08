@@ -1,9 +1,6 @@
 package com.nulfy.athora.scenes;
 
-import com.nulfy.athora.objects.AthoraInventoryItem;
-import com.nulfy.athora.objects.AthoraObject;
-import com.nulfy.athora.objects.AthoraObstacle;
-import com.nulfy.athora.objects.AthoraWeapon;
+import com.nulfy.athora.objects.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -107,13 +104,16 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                         JSONObject o = (JSONObject) object;
                         switch ((String) o.get("type")) {
                             case "weapon" -> objectArrayList.add(
-                                    new AthoraWeapon((String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("damage"), (String) o.get("event"))
+                                    new AthoraWeapon((String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (String) o.get("event"))
                             );
                             case "item" -> objectArrayList.add(
-                                    new AthoraInventoryItem((String) o.get("name"), "item", (boolean) o.get("accessible"))
+                                    new AthoraInventoryItem((String) o.get("name"), "item", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"))
                             );
                             case "obstacle" -> objectArrayList.add(
-                                    new AthoraObstacle((String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))
+                                    new AthoraObstacle((String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))
+                            );
+                            case "container" -> objectArrayList.add(
+                                    new AthoraContainer((String) o.get("name"), "container", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (long) o.get("maxMass"), new ArrayList<>())
                             );
                         }
                     }

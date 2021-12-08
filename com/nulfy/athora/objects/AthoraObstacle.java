@@ -4,23 +4,17 @@ import org.json.simple.JSONArray;
 
 public class AthoraObstacle extends AthoraObject {
 
-    private final long damage;
     private long health;
     private final JSONArray positions;
 
-    public AthoraObstacle(String name, String type, boolean accessible, long damage, long health, JSONArray positions) {
-        super(name, type, accessible);
-        this.damage = damage;
+    public AthoraObstacle(String name, String type, boolean accessible, long mass, long damage, long health, JSONArray positions) {
+        super(name, type, accessible, mass, damage);
         this.health = health;
         this.positions = positions;
     }
 
     public boolean isAlive() {
         return health > 0;
-    }
-
-    public long getDamage() {
-        return damage;
     }
 
     public long getHealth() {

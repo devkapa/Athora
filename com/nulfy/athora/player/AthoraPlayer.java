@@ -33,11 +33,11 @@ public class AthoraPlayer {
         return inventory;
     }
 
-    public ArrayList<AthoraWeapon> getWeapons() {
-        ArrayList<AthoraWeapon> weapons = new ArrayList<>();
+    public ArrayList<AthoraObject> getWeapons() {
+        ArrayList<AthoraObject> weapons = new ArrayList<>();
         for(AthoraObject item : inventory){
-            if(item.getType().equals("weapon")){
-                weapons.add((AthoraWeapon) item);
+            if(item.getType().equals("weapon") || item.getType().equals("container") || item.getType().equals("item")){
+                weapons.add(item);
             }
         }
         return weapons;
@@ -94,10 +94,10 @@ public class AthoraPlayer {
             System.out.println("There is either no enemy here or that object can't be attacked.");
             return;
         }
-        Iterator<AthoraWeapon> iter = getWeapons().iterator();
+        Iterator<AthoraObject> iter = getWeapons().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraWeapon w = iter.next();
+            AthoraObject w = iter.next();
             String[] splitName = w.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {

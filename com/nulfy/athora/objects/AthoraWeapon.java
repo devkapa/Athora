@@ -6,27 +6,18 @@ import static com.nulfy.athora.scenes.AthoraScene.currentScene;
 
 public class AthoraWeapon extends AthoraObject {
 
-    private final long damage;
     private final String event;
+    private final long damage;
 
-    public AthoraWeapon(String name, String type, boolean accessible, long damage, String event) {
-        super(name, type, accessible);
-        this.damage = damage;
+    public AthoraWeapon(String name, String type, boolean accessible, long mass, long damage, String event) {
+        super(name, type, accessible, mass, damage);
         this.event = event;
-    }
-
-    public long getDamage() {
-        return damage;
+        this.damage = damage;
     }
 
     public void executeEvent(AthoraPlayer player) {
         player.changeHealth((int) damage);
         System.out.println(event + " " + damage + " HP");
-    }
-
-    public void attack(AthoraObstacle enemy, AthoraWeapon weapon) {
-        enemy.changeHealth(weapon.getDamage());
-        if(!enemy.isAlive()) currentScene.objects().remove(enemy);
     }
 
 }
