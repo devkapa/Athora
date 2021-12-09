@@ -12,6 +12,10 @@ public class AthoraMain {
 
         AthoraLogic.startGame();
 
+        System.out.println("\nPress 'Enter' key to exit.");
+
+        System.console().readLine();
+
     }
 
 }
