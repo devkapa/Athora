@@ -127,7 +127,7 @@
     {
       "name": "Water Pistol",
       "type": "weapon",
-      "damage": -5,
+      "damage": -10,
       "mass": 2,
       "accessible": true
     }

@@ -1,2 +1,4 @@
-#nulfy
-Add locked container
+- Add locked scene
+  - Control room is locked until server room hacked
+- Add USB
+- Add hand

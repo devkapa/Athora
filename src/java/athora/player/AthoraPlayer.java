@@ -76,6 +76,7 @@ public class AthoraPlayer {
                         container.getContents().add(o);
                         iter.remove();
                         System.out.println(ANSI_RESET +"You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                        break;
                     }
                     else System.out.println(ANSI_RESET +o.getName() + " can't fit in the " + container.getName() + " because it is too heavy.");
                 }
@@ -100,6 +101,7 @@ public class AthoraPlayer {
                     iter.remove();
                     inventory.add(o);
                     System.out.println(ANSI_RESET +"You took " + o.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                    break;
                 }
             }
         }
