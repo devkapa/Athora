@@ -30,4 +30,13 @@ public class AthoraContainer extends AthoraObject {
         return n;
     }
 
+    @Override
+    public long getMass() {
+        long n = super.getMass();
+        for(AthoraObject o : contents){
+            n += o.getMass();
+        }
+        return n;
+    }
+
 }
