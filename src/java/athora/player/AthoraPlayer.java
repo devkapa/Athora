@@ -72,13 +72,17 @@ public class AthoraPlayer {
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
                     matched = true;
-                    if((container.getMass() + o.getMass()) < container.getMaxMass()) {
+                    if ((container.getMass() + o.getMass()) < container.getMaxMass()) {
+                        if (o.getType().equals("container")) {
+                            System.out.println("You can't put a container in a container");
+                            break;
+                        }
                         container.getContents().add(o);
                         iter.remove();
-                        System.out.println(ANSI_RESET +"You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                        System.out.println(ANSI_RESET + "You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
                         break;
-                    }
-                    else System.out.println(ANSI_RESET + "The " + container.getName() + " is too heavy to fit " + o.getName());
+                    } else
+                        System.out.println(ANSI_RESET + "The " + container.getName() + " is too heavy to fit " + o.getName());
                 }
             }
         }
