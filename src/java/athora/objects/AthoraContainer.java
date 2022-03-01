@@ -2,18 +2,18 @@ package athora.objects;
 
 import java.util.ArrayList;
 
-public class AthoraContainer extends AthoraObject {
+public class AthoraContainer extends AthoraInvItem {
 
-    private final ArrayList<AthoraObject> contents;
+    private final ArrayList<AthoraInvItem> contents;
     private final long maxMass;
 
-    public AthoraContainer(String name, String type, boolean accessible, long mass, long damage, long maxMass, ArrayList<AthoraObject> contents) {
+    public AthoraContainer(String name, String type, boolean accessible, long mass, long damage, long maxMass, ArrayList<AthoraInvItem> contents) {
         super(name, type, accessible, mass, damage);
         this.contents = contents;
         this.maxMass = maxMass;
     }
 
-    public ArrayList<AthoraObject> getContents() {
+    public ArrayList<AthoraInvItem> getContents() {
         return contents;
     }
 
@@ -24,7 +24,7 @@ public class AthoraContainer extends AthoraObject {
     @Override
     public long getDamage() {
         long n = super.getDamage();
-        for(AthoraObject o : contents){
+        for(AthoraInvItem o : contents){
             n -= o.getMass();
         }
         return n;
@@ -33,7 +33,7 @@ public class AthoraContainer extends AthoraObject {
     @Override
     public long getMass() {
         long n = super.getMass();
-        for(AthoraObject o : contents){
+        for(AthoraInvItem o : contents){
             n += o.getMass();
         }
         return n;

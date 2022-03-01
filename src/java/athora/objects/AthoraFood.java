@@ -1,6 +1,6 @@
 package athora.objects;
 
-public class AthoraFood extends AthoraObject {
+public class AthoraFood extends AthoraInvItem {
 
     private final long saturation;
 

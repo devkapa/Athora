@@ -8,11 +8,9 @@ public class AthoraMain {
 
     public static void main(String[] args) {
 
-        out.println(AthoraAssets.welcome);
-
         AthoraLogic.startGame();
 
-        System.out.println("\nPress 'Enter' key to exit.");
+        out.println("\nPress 'Enter' key to exit.");
 
         System.console().readLine();
 

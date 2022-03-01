@@ -13,9 +13,9 @@ import static athora.scenes.AthoraScene.currentScene;
 public class AthoraPlayer {
 
     long health;
-    ArrayList<AthoraObject> inventory;
+    ArrayList<AthoraInvItem> inventory;
 
-    public AthoraPlayer(long health, ArrayList<AthoraObject> inventory) {
+    public AthoraPlayer(long health, ArrayList<AthoraInvItem> inventory) {
         this.health = health;
         this.inventory = inventory;
     }
@@ -28,13 +28,13 @@ public class AthoraPlayer {
         health += amount;
     }
 
-    public ArrayList<AthoraObject> getInventory() {
+    public ArrayList<AthoraInvItem> getInventory() {
         return inventory;
     }
 
-    public ArrayList<AthoraObject> getWeapons() {
-        ArrayList<AthoraObject> weapons = new ArrayList<>();
-        for(AthoraObject item : inventory){
+    public ArrayList<AthoraInvItem> getWeapons() {
+        ArrayList<AthoraInvItem> weapons = new ArrayList<>();
+        for(AthoraInvItem item : inventory){
             if(item.getType().equals("weapon") || item.getType().equals("container") || item.getType().equals("item")){
                 weapons.add(item);
             }
@@ -44,7 +44,7 @@ public class AthoraPlayer {
 
     public AthoraContainer getContainer(String primary) {
         AthoraContainer container = null;
-        for (AthoraObject o : inventory) {
+        for (AthoraInvItem o : inventory) {
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 List<String> secondary = Arrays.asList(primary.split(" "));
@@ -64,10 +64,10 @@ public class AthoraPlayer {
             System.out.println(ANSI_RESET +"You must have the container in your inventory.");
             return;
         }
-        Iterator<AthoraObject> iter = inventory.iterator();
+        Iterator<AthoraInvItem> iter = inventory.iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraInvItem o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
@@ -94,10 +94,10 @@ public class AthoraPlayer {
             System.out.println(ANSI_RESET +"You must have the container in your inventory.");
             return;
         }
-        Iterator<AthoraObject> iter = container.getContents().iterator();
+        Iterator<AthoraInvItem> iter = container.getContents().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraInvItem o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
@@ -113,10 +113,10 @@ public class AthoraPlayer {
     }
 
     public void pickup(String primary) {
-        Iterator<AthoraObject> iter = currentScene.objects().iterator();
+        Iterator<AthoraInvItem> iter = currentScene.objects().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraInvItem o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -140,10 +140,10 @@ public class AthoraPlayer {
     }
 
     public void eat(String primary) {
-        Iterator<AthoraObject> iter = inventory.iterator();
+        Iterator<AthoraInvItem> iter = inventory.iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraInvItem o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -168,10 +168,10 @@ public class AthoraPlayer {
     }
 
     public void drop(String primary) {
-        Iterator<AthoraObject> iter = inventory.iterator();
+        Iterator<AthoraInvItem> iter = inventory.iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject o = iter.next();
+            AthoraInvItem o = iter.next();
             String[] splitName = o.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -191,10 +191,10 @@ public class AthoraPlayer {
             System.out.println(ANSI_RESET +"There is either no enemy here or that object can't be attacked.");
             return;
         }
-        Iterator<AthoraObject> iter = getWeapons().iterator();
+        Iterator<AthoraInvItem> iter = getWeapons().iterator();
         boolean matched = false;
         while (iter.hasNext()) {
-            AthoraObject w = iter.next();
+            AthoraInvItem w = iter.next();
             String[] splitName = w.getName().split(" ");
             for (String s : splitName) {
                 if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
@@ -223,7 +223,7 @@ public class AthoraPlayer {
 
     public AthoraObstacle findObstacle(String primary) {
         AthoraObstacle obstacle = null;
-        for (AthoraObject object : currentScene.objects()) {
+        for (AthoraInvItem object : currentScene.objects()) {
             String[] splitName = object.getName().split(" ");
             for (String s : splitName) {
                 List<String> secondary = Arrays.asList(primary.split(" "));

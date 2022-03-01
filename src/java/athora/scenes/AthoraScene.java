@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,7 +13,7 @@ import java.util.*;
 
 import static athora.assets.AthoraAssets.ANSI_RESET;
 
-public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions, ArrayList<AthoraObject> objects) {
+public record AthoraScene(long id, String name, String setting, List<Map<String, ?>> directions, ArrayList<AthoraInvItem> objects) {
 
     public String getName() {
         return name;
@@ -29,7 +28,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
         else return 100;
     }
 
-    public ArrayList<AthoraObject> objects() {
+    public ArrayList<AthoraInvItem> objects() {
         return objects;
     }
 
@@ -101,7 +100,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                 );
 
                 JSONArray objectsArray = (JSONArray) objects.get(s.get("id").toString());
-                ArrayList<AthoraObject> objectArrayList = new ArrayList<>();
+                ArrayList<AthoraInvItem> objectArrayList = new ArrayList<>();
 
                 if (objectsArray != null) {
                     for (Object object : objectsArray) {
@@ -111,7 +110,7 @@ public record AthoraScene(long id, String name, String setting, List<Map<String,
                                     new AthoraWeapon((String) o.get("name"), "weapon", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (String) o.get("event"))
                             );
                             case "item" -> objectArrayList.add(
-                                    new AthoraInventoryItem((String) o.get("name"), "item", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"))
+                                    new AthoraObject((String) o.get("name"), "item", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"))
                             );
                             case "obstacle" -> objectArrayList.add(
                                     new AthoraObstacle((String) o.get("name"), "obstacle", (boolean) o.get("accessible"), (long) o.get("mass"), (long) o.get("damage"), (long) o.get("health"), (JSONArray) o.get("position"))

@@ -2,7 +2,7 @@ package athora.objects;
 
 import org.json.simple.JSONArray;
 
-public class AthoraObstacle extends AthoraObject {
+public class AthoraObstacle extends AthoraInvItem {
 
     private long health;
     private final JSONArray positions;

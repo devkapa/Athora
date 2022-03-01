@@ -4,7 +4,7 @@ import athora.player.AthoraPlayer;
 
 import static athora.assets.AthoraAssets.ANSI_RESET;
 
-public class AthoraWeapon extends AthoraObject {
+public class AthoraWeapon extends AthoraInvItem {
 
     private final String event;
     private final long damage;
