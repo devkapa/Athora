@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<map name="The Wrath of Felon">
+
+    <message>Nothing over there. Stay on the mission.</message>
+
+    <scenes>
+        <scene name="Dock" id="0">
+            <coords x="0" y="1" z="0"/>
+            <setting>
+                You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries.
+                There is an exit to a parking lot on the west and a ticket booth to the east.
+            </setting>
+        </scene>
+        <scene name="Parking Lot" id="1">
+            <coords x="0" y="1" z="-1"/>
+            <setting>
+                You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see.
+                A waste of space if you ask me, nobody has the money to buy a car anymore.
+                Get back to the dock on the east.
+            </setting>
+        </scene>
+        <scene name="McDonald's" id="2">
+            <coords x="-1" y="1" z="0"/>
+            <setting>
+                One of the last standing McDonald's in California, is this really the time to be thinking about food though?
+                Get back to your mission, they don't sell the Filet-o-fish anymore.
+            </setting>
+            <objects>
+                <item type="food">
+                    <name>McDonald's Cheeseburger</name>
+                    <stats mass="2" damage="0" saturation="5"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Entry Gates" id="3">
+            <coords x="0" y="1" z="1"/>
+            <setting>
+                You walk through the gates, hopefully you paid for your ticket.
+                There's a doorway to the boats on your north.
+            </setting>
+            <objects>
+                <item type="object">
+                    <name>Ticket</name>
+                    <stats mass="1" damage="0"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Boats" id="4">
+            <coords x="1" y="1" z="1"/>
+            <setting>
+                There are lots of boats here. You stare very intensely at the boats neatly lined up on the dock as they bob up and down in the water.
+                Eventually your eyes land on a particularly large yacht to the east that looks very well maintained.
+            </setting>
+        </scene>
+        <scene name="Loading Bay" id="5">
+            <coords x="1" y="1" z="2"/>
+            <setting>
+                You watch as a guard loads luggage into the yacht's cargo hold to the east.
+                There's no way you'll get onto the boat though, he's very well-equipped to injure you beyond recognition.
+            </setting>
+            <objects>
+                <item type="enemy">
+                    <name>Porter Guard</name>
+                    <stats mass="10" damage="2" health="5"/>
+                    <take bool="true"/>
+                    <blocking>8</blocking>
+                </item>
+                <item type="container">
+                    <name>Suitcase</name>
+                    <stats mass="3" damage="1" max-mass="10"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Side of Felon's Yacht" id="6">
+            <coords x="2" y="1" z="2"/>
+            <setting>
+                Standing next to the yacht is a bit awkward, you might make the robot guards suspicious.
+                Hurry up and move. The front of the yacht is up north and the rear is back south.
+            </setting>
+        </scene>
+        <scene name="Front of Felon's Yacht" id="7">
+            <coords x="3" y="1" z="2"/>
+            <setting>
+                Approaching the front of the yacht reveals a boat guard, who is very nicely equipped to disable you in one swift stroke.
+                Because he's protecting such an important person, the guard has a variety of deadly weapons.
+            </setting>
+            <objects>
+                <item type="enemy">
+                    <name>Boat Guard</name>
+                    <stats mass="10" damage="10" health="10"/>
+                    <take bool="true"/>
+                    <blocking/>
+                </item>
+                <item type="weapon">
+                    <name>Pepper Spray</name>
+                    <stats mass="2" damage="5"/>
+                    <take bool="true"/>
+                </item>
+                <item type="weapon">
+                    <name>Baton</name>
+                    <stats mass="2" damage="10"/>
+                    <take bool="false">
+                        Good luck with that, the guard has his baton holstered, he can't believe you'd do something that unintelligent.
+                        He knocks you out permanently with his baton.
+                    </take>
+                </item>
+                <item type="weapon">
+                    <name>Gun</name>
+                    <stats mass="2" damage="15"/>
+                    <take bool="false">
+                        Nice try, the guard has his gun holstered, he pities your obtuse brain.
+                        The last thing you see is the gun you so sneakily tried to steal, pointed at your face.
+                    </take>
+                </item>
+                <item type="weapon">
+                    <name>Taser</name>
+                    <stats mass="2" damage="10"/>
+                    <take bool="false">
+                        Good luck with that, the guard has his taser holstered, he marvels at your terrible judgement.
+                        To put it simply, you get tasered to death.
+                    </take>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Cargo Hold" id="8">
+            <coords x="1" y="1" z="3"/>
+            <setting>
+                You're surrounded by what looks like years of supplies and stacks of paperwork... perhaps Felon was planning to get off the grid.
+                You hear the gentle hum of the ship's engine as it leaves the dock. There is a staircase leading up.
+            </setting>
+            <objects>
+                <item type="container">
+                    <name>Suitcase</name>
+                    <stats mass="2" damage="1" max-mass="10"/>
+                    <take bool="true"/>
+                </item>
+                <item type="object">
+                    <name>Stack of Paper</name>
+                    <stats mass="8" damage="0"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Hallway, Level 1" id="9">
+            <coords x="1" y="2" z="3"/>
+            <setting>
+                You seem to have entered a rather posh looking hallway.
+                There's a door to your east and west as well as another staircase leading up. You could also go down the stairs you just climbed up.
+            </setting>
+            <objects>
+                <item type="enemy">
+                    <name>Robot Guard</name>
+                    <stats mass="10" damage="5" health="10"/>
+                    <take bool="true"/>
+                    <blocking>12,13</blocking>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Engine Bay" id="10">
+            <coords x="0" y="2" z="3"/>
+            <setting>
+                This seems to be the Engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along.
+                I don't think you can do much in this room, considering the only major skill on your CV is professional water slide testing.
+            </setting>
+            <objects>
+                <item type="weapon">
+                    <name>Wrench</name>
+                    <stats mass="2" damage="3"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Lifeboats" id="11">
+            <coords x="1" y="2" z="2"/>
+            <setting>
+                This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out.
+            </setting>
+        </scene>
+        <scene name="Weapons" id="12">
+            <coords x="1" y="2" z="4"/>
+            <setting>
+                Finally, something exciting for you to do. Oh wait, these are all water pistols... perhaps useful against the robots?
+                Take one just in case I suppose.
+            </setting>
+            <objects>
+                <item type="weapon">
+                    <name>Water Pistol</name>
+                    <stats mass="2" damage="10"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Hallway, Level 2" id="13">
+            <coords x="1" y="3" z="3"/>
+            <setting>
+                Once again, you've found yourself in a nice looking hallway. There is a door on the east, west and north as well as another staircase going up.
+                You could also go down the stairs you just climbed up.
+            </setting>
+            <objects>
+                <item type="enemy">
+                    <name>Robot Guard</name>
+                    <stats mass="10" damage="5" health="10"/>
+                    <take bool="true"/>
+                    <blocking>14</blocking>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Security" id="14">
+            <coords x="1" y="3" z="4"/>
+            <setting>
+                It seems you have wandered into a server room. A small monitor on the north wall emits security footage of the entire yacht.
+                You're quick to notice a ghastly figure standing menacingly in the bridge of the ship, eyes fixated on the windows.
+                Felon.
+            </setting>
+            <objects>
+                <item type="object">
+                    <name>Allen Key</name>
+                    <stats mass="1" damage="0"/>
+                    <take bool="true"/>
+                </item>
+            </objects>
+        </scene>
+        <scene name="Bathroom" id="15">
+            <coords x="1" y="3" z="2"/>
+            <setting>
+                I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom.
+            </setting>
+        </scene>
+        <scene name="Main Bridge" id="16">
+            <coords x="1" y="4" z="3"/>
+            <setting>
+                You walk very slowly up the stairs, hoping not to be spotted by Muks. Thankfully, he's still... awkwardly staring at the window.
+                You can sneak into a door to the west or a door to the east. You could also go down the stairs you just climbed up to the south.
+            </setting>
+        </scene>
+    </scenes>
+
+    <splash>
+        The year is 2137. Renowned billionaire Felon Muks, CEO of Tesca, The Interesting Company and SpaceF, has mutilated the structure of society.
+
+        With slavery rates skyrocketing, humanity prays in fear as the world crumbles beneath his evil fist...
+    </splash>
+
+</map>
+
