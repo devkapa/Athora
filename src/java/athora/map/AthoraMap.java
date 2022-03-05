@@ -4,22 +4,26 @@ import athora.objects.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.*;
-import java.io.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class AthoraMap {
 
     public final String name;
     public final String title;
-    public final ArrayList<AthoraPlace> places;
-    public AthoraPlace currentPlace;
+    public final ArrayList<AthoraScene> scenes;
+    public AthoraScene currentScene;
+    public String message;
 
-    public AthoraMap(String name, String title, ArrayList<AthoraPlace> places, AthoraPlace currentPlace){
+    public AthoraMap(String name, String title, ArrayList<AthoraScene> scenes, AthoraScene currentScene){
         this.name = name;
         this.title = title;
-        this.places = places;
-        this.currentPlace = currentPlace;
+        this.scenes = scenes;
+        this.currentScene = currentScene;
     }
 
     public String getName() {
@@ -30,53 +34,60 @@ public class AthoraMap {
         return title;
     }
 
-    public ArrayList<AthoraPlace> getPlaces() {
-        return places;
+    public void setMessage(String message){
+        this.message = message;
     }
 
-    public void setCurrentPlace(AthoraPlace currentPlace) {
-        this.currentPlace = currentPlace;
+    public String getMessage() {
+        return message;
     }
 
-    public AthoraPlace getCurrentPlace() {
-        return currentPlace;
+    public void setCurrentScene(AthoraScene currentScene) {
+        this.currentScene = currentScene;
     }
 
-    public AthoraPlace findPlaceByCoords(AthoraDirection dir) {
-        int[] currentPlaceCoords = currentPlace.getCoords();
-        int[] newPlaceCoords = currentPlaceCoords.clone();
-        newPlaceCoords[dir.index()] += dir.value();
-        return places.stream().filter(place -> Arrays.equals(place.getCoords(), newPlaceCoords)).findFirst().orElse(null);
+    public AthoraScene getCurrentScene() {
+        return currentScene;
     }
 
-    public static AthoraMap getMap() {
+    public AthoraScene findSceneByCoords(AthoraDirection dir) {
+        int[] currentSceneCoords = currentScene.getCoords();
+        int[] newSceneCoords = currentSceneCoords.clone();
+        newSceneCoords[dir.index()] += dir.value();
+        return scenes.stream().filter(scene -> Arrays.equals(scene.getCoords(), newSceneCoords)).findFirst().orElse(null);
+    }
+
+    public static AthoraMap getMap(File defaultMap) {
 
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            InputStream defaultMap = AthoraPlace.class.getResourceAsStream("/AthoraDefaultMap.xml");
+            factory.setValidating(true);
+            factory.setIgnoringElementContentWhitespace(true);
+            factory.setNamespaceAware(true);
 
             Document mapFile = builder.parse(defaultMap);
             mapFile.getDocumentElement().normalize();
 
             String mapName = mapFile.getDocumentElement().getAttribute("name");
-            String mapSplash = mapFile.getElementsByTagName("splash").item(0).getTextContent().trim();
+            String mapSplash = trimmed(mapFile.getElementsByTagName("splash").item(0).getTextContent());
+            String mapMessage = trimmed(mapFile.getElementsByTagName("message").item(0).getTextContent());
 
-            NodeList scenes = mapFile.getElementsByTagName("scene");
+            NodeList mapScenes = mapFile.getElementsByTagName("scene");
 
-            ArrayList<AthoraPlace> places = new ArrayList<>();
+            ArrayList<AthoraScene> scenes = new ArrayList<>();
 
-            for (int i = 0; i < scenes.getLength(); i++){
+            for (int i = 0; i < mapScenes.getLength(); i++){
 
-                Node scene = scenes.item(i);
+                Node mapScene = mapScenes.item(i);
 
-                if(scene.getNodeType() == Node.ELEMENT_NODE){
-                    Element sceneElement = (Element) scene;
+                if(mapScene.getNodeType() == Node.ELEMENT_NODE){
+                    Element sceneElement = (Element) mapScene;
 
                     String sceneName = sceneElement.getAttribute("name");
-                    String sceneSetting = sceneElement.getElementsByTagName("setting").item(0).getTextContent().trim();
+                    String sceneSetting = trimmed(sceneElement.getElementsByTagName("setting").item(0).getTextContent());
                     NamedNodeMap sceneCoords = sceneElement.getElementsByTagName("coords").item(0).getAttributes();
                     int[] sceneXyz = {
                             Integer.parseInt(sceneCoords.getNamedItem("x").getTextContent()),
@@ -87,12 +98,13 @@ public class AthoraMap {
                     ArrayList<AthoraInvItem> sceneItems = new ArrayList<>();
 
                     NodeList items = sceneElement.getElementsByTagName("item");
+                    int sceneId = Integer.parseInt(sceneElement.getAttribute("id"));
 
                     for (int j = 0; j < items.getLength(); j++){
 
                         Node item = items.item(j);
 
-                        if(scene.getNodeType() == Node.ELEMENT_NODE) {
+                        if(mapScene.getNodeType() == Node.ELEMENT_NODE) {
                             Element itemElement = (Element) item;
 
                             NamedNodeMap itemStats = itemElement.getElementsByTagName("stats").item(0).getAttributes();
@@ -100,26 +112,31 @@ public class AthoraMap {
 
                             String itemName = itemElement.getElementsByTagName("name").item(0).getTextContent();
                             boolean itemTakeBool = Boolean.parseBoolean(itemTake.getNamedItem("bool").getTextContent());
-                            long itemMass = Long.parseLong(itemStats.getNamedItem("mass").getTextContent());
-                            long itemDamage = Long.parseLong(itemStats.getNamedItem("damage").getTextContent());
+                            int itemMass = Integer.parseInt(itemStats.getNamedItem("mass").getTextContent());
+                            int itemDamage = Integer.parseInt(itemStats.getNamedItem("damage").getTextContent());
 
                             switch(itemElement.getAttribute("type")){
                                 case "food" -> {
-                                    long itemSaturation = Long.parseLong(itemStats.getNamedItem("saturation").getTextContent());
-                                    sceneItems.add(new AthoraFood(itemName, "food", itemTakeBool, itemMass, itemDamage, itemSaturation));
+                                    int itemSaturation = Integer.parseInt(itemStats.getNamedItem("saturation").getTextContent());
+                                    sceneItems.add(new AthoraFood(itemName, itemTakeBool, itemMass, itemDamage, itemSaturation));
                                 }
                                 case "container" -> {
-                                    long itemMaxMass = Long.parseLong(itemStats.getNamedItem("max-mass").getTextContent());
-                                    sceneItems.add(new AthoraContainer(itemName, "container", itemTakeBool, itemMass, itemDamage, itemMaxMass, new ArrayList<>()));
+                                    int itemMaxMass = Integer.parseInt(itemStats.getNamedItem("max-mass").getTextContent());
+                                    sceneItems.add(new AthoraContainer(itemName, itemTakeBool, itemMass, itemDamage, itemMaxMass, new ArrayList<>()));
                                 }
-                                case "object" -> sceneItems.add(new AthoraObject(itemName, "object", itemTakeBool, itemMass, itemDamage));
-                                //case "obstacle" -> {
-                                //    long itemHealth = Long.parseLong(itemStats.getNamedItem("health").getTextContent());
-                                //    sceneItems.add(new AthoraObstacle(itemName, "obstacle", itemTake, itemMass, itemDamage, itemHealth));
-                                //}
+                                case "object" -> sceneItems.add(new AthoraObject(itemName, itemTakeBool, itemMass, itemDamage));
+                                case "enemy" -> {
+                                    List<Integer> itemBlocking = new ArrayList<>();
+                                    int itemHealth = Integer.parseInt(itemStats.getNamedItem("health").getTextContent());
+                                    if(!itemElement.getElementsByTagName("blocking").item(0).getTextContent().equals("")){
+                                        List<String> blockingInts = Arrays.asList(itemElement.getElementsByTagName("blocking").item(0).getTextContent().split(","));
+                                        blockingInts.forEach(d->itemBlocking.add(Integer.parseInt(d)));
+                                    }
+                                    sceneItems.add(new AthoraEnemy(itemName, itemTakeBool, itemMass, itemDamage, itemHealth, itemBlocking));
+                                }
                                 case "weapon" -> {
-                                    String itemEvent = itemElement.getElementsByTagName("take").item(0).getTextContent();
-                                    sceneItems.add(new AthoraWeapon(itemName, "weapon", itemTakeBool, itemMass, itemDamage, itemEvent));
+                                    String itemEvent = trimmed(itemElement.getElementsByTagName("take").item(0).getTextContent());
+                                    sceneItems.add(new AthoraWeapon(itemName, itemTakeBool, itemMass, itemDamage, itemEvent));
                                 }
                             }
 
@@ -127,20 +144,80 @@ public class AthoraMap {
 
                     }
 
-                    places.add(new AthoraPlace(sceneName, sceneSetting, sceneXyz, sceneItems));
+                    scenes.add(new AthoraScene(sceneId, sceneName, sceneSetting, sceneXyz, sceneItems));
 
                 }
 
             }
 
-            return new AthoraMap(mapName, mapSplash, places, places.get(0));
+            AthoraMap map = new AthoraMap(mapName, mapSplash, scenes, scenes.get(0));
+            map.setMessage(mapMessage);
 
-        } catch (ParserConfigurationException | IOException | SAXException e) {
+            return map;
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
         return null;
 
+    }
+
+    public static File chooseMap() {
+
+        while(true) {
+
+            Scanner input = new Scanner(System.in);
+
+            File mapsFolder = new File("./maps");
+            File[] mapsFolderFiles = mapsFolder.listFiles();
+
+            ArrayList<File> maps = new ArrayList<>();
+
+            System.out.println("\nPlease choose which map you would like to play:");
+
+            for(int i = 0; i < mapsFolderFiles.length; i++){
+                String fileName = mapsFolderFiles[i].getName();
+                if(fileName.endsWith(".athora") || fileName.endsWith(".ATHORA")) {
+                    try {
+                        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                        DocumentBuilder builder = factory.newDocumentBuilder();
+                        Document mapFile = builder.parse(mapsFolderFiles[i]);
+                        String mapName = mapFile.getDocumentElement().getAttribute("name");
+                        System.out.println(i + ": " + mapName);
+                        maps.add(i, mapsFolderFiles[i]);
+                    } catch (ParserConfigurationException | IOException | SAXException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            System.out.print("> ");
+
+            if(!input.hasNextInt()){
+                System.out.println("Enter a valid number.");
+                continue;
+            }
+
+            int chosen = input.nextInt();
+
+            if(chosen >= maps.size()){
+                System.out.println("That is not an option in the maps list.");
+                continue;
+            }
+
+            return maps.get(chosen);
+        }
+
+    }
+
+    public static String trimmed(String toTrim){
+        String[] split = toTrim.split("\n");
+        StringJoiner joiner = new StringJoiner("\n");
+        for(String s : split){
+            joiner.add(s.trim());
+        }
+        return joiner.toString().trim();
     }
 
 

@@ -1,18 +1,14 @@
 package athora.objects;
 
-import static athora.scenes.AthoraScene.currentScene;
-
 public class AthoraInvItem {
 
-    private final String name;
-    private final String type;
-    private boolean accessible;
-    private final long mass;
-    private final long damage;
+    private String name;
+    private final boolean accessible;
+    private final int mass;
+    private final int damage;
 
-    public AthoraInvItem(String name, String type, boolean accessible, long mass, long damage) {
+    public AthoraInvItem(String name, boolean accessible, int mass, int damage) {
         this.name = name;
-        this.type = type;
         this.accessible = accessible;
         this.mass = mass;
         this.damage = damage;
@@ -22,27 +18,24 @@ public class AthoraInvItem {
         return name;
     }
 
-    public long getMass() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMass() {
         return mass;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public long getDamage() {
+    public int getDamage() {
         return damage;
     }
 
-    public void attack(AthoraObstacle enemy, AthoraInvItem weapon) {
-        enemy.changeHealth(weapon.getDamage());
-        if(!enemy.isAlive()) currentScene.objects().remove(enemy);
+    public void attack(AthoraEnemy enemy, AthoraInvItem weapon) {
+        enemy.changeHealth(-weapon.getDamage());
     }
 
     public boolean isAccessible() {
         return accessible;
     }
-
-    public void accessible(boolean bool) { accessible = bool; }
 
 }

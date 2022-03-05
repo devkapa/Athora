@@ -1,16 +1,24 @@
 package athora;
 
-import athora.assets.AthoraAssets;
+import athora.map.AthoraMap;
 
-import static java.lang.System.out;
+import java.io.IOException;
 
 public class AthoraMain {
 
     public static void main(String[] args) {
 
-        AthoraLogic.startGame();
+        try {
 
-        out.println("\nPress 'Enter' key to exit.");
+            System.out.println(new String(AthoraMain.class.getResourceAsStream("/Athora.txt").readAllBytes()));
+
+            AthoraLogic.startGame(AthoraMap.getMap(AthoraMap.chooseMap()));
+
+        } catch (IOException e) {
+            System.out.println("\nAthora ran into a problem. Error: \n" + e.getMessage());
+        }
+
+        System.out.println("\nPress 'Enter' key to exit.");
 
         System.console().readLine();
 

@@ -7,17 +7,17 @@ import static athora.assets.AthoraAssets.ANSI_RESET;
 public class AthoraWeapon extends AthoraInvItem {
 
     private final String event;
-    private final long damage;
+    private final int damage;
 
-    public AthoraWeapon(String name, String type, boolean accessible, long mass, long damage, String event) {
-        super(name, type, accessible, mass, damage);
+    public AthoraWeapon(String name, boolean accessible, int mass, int damage, String event) {
+        super(name, accessible, mass, damage);
         this.event = event;
         this.damage = damage;
     }
 
     public void executeEvent(AthoraPlayer player) {
-        player.changeHealth((int) damage);
-        System.out.println(ANSI_RESET + event + " " + damage + " HP");
+        player.changeHealth(-damage);
+        System.out.println(ANSI_RESET + event + " -" + damage + " HP");
     }
 
 }

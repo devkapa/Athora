@@ -2,25 +2,23 @@ package athora.player;
 
 import athora.objects.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
+import static athora.AthoraLogic.player;
 import static athora.assets.AthoraAssets.ANSI_RESET;
-import static athora.scenes.AthoraScene.currentScene;
+import static athora.AthoraLogic.map;
 
 public class AthoraPlayer {
 
-    long health;
+    int health;
     ArrayList<AthoraInvItem> inventory;
 
-    public AthoraPlayer(long health, ArrayList<AthoraInvItem> inventory) {
+    public AthoraPlayer(int health, ArrayList<AthoraInvItem> inventory) {
         this.health = health;
         this.inventory = inventory;
     }
 
-    public long getHealth() {
+    public int getHealth() {
         return health;
     }
 
@@ -34,209 +32,147 @@ public class AthoraPlayer {
 
     public ArrayList<AthoraInvItem> getWeapons() {
         ArrayList<AthoraInvItem> weapons = new ArrayList<>();
-        for(AthoraInvItem item : inventory){
-            if(item.getType().equals("weapon") || item.getType().equals("container") || item.getType().equals("item")){
+        inventory.forEach(item -> {
+            if (item instanceof AthoraWeapon || item instanceof AthoraContainer || item instanceof AthoraObject) {
                 weapons.add(item);
             }
-        }
+        });
         return weapons;
     }
 
-    public AthoraContainer getContainer(String primary) {
-        AthoraContainer container = null;
-        for (AthoraInvItem o : inventory) {
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                List<String> secondary = Arrays.asList(primary.split(" "));
-                if (secondary.contains(s.toLowerCase())) {
-                    if(o.getType().equals("container")) {
-                        container = (AthoraContainer) o;
-                        break;
-                    }
-                }
-            }
-        }
-        return container;
+    public Optional<AthoraInvItem> getMatch(String args, ArrayList<AthoraInvItem> items) {
+        return items.stream().filter(item -> {
+            ArrayList<String> splitArgs = new ArrayList<>(List.of(args.toLowerCase().split(" ")));
+            splitArgs.retainAll(Arrays.asList(item.getName().toLowerCase().split(" ")));
+            return splitArgs.size() != 0;
+        }).findFirst();
     }
 
-    public void addToContents(String primary, AthoraContainer container){
-        if(container == null){
-            System.out.println(ANSI_RESET +"You must have the container in your inventory.");
+    public AthoraContainer getContainer(String args) {
+        Optional<AthoraInvItem> match = getMatch(args, inventory);
+        if (match.isPresent()) {
+            if (match.get() instanceof AthoraContainer) {
+                return (AthoraContainer) match.get();
+            }
+        }
+        return null;
+    }
+
+    public void addToContents(String args, AthoraContainer container) {
+        if (container == null) {
+            System.out.println(ANSI_RESET + "You must have the container in your inventory.");
             return;
         }
-        Iterator<AthoraInvItem> iter = inventory.iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem o = iter.next();
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
-                    matched = true;
-                    if ((container.getMass() + o.getMass()) < container.getMaxMass()) {
-                        if (o.getType().equals("container")) {
-                            System.out.println("You can't put a container in a container");
-                            break;
-                        }
-                        container.getContents().add(o);
-                        iter.remove();
-                        System.out.println(ANSI_RESET + "You put " + o.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
-                        break;
-                    } else
-                        System.out.println(ANSI_RESET + "The " + container.getName() + " is too heavy to fit " + o.getName());
+        Optional<AthoraInvItem> match = getMatch(args, inventory);
+        if (match.isPresent()) {
+            if ((container.getMass() + match.get().getMass()) < container.getMaxMass()) {
+                if (match.get() instanceof AthoraContainer) {
+                    System.out.println("You can't put a container in a container");
+                    return;
                 }
-            }
+                container.getContents().add(match.get());
+                inventory.remove(match.get());
+                System.out.println(ANSI_RESET + "You put " + match.get().getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+            } else
+                System.out.println(ANSI_RESET + "The " + container.getName() + " is too heavy to fit " + match.get().getName());
+        } else {
+            System.out.println(ANSI_RESET + "Theres no \"" + args + "\" in your inventory.");
         }
-        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
-    public void removeFromContents(String primary, AthoraContainer container){
-        if(container == null){
-            System.out.println(ANSI_RESET +"You must have the container in your inventory.");
+    public void removeFromContents(String args, AthoraContainer container) {
+        if (container == null) {
+            System.out.println(ANSI_RESET + "You must have the container in your inventory.");
             return;
         }
-        Iterator<AthoraInvItem> iter = container.getContents().iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem o = iter.next();
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase()) && o != container) {
-                    matched = true;
-                    iter.remove();
-                    inventory.add(o);
-                    System.out.println(ANSI_RESET +"You took " + o.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
-                    break;
-                }
-            }
+        Optional<AthoraInvItem> match = getMatch(args, container.getContents());
+        if (match.isPresent()) {
+            container.getContents().remove(match.get());
+            inventory.add(match.get());
+            System.out.println(ANSI_RESET + "You took " + match.get().getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+        } else {
+            System.out.println(ANSI_RESET + "Theres no \"" + args + "\" in the " + container.getName() + ".");
         }
-        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
-    public void pickup(String primary) {
-        Iterator<AthoraInvItem> iter = currentScene.objects().iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem o = iter.next();
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
-                    matched = true;
-                    if (o.isAccessible() && o.getType().equals("item") || o.isAccessible() && o.getType().equals("weapon") || o.isAccessible() && o.getType().equals("container") || o.isAccessible() && o.getType().equals("food")) {
-                        this.getInventory().add(o);
-                        iter.remove();
-                        System.out.println(ANSI_RESET +"You picked up " + o.getName());
-                        break;
-                    } else {
-                        if(o.getType().equals("weapon")) {
-                            AthoraWeapon w = (AthoraWeapon) o;
-                            w.executeEvent(this);
-                        }
-                        else System.out.println(ANSI_RESET +"You cannot pick up a " + o.getName() + "!");
-                    }
-                }
+    public void pickup(String args) {
+        Optional<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
+        if (match.isPresent()) {
+            if (match.get().isAccessible() && !(match.get() instanceof AthoraEnemy)) {
+                this.getInventory().add(match.get());
+                map.getCurrentScene().getObjs().remove(match.get());
+                System.out.println(ANSI_RESET + "You picked up " + match.get().getName());
+            } else {
+                if(match.get() instanceof AthoraWeapon) ((AthoraWeapon) match.get()).executeEvent(player);
+                else System.out.println(ANSI_RESET + "You can't pick up a " + match.get().getName() + "!");
             }
+        } else {
+            System.out.println(ANSI_RESET + "Theres no \"" + args + "\" here.");
         }
-        if(!matched) System.out.println(ANSI_RESET +"Theres no \"" + primary + "\" here.");
     }
 
-    public void eat(String primary) {
-        Iterator<AthoraInvItem> iter = inventory.iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem o = iter.next();
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
-                    matched = true;
-                    if (o.isAccessible() && o.getType().equals("food")) {
-                        AthoraFood f = (AthoraFood) o;
-                        this.changeHealth((int) f.getSaturation());
-                        if(this.getHealth() > 10) this.health = 10;
-                        System.out.println(ANSI_RESET +"You ate " + f.getName() +
-                                ". It tasted good. You gained " + f.getSaturation() + " HP." +
-                                "\nYou are now on " + this.getHealth() + " HP."
-                        );
-                        iter.remove();
-                        break;
-                    } else {
-                        System.out.println(ANSI_RESET +"You cannot eat a " + o.getName() + "!");
-                    }
-                }
+    public void eat(String args) {
+        Optional<AthoraInvItem> match = getMatch(args, inventory);
+        if (match.isPresent()) {
+            if (match.get().isAccessible() && match.get() instanceof AthoraFood f) {
+                this.changeHealth(f.getSaturation());
+                if (this.getHealth() > 10) this.health = 10;
+                System.out.println(ANSI_RESET + "You ate " + f.getName() +
+                        ". It tasted good. You gained " + f.getSaturation() + " HP." +
+                        "\nYou are now on " + this.getHealth() + " HP."
+                );
+                inventory.remove(match.get());
+            } else {
+                System.out.println(ANSI_RESET + "You cannot eat a " + match.get().getName() + "!");
             }
+        } else {
+            System.out.println(ANSI_RESET + "You don't have a \"" + args + "\".");
         }
-        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
-    public void drop(String primary) {
-        Iterator<AthoraInvItem> iter = inventory.iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem o = iter.next();
-            String[] splitName = o.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
-                    matched = true;
-                    iter.remove();
-                    currentScene.objects().add(o);
-                    System.out.println(ANSI_RESET +"Dropped " + o.getName());
-                    break;
-                }
-            }
+    public void drop(String args) {
+        Optional<AthoraInvItem> match = getMatch(args, inventory);
+        if (match.isPresent()) {
+            inventory.remove(match.get());
+            map.getCurrentScene().getObjs().add(match.get());
+            System.out.println(ANSI_RESET + "Dropped " + match.get().getName());
+        } else {
+            System.out.println(ANSI_RESET + "You don't have a \"" + args + "\".");
         }
-        if(!matched) System.out.println(ANSI_RESET +"You don't have a \"" + primary + "\".");
     }
 
-    public void swing(String primary, AthoraObstacle guard) {
-        if(guard == null){
-            System.out.println(ANSI_RESET +"There is either no enemy here or that object can't be attacked.");
+    public void swing(String args, AthoraInvItem enemy) {
+        if (enemy == null) {
+            System.out.println(ANSI_RESET + "No enemy found.");
+            return;
+        } else if (!(enemy instanceof AthoraEnemy)) {
+            System.out.println(ANSI_RESET + "That object can't be attacked.");
             return;
         }
-        Iterator<AthoraInvItem> iter = getWeapons().iterator();
-        boolean matched = false;
-        while (iter.hasNext()) {
-            AthoraInvItem w = iter.next();
-            String[] splitName = w.getName().split(" ");
-            for (String s : splitName) {
-                if (Arrays.asList(primary.split(" ")).contains(s.toLowerCase())) {
-                    matched = true;
-                    if(guard.isAlive()){
-                        w.attack(guard, w);
-                        System.out.println(ANSI_RESET +"You attacked the " + guard.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
-                        if(guard.isAlive()) {
-                            System.out.println(ANSI_RESET +"He swings back at you, dealing " + guard.getDamage() + " damage to you.\nThe " + guard.getName() + " is now on " + guard.getHealth() + " HP.");
-                            this.changeHealth((int) guard.getDamage());
-                        } else {
-                            System.out.println(ANSI_RESET +"The " + guard.getName() + " is now dead.");
-                        }
-                        break;
-                    } else {
-                        System.out.println(ANSI_RESET +"That " + guard.getName() + " is already dead.");
-                    }
+        Optional<AthoraInvItem> match = getMatch(args, getWeapons());
+        if (match.isPresent()) {
+            AthoraEnemy e = (AthoraEnemy) enemy;
+            if (e.isAlive()) {
+                match.get().attack(e, match.get());
+                System.out.println(ANSI_RESET + "You attacked the " + e.getName() + " with a " + match.get().getName() + " for " + match.get().getDamage() + " damage.");
+                if (e.isAlive()) {
+                    System.out.println(ANSI_RESET + "He swings back at you, dealing " + e.getDamage() + " damage to you.\nThe " + e.getName() + " is now on " + e.getHealth() + " HP.");
+                    this.changeHealth(e.getDamage());
+                } else {
+                    System.out.println(ANSI_RESET + "The " + e.getName() + " is now dead.");
+                    e.setName("Dead " + e.getName());
                 }
+            } else {
+                System.out.println(ANSI_RESET + "That " + e.getName() + " is already dead.");
             }
+        } else {
+            System.out.println(ANSI_RESET + "You need a weapon to attack with.");
         }
-        List<String> secondary = Arrays.asList(primary.split(" with "));
-        String secondaryWord;
-        if(secondary.size() < 2) secondaryWord = "nothing"; else secondaryWord = secondary.get(1);
-        if(!matched) System.out.println(ANSI_RESET +"You can't attack a " + guard.getName() + " with a " + secondaryWord);
     }
 
-    public AthoraObstacle findObstacle(String primary) {
-        AthoraObstacle obstacle = null;
-        for (AthoraInvItem object : currentScene.objects()) {
-            String[] splitName = object.getName().split(" ");
-            for (String s : splitName) {
-                List<String> secondary = Arrays.asList(primary.split(" "));
-                if (secondary.get(0).contains(s.toLowerCase())) {
-                    if(object.getType().equals("obstacle")) {
-                        obstacle = (AthoraObstacle) object;
-                        break;
-                    }
-                }
-            }
-        }
-        return obstacle;
+    public AthoraInvItem getObj(String args) {
+        Optional<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
+        return match.orElse(null);
     }
-
 
 }

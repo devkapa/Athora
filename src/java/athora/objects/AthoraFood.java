@@ -2,14 +2,14 @@ package athora.objects;
 
 public class AthoraFood extends AthoraInvItem {
 
-    private final long saturation;
+    private final int saturation;
 
-    public AthoraFood(String name, String type, boolean accessible, long mass, long damage, long saturation) {
-        super(name, type, accessible, mass, damage);
+    public AthoraFood(String name, boolean accessible, int mass, int damage, int saturation) {
+        super(name, accessible, mass, damage);
         this.saturation = saturation;
     }
 
-    public long getSaturation() {
+    public int getSaturation() {
         return saturation;
     }
 

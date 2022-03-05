@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class AthoraContainer extends AthoraInvItem {
 
     private final ArrayList<AthoraInvItem> contents;
-    private final long maxMass;
+    private final int maxMass;
 
-    public AthoraContainer(String name, String type, boolean accessible, long mass, long damage, long maxMass, ArrayList<AthoraInvItem> contents) {
-        super(name, type, accessible, mass, damage);
+    public AthoraContainer(String name, boolean accessible, int mass, int damage, int maxMass, ArrayList<AthoraInvItem> contents) {
+        super(name, accessible, mass, damage);
         this.contents = contents;
         this.maxMass = maxMass;
     }
@@ -17,13 +17,13 @@ public class AthoraContainer extends AthoraInvItem {
         return contents;
     }
 
-    public long getMaxMass() {
+    public int getMaxMass() {
         return maxMass;
     }
 
     @Override
-    public long getDamage() {
-        long n = super.getDamage();
+    public int getDamage() {
+        int n = super.getDamage();
         for(AthoraInvItem o : contents){
             n -= o.getMass();
         }
@@ -31,8 +31,8 @@ public class AthoraContainer extends AthoraInvItem {
     }
 
     @Override
-    public long getMass() {
-        long n = super.getMass();
+    public int getMass() {
+        int n = super.getMass();
         for(AthoraInvItem o : contents){
             n += o.getMass();
         }

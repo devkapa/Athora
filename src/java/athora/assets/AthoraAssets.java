@@ -1,9 +1,5 @@
 package athora.assets;
 
-import athora.AthoraLogic;
-
-import java.io.*;
-
 public class AthoraAssets {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -17,7 +13,4 @@ public class AthoraAssets {
             "stab", "hit", "murder", "items", "walk", "rid", "eat", "consume", "drink", "hp", "health", "exit", "stop", "put",
             "place", "insert", "remove"
     };
-
-    public static String[] directions = {"north", "east", "south", "west", "up", "down"};
-
 }
