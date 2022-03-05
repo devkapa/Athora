@@ -1,5 +1,7 @@
 package athora.map;
 
+import athora.AthoraLogic;
+import athora.AthoraMain;
 import athora.objects.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -7,8 +9,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class AthoraMap {
@@ -57,7 +58,7 @@ public class AthoraMap {
         return scenes.stream().filter(scene -> Arrays.equals(scene.getCoords(), newSceneCoords)).findFirst().orElse(null);
     }
 
-    public static AthoraMap getMap(File defaultMap) {
+    public static AthoraMap getMap(InputStream defaultMap) {
 
         try {
 
@@ -163,51 +164,62 @@ public class AthoraMap {
 
     }
 
-    public static File chooseMap() {
+    public static InputStream chooseMap() {
 
-        while(true) {
+        try {
+            while(true) {
 
-            Scanner input = new Scanner(System.in);
+                Scanner input = new Scanner(System.in);
 
-            File mapsFolder = new File("./maps");
-            File[] mapsFolderFiles = mapsFolder.listFiles();
+                File mapsFolder = new File("./maps");
+                File[] mapsFolderFiles = mapsFolder.listFiles();
 
-            ArrayList<File> maps = new ArrayList<>();
+                if(mapsFolderFiles == null){
+                    System.out.println("\nNo maps folder was found. Loading the default map...");
+                    return AthoraMap.class.getResourceAsStream("/AthoraDefaultMap.athora");
+                }
 
-            System.out.println("\nPlease choose which map you would like to play:");
+                ArrayList<File> maps = new ArrayList<>();
 
-            for(int i = 0; i < mapsFolderFiles.length; i++){
-                String fileName = mapsFolderFiles[i].getName();
-                if(fileName.endsWith(".athora") || fileName.endsWith(".ATHORA")) {
-                    try {
-                        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                        DocumentBuilder builder = factory.newDocumentBuilder();
-                        Document mapFile = builder.parse(mapsFolderFiles[i]);
-                        String mapName = mapFile.getDocumentElement().getAttribute("name");
-                        System.out.println(i + ": " + mapName);
-                        maps.add(i, mapsFolderFiles[i]);
-                    } catch (ParserConfigurationException | IOException | SAXException e) {
-                        e.printStackTrace();
+                System.out.println("\nPlease choose which map you would like to play:");
+
+                for(int i = 0; i < mapsFolderFiles.length; i++){
+                    String fileName = mapsFolderFiles[i].getName();
+                    if(fileName.endsWith(".athora") || fileName.endsWith(".ATHORA")) {
+                        try {
+                            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                            DocumentBuilder builder = factory.newDocumentBuilder();
+                            Document mapFile = builder.parse(mapsFolderFiles[i]);
+                            String mapName = mapFile.getDocumentElement().getAttribute("name");
+                            System.out.println(i + ": " + mapName);
+                            maps.add(i, mapsFolderFiles[i]);
+                        } catch (ParserConfigurationException | IOException | SAXException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
+
+                System.out.print("> ");
+
+                if(!input.hasNextInt()){
+                    System.out.println("Enter a valid number.");
+                    continue;
+                }
+
+                int chosen = input.nextInt();
+
+                if(chosen >= maps.size()){
+                    System.out.println("That is not an option in the maps list.");
+                    continue;
+                }
+
+                return new FileInputStream(maps.get(chosen));
             }
-
-            System.out.print("> ");
-
-            if(!input.hasNextInt()){
-                System.out.println("Enter a valid number.");
-                continue;
-            }
-
-            int chosen = input.nextInt();
-
-            if(chosen >= maps.size()){
-                System.out.println("That is not an option in the maps list.");
-                continue;
-            }
-
-            return maps.get(chosen);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
+        return AthoraMap.class.getResourceAsStream("/AthoraDefaultMap.athora");
 
     }
 

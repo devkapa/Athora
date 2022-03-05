@@ -4,13 +4,15 @@ import athora.map.AthoraMap;
 
 import java.io.IOException;
 
+import static athora.assets.AthoraAssets.ANSI_RESET;
+
 public class AthoraMain {
 
     public static void main(String[] args) {
 
         try {
 
-            System.out.println(new String(AthoraMain.class.getResourceAsStream("/Athora.txt").readAllBytes()));
+            System.out.println(ANSI_RESET + new String(AthoraMain.class.getResourceAsStream("/Athora.txt").readAllBytes()));
 
             AthoraLogic.startGame(AthoraMap.getMap(AthoraMap.chooseMap()));
 
@@ -18,7 +20,7 @@ public class AthoraMain {
             System.out.println("\nAthora ran into a problem. Error: \n" + e.getMessage());
         }
 
-        System.out.println("\nPress 'Enter' key to exit.");
+        System.out.println(ANSI_RESET + "\nPress 'Enter' key to exit.");
 
         System.console().readLine();
 
