@@ -10,6 +10,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class AthoraMap {
@@ -58,7 +62,7 @@ public class AthoraMap {
         return scenes.stream().filter(scene -> Arrays.equals(scene.getCoords(), newSceneCoords)).findFirst().orElse(null);
     }
 
-    public static AthoraMap getMap(InputStream defaultMap) {
+    public static AthoraMap getMap(File defaultMap) {
 
         try {
 
@@ -164,7 +168,7 @@ public class AthoraMap {
 
     }
 
-    public static InputStream chooseMap() {
+    public static File chooseMap() {
 
         while(true) {
 
@@ -173,30 +177,25 @@ public class AthoraMap {
             File mapsFolder = new File("./maps");
             File[] mapsFolderFiles = mapsFolder.listFiles();
 
-            ArrayList<InputStream> maps = new ArrayList<>();
-            maps.add(AthoraMap.class.getResourceAsStream("/AthoraDefaultMap.athora"));
+            ArrayList<File> maps = new ArrayList<>();
 
             if(mapsFolderFiles != null){
                 for (File map : mapsFolderFiles) {
                     if (map.getName().toLowerCase().endsWith(".athora")) {
-                        try {
-                            maps.add(new FileInputStream(map));
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        maps.add(map);
                     }
                 }
             }
 
             System.out.println("\nPlease choose which map you would like to play:");
 
-            for(InputStream map : maps){
+            for(File map : maps){
                 try {
                     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = factory.newDocumentBuilder();
                     Document mapFile = builder.parse(map);
                     String mapName = mapFile.getDocumentElement().getAttribute("name");
-                    System.out.println(maps.indexOf(map) + ": " + mapName);
+                    System.out.println(maps.indexOf(map) + ": " + mapName + " (" + map.getName() + ")");
                 } catch (ParserConfigurationException | SAXException | IOException e) {
                     e.printStackTrace();
                 }

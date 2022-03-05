@@ -10,4 +10,4 @@ Play to find out more!
 
 # How to play
 
-A new release is currently in the works, but if you want to play, download the .exe file in the releases section! Java 17 is required to run the game. Once you've started the game, simply type what you want to do to progress.
+Simply run the download and run the installer in the downloads section! Once you've started the game, simply type what you want to do to progress.

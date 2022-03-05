@@ -25,7 +25,7 @@ public class AthoraContainer extends AthoraInvItem {
     public int getDamage() {
         int n = super.getDamage();
         for(AthoraInvItem o : contents){
-            n -= o.getMass();
+            n += o.getMass();
         }
         return n;
     }

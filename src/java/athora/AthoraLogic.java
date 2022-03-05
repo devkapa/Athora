@@ -49,7 +49,7 @@ public class AthoraLogic {
             String command = input.nextLine().toLowerCase().trim();
             String verb = getVerb(command);
 
-            String args = command.replace(verb, "").trim();
+            String args = command.replace(verb, "").toLowerCase().trim();
 
             switch (verb) {
                 case "look" -> System.out.println(ANSI_RESET + look(map));
@@ -131,7 +131,7 @@ public class AthoraLogic {
                         System.out.println(ANSI_RESET + "Specify what you want to attack with.");
                     }
                 }
-                case "none", default -> System.out.println(ANSI_RESET + "I don't understand \"" + command + "\".");
+                default -> System.out.println(ANSI_RESET + "I don't understand \"" + command + "\".");
             }
         }
     }
@@ -152,7 +152,7 @@ public class AthoraLogic {
             System.out.println(map.getMessage());
             return;
         }
-        if (map.getCurrentScene().getObjs().stream().anyMatch(o -> o instanceof AthoraEnemy && ((AthoraEnemy) o).getBlocking().stream().anyMatch(b -> b == destination.getId()))) {
+        if (map.getCurrentScene().getObjs().stream().anyMatch(o -> o instanceof AthoraEnemy && ((AthoraEnemy) o).getBlocking().stream().anyMatch(b -> b == destination.getId()) && ((AthoraEnemy) o).isAlive())) {
             System.out.println("There is an enemy blocking your path.");
             return;
         }

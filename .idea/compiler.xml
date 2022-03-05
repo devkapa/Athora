@@ -14,6 +14,6 @@
       <entry name="!?*.json" />
       <entry name="!?*.txt" />
     </wildcardResourcePatterns>
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel target="16" />
   </component>
 </project>

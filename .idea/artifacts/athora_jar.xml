@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/athora_jar</output-path>
     <root id="archive" name="athora.jar">
       <element id="module-output" name="athora" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/src/java/athora/dependencies/json-simple-1.1.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
