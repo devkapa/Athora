@@ -132,7 +132,7 @@
             <directions>
                 <north destination="7"/>
                 <east>There's no door here, you can't just walk into the side of a boat.</east>
-                <south destination="5">You're not going to accomplish anything by swimming away.</south>
+                <south destination="5"/>
                 <west>Wrong way, I'm starting to think we shouldn't have recruited you.</west>
                 <up>Climbing up the yacht hull would be futile.</up>
                 <down>The floor here is made out of floor.</down>

@@ -61,6 +61,7 @@ public class AthoraPlayer {
             return;
         }
         List<AthoraInvItem> match = getMatch(args, inventory);
+        if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             if(!(i instanceof AthoraContainer)){
                 if ((container.getMass() + i.getMass()) <= container.getMaxMass()) {
@@ -78,7 +79,8 @@ public class AthoraPlayer {
             System.out.println(ANSI_RESET + "You must have the container in your inventory.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args.toLowerCase().replace(container.getName().toLowerCase(), ""), inventory);
+        List<AthoraInvItem> match = getMatch(args.toLowerCase().replace(container.getName().toLowerCase(), ""), container.getContents());
+        if(match.size() < 1) System.out.println("That item isn't in the " + container.getName() + ".");
         match.forEach(i->{
             if(container.getContents().contains(i)){
                 container.getContents().remove(i);
@@ -92,6 +94,7 @@ public class AthoraPlayer {
 
     public void pickup(String args) {
         List<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
+        if(match.size() < 1) System.out.println("There is no " + args + " here.");
         match.forEach(i->{
             if (i.isAccessible() && !(i instanceof AthoraEnemy)) {
                 this.getInventory().add(i);
@@ -106,6 +109,7 @@ public class AthoraPlayer {
 
     public void eat(String args) {
         List<AthoraInvItem> match = getMatch(args, inventory);
+        if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             if (i.isAccessible() && i instanceof AthoraFood f) {
                 this.changeHealth(f.getSaturation());
@@ -123,6 +127,7 @@ public class AthoraPlayer {
 
     public void drop(String args) {
         List<AthoraInvItem> match = getMatch(args, inventory);
+        if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             inventory.remove(i);
             map.getCurrentScene().getObjs().add(i);
@@ -139,6 +144,7 @@ public class AthoraPlayer {
             return;
         }
         List<AthoraInvItem> match = getMatch(args, getWeapons());
+        if(match.size() < 1) System.out.println("You do not have that weapon.");
         match.forEach(i->{
             AthoraEnemy e = (AthoraEnemy) enemy;
             if (e.isAlive()) {
