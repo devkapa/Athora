@@ -2,18 +2,33 @@
 
 <map name="The Wrath of Felon">
 
-    <message>Nothing over there. Stay on the mission.</message>
-
     <scenes>
         <scene name="Dock" id="0">
-            <coords x="0" y="1" z="0"/>
+            <directions>
+                <north>Try not to walk off this dock, that would end the mission pretty quickly.</north>
+                <east destination="3"/>
+                <south destination="2"/>
+                <west destination="1"/>
+                <up>You're not superman, no flying into the sunset here.</up>
+                <down>Amazing, you located the floor.</down>
+            </directions>
             <setting>
                 You are standing on a dock, surrounded by the fresh sea air, several boats, yachts and ferries.
                 There is an exit to a parking lot on the west and a ticket booth to the east.
             </setting>
         </scene>
         <scene name="Parking Lot" id="1">
-            <coords x="0" y="1" z="-1"/>
+            <directions>
+                <north>Where on earth do you think you are you going? Get back to your mission.</north>
+                <east destination="0"/>
+                <south>It would be appreciated if you got back to your mission now.</south>
+                <west>You have a mission to do, don't bail now.</west>
+                <up>Wheeeee, I'm kidding, you only made it 2 feet off the ground.</up>
+                <down health="-5">
+                    You fell down a drain, good job.
+                    You clamber back up, looking like an idiot who watched It one too many times.
+                </down>
+            </directions>
             <setting>
                 You've made your way to one of many parking lots, surrounded by skyscrapers as far as your eyes can see.
                 A waste of space if you ask me, nobody has the money to buy a car anymore.
@@ -21,7 +36,14 @@
             </setting>
         </scene>
         <scene name="McDonald's" id="2">
-            <coords x="-1" y="1" z="0"/>
+            <directions>
+                <north destination="0"/>
+                <east>Have you never seen a wall before?</east>
+                <south>Walking into the kitchen of a McDonald's certainly isn't going to help the mission.</south>
+                <west>A wall, good job.</west>
+                <up>You checking if the paint on the ceiling is dry? I'm sure it is, get back to your mission.</up>
+                <down>Tiles, cool. You want a medal or something?</down>
+            </directions>
             <setting>
                 One of the last standing McDonald's in California, is this really the time to be thinking about food though?
                 Get back to your mission, they don't sell the Filet-o-fish anymore.
@@ -45,7 +67,14 @@
             </objects>
         </scene>
         <scene name="Entry Gates" id="3">
-            <coords x="0" y="1" z="1"/>
+            <directions>
+                <north destination="4"/>
+                <east>Theres nothing there but water. This is not the time for a swim, get back to your mission.</east>
+                <south>Walking into the ocean won't help you beat Felon.</south>
+                <west destination="0"/>
+                <up>You can't fly, you're not a bee.</up>
+                <down>If you put a hole in this floor, you would get to the ocean, you would also have to pay a hefty fine.</down>
+            </directions>
             <setting>
                 You walk through the gates, hopefully you paid for your ticket.
                 There's a doorway to the boats on your north.
@@ -59,14 +88,28 @@
             </objects>
         </scene>
         <scene name="Boats" id="4">
-            <coords x="1" y="1" z="1"/>
+            <directions>
+                <north>Can you not tell the difference between the ground and water?</north>
+                <east destination="5"/>
+                <south destination="3"/>
+                <west>Keep your feet on the ground for now.</west>
+                <up>Bring a jetpack next time, Barry.</up>
+                <down>You planning to dig to China or something?</down>
+            </directions>
             <setting>
                 There are lots of boats here. You stare very intensely at the boats neatly lined up on the dock as they bob up and down in the water.
                 Eventually your eyes land on a particularly large yacht to the east that looks very well maintained.
             </setting>
         </scene>
         <scene name="Loading Bay" id="5">
-            <coords x="1" y="1" z="2"/>
+            <directions>
+                <north destination="6"/>
+                <east destination="8"/>
+                <south>You're not going to accomplish anything by swimming away.</south>
+                <west destination="4"/>
+                <up>Don't waste your energy jumping, you have a mission to do.</up>
+                <down>This isn't the time to be socialising with ants.</down>
+            </directions>
             <setting>
                 You watch as a guard loads luggage into the yacht's cargo hold to the east.
                 There's no way you'll get onto the boat though, he's very well-equipped to injure you beyond recognition.
@@ -86,14 +129,28 @@
             </objects>
         </scene>
         <scene name="Side of Felon's Yacht" id="6">
-            <coords x="2" y="1" z="2"/>
+            <directions>
+                <north destination="7"/>
+                <east>There's no door here, you can't just walk into the side of a boat.</east>
+                <south destination="5">You're not going to accomplish anything by swimming away.</south>
+                <west>Wrong way, I'm starting to think we shouldn't have recruited you.</west>
+                <up>Climbing up the yacht hull would be futile.</up>
+                <down>The floor here is made out of floor.</down>
+            </directions>
             <setting>
                 Standing next to the yacht is a bit awkward, you might make the robot guards suspicious.
                 Hurry up and move. The front of the yacht is up north and the rear is back south.
             </setting>
         </scene>
         <scene name="Front of Felon's Yacht" id="7">
-            <coords x="3" y="1" z="2"/>
+            <directions>
+                <north>You can't just run away from this.</north>
+                <east>There's nothing there but water.</east>
+                <south destination="6"/>
+                <west>Walking away from someone is incredibly rude.</west>
+                <up>No, don't do that.</up>
+                <down>As flattering as that would be, worshipping a guard would be a bit suspicious.</down>
+            </directions>
             <setting>
                 Approaching the front of the yacht reveals a boat guard, who is very nicely equipped to disable you in one swift stroke.
                 Because he's protecting such an important person, the guard has a variety of deadly weapons.
@@ -137,7 +194,14 @@
             </objects>
         </scene>
         <scene name="Cargo Hold" id="8">
-            <coords x="1" y="1" z="3"/>
+            <directions>
+                <north>Walking into a suitcase isn't possible, you're not that tiny.</north>
+                <east>A wall, cool.</east>
+                <south>Nice wall you've got there.</south>
+                <west>The ship has just left the dock, you can't leave now.</west>
+                <up destination="9"/>
+                <down>If you went any lower than this you'd end up in the water.</down>
+            </directions>
             <setting>
                 You're surrounded by what looks like years of supplies and stacks of paperwork... perhaps Felon was planning to get off the grid.
                 You hear the gentle hum of the ship's engine as it leaves the dock. There is a staircase leading up.
@@ -156,7 +220,14 @@
             </objects>
         </scene>
         <scene name="Hallway, Level 1" id="9">
-            <coords x="1" y="2" z="3"/>
+            <directions>
+                <north>You've walked into a cupboard. *disappointed sigh*</north>
+                <east destination="12"/>
+                <south destination="10"/>
+                <west destination="11"/>
+                <up destination="13"/>
+                <down destination="8"/>
+            </directions>
             <setting>
                 You seem to have entered a rather posh looking hallway.
                 There's a door to your east and west as well as another staircase leading up. You could also go down the stairs you just climbed up.
@@ -171,7 +242,14 @@
             </objects>
         </scene>
         <scene name="Engine Bay" id="10">
-            <coords x="0" y="2" z="3"/>
+            <directions>
+                <north destination="9"/>
+                <east>Sweet wall, maybe taste it to check.</east>
+                <south>You're not a boat mechanic, stay away from that engine.</south>
+                <west>You just walked into a wall, you now have a shiny new bruise.</west>
+                <up>Nothing above you but a ceiling.</up>
+                <down>Wanna fall through a floor?</down>
+            </directions>
             <setting>
                 This seems to be the Engine Bay, there is a single Rolls-Royce MT30 engine working as the yacht cruises along.
                 I don't think you can do much in this room, considering the only major skill on your CV is professional water slide testing.
@@ -185,13 +263,30 @@
             </objects>
         </scene>
         <scene name="Lifeboats" id="11">
-            <coords x="1" y="2" z="2"/>
+            <directions>
+                <north>Do you want a bruise?</north>
+                <east destination="9"/>
+                <south>Don't walk into walls, you're going to break your nose.</south>
+                <west>Don't jump off the boat, you have work to do.</west>
+                <up>No, nothing there.</up>
+                <down>You examine a floor, it looks just like all the others on this boat.</down>
+            </directions>
             <setting>
                 This room is open to the calm seas, I guess it would have to be, otherwise the lifeboats wouldn't be able to get out.
             </setting>
         </scene>
         <scene name="Weapons" id="12">
-            <coords x="1" y="2" z="4"/>
+            <directions>
+                <north>Walking into a wall of water guns? Really?</north>
+                <east>Thunk, this porthole is too small for you to jump out of.</east>
+                <south>Walking into shelves, well that's new.</south>
+                <west destination="9"/>
+                <up health="-1">
+                    Up, up, and away!... BONK.
+                    You hit yer noggin on the ceiling.
+                </up>
+                <down>That carpet on the floor is probably musty and hasn't been cleaned in 10 years.</down>
+            </directions>
             <setting>
                 Finally, something exciting for you to do. Oh wait, these are all water pistols... perhaps useful against the robots?
                 Take one just in case I suppose.
@@ -205,7 +300,14 @@
             </objects>
         </scene>
         <scene name="Hallway, Level 2" id="13">
-            <coords x="1" y="3" z="3"/>
+            <directions>
+                <north destination="18"/>
+                <east destination="14"/>
+                <south>There's nothing there mate.</south>
+                <west destination="15"/>
+                <up destination="16"/>
+                <down destination="9"/>
+            </directions>
             <setting>
                 Once again, you've found yourself in a nice looking hallway. There is a door on the east, west and north as well as another staircase going up.
                 You could also go down the stairs you just climbed up.
@@ -220,7 +322,14 @@
             </objects>
         </scene>
         <scene name="Security" id="14">
-            <coords x="1" y="3" z="4"/>
+            <directions>
+                <north>Stop walking into things, you're gonna break one of these displays.</north>
+                <east>Another wall, are you collecting bruises or something?</east>
+                <south>You just walked into a server rack, congratulations.</south>
+                <west destination="13"/>
+                <up>Your noggin does not like that.</up>
+                <down health="-1">You fell over. Good job.</down>
+            </directions>
             <setting>
                 It seems you have wandered into a server room. A small monitor on the north wall emits security footage of the entire yacht.
                 You're quick to notice a ghastly figure standing menacingly in the bridge of the ship, eyes fixated on the windows.
@@ -235,7 +344,14 @@
             </objects>
         </scene>
         <scene name="Kitchen" id="18">
-            <coords x="2" y="3" z="3"/>
+            <directions>
+                <north>Careful, you'll trip over that bag of potatoes.</north>
+                <east>Cupboards, cool.</east>
+                <south destination="13"/>
+                <west>Take some food and stop walking into walls.</west>
+                <up>I get you're hungry but eating the ceiling won't do you well here. There's literally real food here. Just take it man.</up>
+                <down>Aren't you hungry? Take some bloody food already.</down>
+            </directions>
             <setting>
                 You walk into a clean kitchen, surrounded by cupboards full of fresh food and snacks.
                 Looks like Felon is dieting. There is an exit to the south.
@@ -279,13 +395,35 @@
             </objects>
         </scene>
         <scene name="Bathroom" id="15">
-            <coords x="1" y="3" z="2"/>
+            <directions>
+                <north>There is no mirror dimension, stop.</north>
+                <east destination="13"/>
+                <south>Yikes, when are you going to learn to walk without crashing.</south>
+                <west>A wall, epic.</west>
+                <up>No please sir no more brain damage.</up>
+                <down>Yuck. That would be pretty unhygienic.</down>
+            </directions>
             <setting>
                 I would have expected a professional like you to have taken care of this stuff before starting the mission, but good job, you found a bathroom.
             </setting>
         </scene>
         <scene name="Main Bridge" id="16">
-            <coords x="1" y="4" z="3"/>
+            <directions>
+                <north destination="19"/>
+                <east destination="17"/>
+                <south health="-11">
+                    You successfully walk into a wall (again) but this time, Muks' security hears you, and you decide to make a run for it. Your extremities lock up in your immeasurable terror, and you flop along to the deck like a little penguin.
+                    Still thinking you're a penguin, you jump overboard into the sea.
+                    However, unlike a penguin you don't know how to swim, and you start to sink until -10 degree water slowly fills your lungs. You suffocate.
+                </south>
+                <west destination="18"/>
+                <up health="-10000">
+                    You jump, unfortunately, because of your complete lack of educated judgement, Muks' security hears you.
+                    Turning around, the surroundings reflect in Felon's fiery red eyes as they stare you down. Muks walks to a cupboard and lifts a The Interesting Company flamethrower.
+                    He turns to face you in your last moments, his pale white skin orange in the glow of the flame that is about to snuff out your life. Oops, you're on fire.
+                </up>
+                <down destination="13"/>
+            </directions>
             <setting>
                 You walk very slowly up the stairs, hoping not to be spotted by Muks and his bodyguard. Thankfully, he's still... awkwardly staring at the window.
                 There's doors to the north and east. You could also go down the stairs you just climbed up.
@@ -306,7 +444,14 @@
             </objects>
         </scene>
         <scene name="Safe" id="17">
-            <coords x="1" y="4" z="4"/>
+            <directions>
+                <north>You're making an awful racket walking into walls all the time, you're going to give yourself away.</north>
+                <east>Shush, you've gotten this far, don't blow it now.</east>
+                <south>SHHHHHHHH!</south>
+                <west destination="16"/>
+                <up>Hah. You're too short to reach that cash.</up>
+                <down>Nothing here but clean, shiny, expensive safe floor.</down>
+            </directions>
             <setting>
                 Finally, you've made it. You see a small vial of magenta liquid and many bundles of cash.
                 You're so close now, make it out alive.
@@ -330,14 +475,28 @@
             </objects>
         </scene>
         <scene name="Controls" id="19">
-            <coords x="2" y="4" z="3"/>
+            <directions>
+                <north>What are you going to do, jump out the window? I literally just told you there is an exit.</north>
+                <east>Don't jump out the Mace Windu.</east>
+                <south destination="16"/>
+                <west>No, stop staring at the view and get to work.</west>
+                <up>Kopfschmerzen.</up>
+                <down>Dunce. You notice your shoelaces are untied.</down>
+            </directions>
             <setting>
                 Good job, you've disabled everyone on the ship. The other agents are now deactivating the rest of Felon's guards.
                 The ships all yours, boss, and Felon is finally gone. Why don't you go grab some fresh air on the deck to the east?
             </setting>
         </scene>
         <scene name="Deck" id="20">
-            <coords x="2" y="4" z="4"/>
+            <directions>
+                <north>Once you start down the magenta path, forever will it dominate your destiny.</north>
+                <east>Wherever I go, the cartridge goes.</east>
+                <south>The ability to save the world does not make you intelligent.</south>
+                <west>You did it, you brought balance to the cartridges.</west>
+                <up>You brought peace, freedom, justice and security to your surprisingly-not-new World.</up>
+                <down>Did you notice the floor was still there? Anyways you finished the game.</down>
+            </directions>
             <setting>
                 Hey! Thanks so much for playing Athora. You completed the game :) GG
                 I hope you're enjoying the fresh air. This yacht had better been enough payment for your mission...
@@ -352,4 +511,3 @@
     </splash>
 
 </map>
-

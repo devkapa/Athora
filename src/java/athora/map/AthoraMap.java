@@ -1,7 +1,5 @@
 package athora.map;
 
-import athora.AthoraLogic;
-import athora.AthoraMain;
 import athora.objects.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -10,10 +8,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class AthoraMap {
@@ -22,7 +16,6 @@ public class AthoraMap {
     public final String title;
     public final ArrayList<AthoraScene> scenes;
     public AthoraScene currentScene;
-    public String message;
 
     public AthoraMap(String name, String title, ArrayList<AthoraScene> scenes, AthoraScene currentScene){
         this.name = name;
@@ -39,14 +32,6 @@ public class AthoraMap {
         return title;
     }
 
-    public void setMessage(String message){
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
     public void setCurrentScene(AthoraScene currentScene) {
         this.currentScene = currentScene;
     }
@@ -55,11 +40,11 @@ public class AthoraMap {
         return currentScene;
     }
 
-    public AthoraScene findSceneByCoords(AthoraDirection dir) {
-        int[] currentSceneCoords = currentScene.getCoords();
-        int[] newSceneCoords = currentSceneCoords.clone();
-        newSceneCoords[dir.index()] += dir.value();
-        return scenes.stream().filter(scene -> Arrays.equals(scene.getCoords(), newSceneCoords)).findFirst().orElse(null);
+    public AthoraScene findScene(AthoraDirection dir){
+        if(dir.getId() != null){
+            return scenes.stream().filter(scene->dir.getId() == scene.getId()).findFirst().orElse(null);
+        }
+        return null;
     }
 
     public static AthoraMap getMap(File defaultMap) {
@@ -78,7 +63,6 @@ public class AthoraMap {
 
             String mapName = mapFile.getDocumentElement().getAttribute("name");
             String mapSplash = trimmed(mapFile.getElementsByTagName("splash").item(0).getTextContent());
-            String mapMessage = trimmed(mapFile.getElementsByTagName("message").item(0).getTextContent());
 
             NodeList mapScenes = mapFile.getElementsByTagName("scene");
 
@@ -93,12 +77,22 @@ public class AthoraMap {
 
                     String sceneName = sceneElement.getAttribute("name");
                     String sceneSetting = trimmed(sceneElement.getElementsByTagName("setting").item(0).getTextContent());
-                    NamedNodeMap sceneCoords = sceneElement.getElementsByTagName("coords").item(0).getAttributes();
-                    int[] sceneXyz = {
-                            Integer.parseInt(sceneCoords.getNamedItem("x").getTextContent()),
-                            Integer.parseInt(sceneCoords.getNamedItem("y").getTextContent()),
-                            Integer.parseInt(sceneCoords.getNamedItem("z").getTextContent())
-                    };
+
+                    NodeList directions = sceneElement.getElementsByTagName("directions").item(0).getChildNodes();
+                    ArrayList<AthoraDirection> sceneDirections = new ArrayList<>();
+
+                    for (int j = 0; j < directions.getLength(); j++){
+
+                        switch (directions.item(j).getNodeName()){
+                            case "north" -> sceneDirections.add(0, setDirection(directions.item(j)));
+                            case "east" -> sceneDirections.add(1, setDirection(directions.item(j)));
+                            case "south" -> sceneDirections.add(2, setDirection(directions.item(j)));
+                            case "west" -> sceneDirections.add(3, setDirection(directions.item(j)));
+                            case "up" -> sceneDirections.add(4, setDirection(directions.item(j)));
+                            case "down" -> sceneDirections.add(5, setDirection(directions.item(j)));
+                        }
+
+                    }
 
                     ArrayList<AthoraInvItem> sceneItems = new ArrayList<>();
 
@@ -149,16 +143,13 @@ public class AthoraMap {
 
                     }
 
-                    scenes.add(new AthoraScene(sceneId, sceneName, sceneSetting, sceneXyz, sceneItems));
+                    scenes.add(new AthoraScene(sceneId, sceneName, sceneSetting, sceneDirections, sceneItems));
 
                 }
 
             }
 
-            AthoraMap map = new AthoraMap(mapName, mapSplash, scenes, scenes.get(0));
-            map.setMessage(mapMessage);
-
-            return map;
+            return new AthoraMap(mapName, mapSplash, scenes, scenes.get(0));
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
@@ -229,5 +220,19 @@ public class AthoraMap {
         return joiner.toString().trim();
     }
 
+    public static AthoraDirection setDirection(Node node){
+        if(node.getTextContent().equals("")){
+            int id = Integer.parseInt(node.getAttributes().getNamedItem("destination").getTextContent());
+            return new AthoraDirection(id);
+        }
+        if(node.getAttributes().getNamedItem("health") != null){
+            String message = trimmed(node.getTextContent());
+            int health = Integer.parseInt(node.getAttributes().getNamedItem("health").getTextContent());
+            return new AthoraDirection(message, health);
+        } else {
+            String message = trimmed(node.getTextContent());
+            return new AthoraDirection(message);
+        }
+    }
 
 }

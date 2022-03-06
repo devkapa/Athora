@@ -146,17 +146,20 @@ public class AthoraLogic {
     }
 
     public static void move(AthoraMap map, String direction) {
-        AthoraDirection dir = AthoraDirection.getIndex(direction);
-        AthoraScene destination = map.findSceneByCoords(dir);
-        if (destination == map.getCurrentScene() || destination == null) {
-            System.out.println(map.getMessage());
+        AthoraDirection dir = map.getCurrentScene().getDestinations().get(AthoraDirection.getIndex(direction));
+        if (map.findScene(dir) == null) {
+            if(dir.getHealth() == null) System.out.println(ANSI_RESET + dir.getMessage());
+            else {
+                System.out.println(ANSI_RESET + dir.getMessage() + " " + dir.getHealth() + " HP");
+                player.changeHealth(dir.getHealth());
+            }
             return;
         }
-        if (map.getCurrentScene().getObjs().stream().anyMatch(o -> o instanceof AthoraEnemy && ((AthoraEnemy) o).getBlocking().stream().anyMatch(b -> b == destination.getId()) && ((AthoraEnemy) o).isAlive())) {
+        if (map.getCurrentScene().getObjs().stream().anyMatch(o -> o instanceof AthoraEnemy && ((AthoraEnemy) o).getBlocking().stream().anyMatch(b -> b.equals(dir.getId())) && ((AthoraEnemy) o).isAlive())) {
             System.out.println("There is an enemy blocking your path.");
             return;
         }
-        map.setCurrentScene(destination);
+        map.setCurrentScene(map.findScene(dir));
         System.out.println(ANSI_RESET + look(map));
     }
 

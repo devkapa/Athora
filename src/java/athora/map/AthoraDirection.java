@@ -1,37 +1,58 @@
 package athora.map;
 
-public record AthoraDirection(int index, int value) {
+public class AthoraDirection {
 
-    public int index() {
-        return index;
+    public Integer id;
+    public String message;
+    public Integer health;
+
+    public AthoraDirection(Integer id){
+        this.id = id;
     }
 
-    public int value() {
-        return value;
+    public AthoraDirection(String message){
+        this.message = message;
     }
 
-    public static AthoraDirection getIndex(String direction){
+    public AthoraDirection(String message, Integer health){
+        this.message = message;
+        this.health = health;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Integer getHealth() {
+        return health;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public static int getIndex(String direction){
         switch(direction){
             case "north" -> {
-                return new AthoraDirection(0, 1);
+                return 0;
             }
             case "east" -> {
-                return new AthoraDirection(2, 1);
+                return 1;
             }
             case "south" -> {
-                return new AthoraDirection(0, -1);
+                return 2;
             }
             case "west" -> {
-                return new AthoraDirection(2, -1);
+                return 3;
             }
             case "up" -> {
-                return new AthoraDirection(1, 1);
+                return 4;
             }
             case "down"-> {
-                return new AthoraDirection(1, -1);
+                return 5;
             }
         }
-        return new AthoraDirection(0, 0);
+        return -1;
     }
 
 }
