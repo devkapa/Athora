@@ -10,4 +10,5 @@ Play to find out more!
 
 # How to play
 
-Simply run the download and run the installer in the downloads section! Once you've started the game, simply type what you want to do to progress.
+Simply run the download and run the installer in the releases section! Once you've started the game, simply type what you want to do to progress.
+(https://github.com/Nulfy/Athora/releases/tag/v1.0.0)
