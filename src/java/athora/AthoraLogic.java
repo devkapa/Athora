@@ -60,6 +60,10 @@ public class AthoraLogic {
                     else move(map, direction);
                 }
                 case "pick", "pickup", "take" -> {
+                    if (args.contains("out") || args.contains("from")) {
+                        player.removeFromContents(args, player.getContainer(args));
+                        break;
+                    }
                     if (args.equals("")) {
                         System.out.println(ANSI_RESET + "What do you want to pick up?");
                     } else {
