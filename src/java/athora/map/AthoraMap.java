@@ -24,10 +24,6 @@ public class AthoraMap {
         this.currentScene = currentScene;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -94,7 +90,7 @@ public class AthoraMap {
 
                     }
 
-                    ArrayList<AthoraInvItem> sceneItems = new ArrayList<>();
+                    ArrayList<AthoraObject> sceneItems = new ArrayList<>();
 
                     NodeList items = sceneElement.getElementsByTagName("item");
                     int sceneId = Integer.parseInt(sceneElement.getAttribute("id"));
@@ -178,7 +174,7 @@ public class AthoraMap {
                 }
             }
 
-            System.out.println("\nPlease choose which map you would like to play:");
+            System.out.println("Please choose which map you would like to play:");
 
             for(File map : maps){
                 try {

@@ -5,7 +5,7 @@ import athora.map.AthoraDirection;
 import athora.map.AthoraMap;
 import athora.objects.AthoraContainer;
 import athora.objects.AthoraEnemy;
-import athora.objects.AthoraInvItem;
+import athora.objects.AthoraObject;
 import athora.player.AthoraPlayer;
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class AthoraLogic {
 
     public static Scanner input = new Scanner(System.in);
     public static int playerHealth = 10;
-    public static ArrayList<AthoraInvItem> inventory = new ArrayList<>();
+    public static ArrayList<AthoraObject> inventory = new ArrayList<>();
 
     public static AthoraPlayer player = new AthoraPlayer(playerHealth, inventory);
 
@@ -82,12 +82,12 @@ public class AthoraLogic {
                 }
                 case "inv", "inventory", "items", "health", "hp" -> {
                     StringBuilder inventoryString = new StringBuilder();
-                    for (AthoraInvItem item : inventory) {
+                    for (AthoraObject item : inventory) {
                         if (!(item instanceof AthoraContainer c))
                             inventoryString.append("\n").append("* ").append(item.getName()).trimToSize();
                         else {
                             inventoryString.append("\n").append("* ").append(item.getName()).append(" (to take items out type remove)").trimToSize();
-                            for (AthoraInvItem o : c.getContents()) {
+                            for (AthoraObject o : c.getContents()) {
                                 inventoryString.append("\n   - ").append(o.getName());
                             }
                         }
@@ -111,7 +111,7 @@ public class AthoraLogic {
     }
 
     public static String look(AthoraMap map) {
-        List<AthoraInvItem> placeObjects = map.getCurrentScene().getObjs();
+        List<AthoraObject> placeObjects = map.getCurrentScene().getObjs();
         if (placeObjects.isEmpty())
             return map.getCurrentScene().getName() + "\n" + map.getCurrentScene().getSetting() + "\n" + "There are no items here.";
         StringJoiner objects = new StringJoiner(", a ", "There is a ", " here.");

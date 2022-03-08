@@ -6,15 +6,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static athora.AthoraLogic.player;
-import static athora.assets.AthoraAssets.ANSI_RESET;
 import static athora.AthoraLogic.map;
 
 public class AthoraPlayer {
 
     int health;
-    ArrayList<AthoraInvItem> inventory;
+    ArrayList<AthoraObject> inventory;
 
-    public AthoraPlayer(int health, ArrayList<AthoraInvItem> inventory) {
+    public AthoraPlayer(int health, ArrayList<AthoraObject> inventory) {
         this.health = health;
         this.inventory = inventory;
     }
@@ -27,21 +26,21 @@ public class AthoraPlayer {
         health += amount;
     }
 
-    public ArrayList<AthoraInvItem> getInventory() {
+    public ArrayList<AthoraObject> getInventory() {
         return inventory;
     }
 
-    public ArrayList<AthoraInvItem> getWeapons() {
-        ArrayList<AthoraInvItem> weapons = new ArrayList<>();
+    public ArrayList<AthoraObject> getWeapons() {
+        ArrayList<AthoraObject> weapons = new ArrayList<>();
         inventory.forEach(item -> {
-            if (item instanceof AthoraWeapon || item instanceof AthoraContainer || item instanceof AthoraObject) {
+            if (!(item instanceof AthoraFood)) {
                 weapons.add(item);
             }
         });
         return weapons;
     }
 
-    public List<AthoraInvItem> getMatch(String args, ArrayList<AthoraInvItem> items) {
+    public List<AthoraObject> getMatch(String args, ArrayList<AthoraObject> items) {
         return items.stream().filter(item -> {
             ArrayList<String> splitArgs = new ArrayList<>(List.of(args.toLowerCase().split(" ")));
             splitArgs.retainAll(Arrays.asList(item.getName().toLowerCase().split(" ")));
@@ -50,8 +49,8 @@ public class AthoraPlayer {
     }
 
     public AthoraContainer getContainer(String args) {
-        List<AthoraInvItem> match = getMatch(args, inventory);
-        Optional<AthoraInvItem> found = match.stream().filter(item-> item instanceof AthoraContainer).findFirst();
+        List<AthoraObject> match = getMatch(args, inventory);
+        Optional<AthoraObject> found = match.stream().filter(item-> item instanceof AthoraContainer).findFirst();
         return (AthoraContainer) found.orElse(null);
     }
 
@@ -64,7 +63,7 @@ public class AthoraPlayer {
             System.out.println("Specify what you want to put.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args, inventory);
+        List<AthoraObject> match = getMatch(args, inventory);
         if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             if(!(i instanceof AthoraContainer)){
@@ -87,7 +86,7 @@ public class AthoraPlayer {
             System.out.println("Specify what you want to remove.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args.toLowerCase().replace(container.getName().toLowerCase(), ""), container.getContents());
+        List<AthoraObject> match = getMatch(args.toLowerCase().replace(container.getName().toLowerCase(), ""), container.getContents());
         if(match.size() < 1) System.out.println("That item isn't in the " + container.getName() + ".");
         match.forEach(i->{
             if(container.getContents().contains(i)){
@@ -105,7 +104,7 @@ public class AthoraPlayer {
             System.out.println("What do you want to pick up?");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
+        List<AthoraObject> match = getMatch(args, map.getCurrentScene().getObjs());
         if(match.size() < 1) System.out.println("There is no " + args + " here.");
         match.forEach(i->{
             if (i.isAccessible() && !(i instanceof AthoraEnemy)) {
@@ -124,7 +123,7 @@ public class AthoraPlayer {
             System.out.println("Specify what you want to eat.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args, inventory);
+        List<AthoraObject> match = getMatch(args, inventory);
         if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             if (i.isAccessible() && i instanceof AthoraFood f) {
@@ -146,7 +145,7 @@ public class AthoraPlayer {
             System.out.println("Specify what you want to drop.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args, inventory);
+        List<AthoraObject> match = getMatch(args, inventory);
         if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             inventory.remove(i);
@@ -155,7 +154,7 @@ public class AthoraPlayer {
         });
     }
 
-    public void swing(String args, AthoraInvItem enemy) {
+    public void swing(String args, AthoraObject enemy) {
         if (enemy == null) {
             System.out.println("No enemy found.");
             return;
@@ -167,7 +166,7 @@ public class AthoraPlayer {
             System.out.println("Specify what you want to attack.");
             return;
         }
-        List<AthoraInvItem> match = getMatch(args, getWeapons());
+        List<AthoraObject> match = getMatch(args, getWeapons());
         if(match.size() < 1) System.out.println("You do not have that weapon.");
         match.forEach(i->{
             AthoraEnemy e = (AthoraEnemy) enemy;
@@ -187,8 +186,8 @@ public class AthoraPlayer {
         });
     }
 
-    public AthoraInvItem getObj(String args) {
-        List<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
+    public AthoraObject getObj(String args) {
+        List<AthoraObject> match = getMatch(args, map.getCurrentScene().getObjs());
         return match.get(0);
     }
 

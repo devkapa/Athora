@@ -2,9 +2,7 @@ package athora.objects;
 
 import athora.player.AthoraPlayer;
 
-import static athora.assets.AthoraAssets.ANSI_RESET;
-
-public class AthoraWeapon extends AthoraInvItem {
+public class AthoraWeapon extends AthoraObject {
 
     private final String event;
     private final int damage;

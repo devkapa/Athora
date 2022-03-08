@@ -1,6 +1,6 @@
 package athora.objects;
 
-public class AthoraFood extends AthoraInvItem {
+public class AthoraFood extends AthoraObject {
 
     private final int saturation;
 

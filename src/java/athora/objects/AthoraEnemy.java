@@ -2,7 +2,7 @@ package athora.objects;
 
 import java.util.List;
 
-public class AthoraEnemy extends AthoraInvItem {
+public class AthoraEnemy extends AthoraObject {
 
     private int health;
     private final List<Integer> blocking;
