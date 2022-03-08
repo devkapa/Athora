@@ -1,6 +1,5 @@
 package athora;
 
-import athora.assets.AthoraAssets;
 import athora.map.AthoraDirection;
 import athora.map.AthoraMap;
 import athora.objects.AthoraContainer;
@@ -9,8 +8,6 @@ import athora.objects.AthoraObject;
 import athora.player.AthoraPlayer;
 
 import java.util.*;
-
-import static athora.assets.AthoraAssets.*;
 
 public class AthoraLogic {
 
@@ -38,11 +35,9 @@ public class AthoraLogic {
         main:
         while (player.getHealth() > 0) {
 
-            System.out.print("> " + ANSI_GREEN);
+            System.out.print("> ");
             String command = input.nextLine().toLowerCase().trim();
             String verb = getVerb(command);
-
-            System.out.print(ANSI_RESET);
 
             String args = command.replace(verb, "").toLowerCase().trim();
 
@@ -61,7 +56,7 @@ public class AthoraLogic {
                     }
                     player.pickup(args);
                 }
-                case "exit", "stop" -> {
+                case "quit" -> {
                     break main;
                 }
                 case "drop", "rid" -> player.drop(args);
@@ -106,7 +101,7 @@ public class AthoraLogic {
             }
         }
 
-        System.out.println(AthoraAssets.diedMessage);
+        System.out.println(diedMessage);
 
     }
 
@@ -142,5 +137,17 @@ public class AthoraLogic {
         Optional<String> match = Arrays.stream(verbs).filter(args::contains).findFirst();
         return match.orElse("none");
     }
+
+    public static final String diedMessage = """
+                
+                **Poof! You have died.**
+            Please restart the game to play again.
+            """;
+
+    public static String[] verbs = {"quit", "go", "take", "pick", "pickup", "drop", "open", "move",
+            "inventory", "inv", "break", "kill", "attack", "look", "north", "east", "south", "west", "up", "down", "knife",
+            "stab", "hit", "murder", "items", "walk", "rid", "eat", "consume", "drink", "hp", "health", "exit", "stop", "put",
+            "place", "insert", "remove"
+    };
 
 }

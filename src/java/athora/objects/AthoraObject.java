@@ -30,10 +30,6 @@ public class AthoraObject {
         return damage;
     }
 
-    public void attack(AthoraEnemy enemy, AthoraObject weapon) {
-        enemy.changeHealth(-weapon.getDamage());
-    }
-
     public boolean isAccessible() {
         return accessible;
     }

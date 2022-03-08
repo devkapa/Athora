@@ -168,11 +168,11 @@ public class AthoraPlayer {
         }
         List<AthoraObject> match = getMatch(args, getWeapons());
         if(match.size() < 1) System.out.println("You do not have that weapon.");
-        match.forEach(i->{
+        match.forEach(w->{
             AthoraEnemy e = (AthoraEnemy) enemy;
             if (e.isAlive()) {
-                i.attack(e, i);
-                System.out.println("You attacked the " + e.getName() + " with a " + i.getName() + " for " + i.getDamage() + " damage.");
+                e.changeHealth(-w.getDamage());
+                System.out.println("You attacked the " + e.getName() + " with a " + w.getName() + " for " + w.getDamage() + " damage.");
                 if (e.isAlive()) {
                     System.out.println("He swings back at you, dealing " + e.getDamage() + " damage to you.\nThe " + e.getName() + " is now on " + e.getHealth() + " HP.");
                     this.changeHealth(e.getDamage());

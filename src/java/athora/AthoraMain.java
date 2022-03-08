@@ -4,8 +4,6 @@ import athora.map.AthoraMap;
 
 import java.io.File;
 
-import static athora.assets.AthoraAssets.ANSI_RESET;
-
 public class AthoraMain {
 
     public static void main(String[] args) {
@@ -24,7 +22,7 @@ public class AthoraMain {
                 
                 """;
 
-        System.out.println(ANSI_RESET + title);
+        System.out.println(title);
 
         if(args.length > 0) {
             File map = new File(args[0]);
@@ -34,7 +32,7 @@ public class AthoraMain {
             AthoraLogic.startGame(AthoraMap.getMap(AthoraMap.chooseMap()));
         }
 
-        System.out.println(ANSI_RESET + "\nPress 'Enter' key to exit.");
+        System.out.println("Press 'Enter' key to exit.");
 
         System.console().readLine();
 
