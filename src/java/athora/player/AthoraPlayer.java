@@ -57,7 +57,11 @@ public class AthoraPlayer {
 
     public void addToContents(String args, AthoraContainer container) {
         if (container == null) {
-            System.out.println(ANSI_RESET + "You must have the container in your inventory.");
+            System.out.println("You must have the container in your inventory.");
+            return;
+        }
+        if (args.equals("")) {
+            System.out.println("Specify what you want to put.");
             return;
         }
         List<AthoraInvItem> match = getMatch(args, inventory);
@@ -67,16 +71,20 @@ public class AthoraPlayer {
                 if ((container.getMass() + i.getMass()) <= container.getMaxMass()) {
                     container.getContents().add(i);
                     inventory.remove(i);
-                    System.out.println(ANSI_RESET + "You put " + i.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                    System.out.println("You put " + i.getName() + " into " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
                 } else
-                    System.out.println(ANSI_RESET + "The " + container.getName() + " is too heavy to fit " + i.getName());
+                    System.out.println("The " + container.getName() + " is too heavy to fit " + i.getName());
             }
         });
     }
 
     public void removeFromContents(String args, AthoraContainer container) {
         if (container == null) {
-            System.out.println(ANSI_RESET + "You must have the container in your inventory.");
+            System.out.println("You must have the container in your inventory.");
+            return;
+        }
+        if (args.equals("")) {
+            System.out.println("Specify what you want to remove.");
             return;
         }
         List<AthoraInvItem> match = getMatch(args.toLowerCase().replace(container.getName().toLowerCase(), ""), container.getContents());
@@ -85,62 +93,78 @@ public class AthoraPlayer {
             if(container.getContents().contains(i)){
                 container.getContents().remove(i);
                 inventory.add(i);
-                System.out.println(ANSI_RESET + "You took " + i.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
+                System.out.println("You took " + i.getName() + " out of " + container.getName() + ". Now it deals " + container.getDamage() + " damage.");
             } else {
-                System.out.println(ANSI_RESET + "Theres no \"" + args + "\" in the " + container.getName() + ".");
+                System.out.println("Theres no \"" + args + "\" in the " + container.getName() + ".");
             }
         });
     }
 
     public void pickup(String args) {
+        if (args.equals("")) {
+            System.out.println("What do you want to pick up?");
+            return;
+        }
         List<AthoraInvItem> match = getMatch(args, map.getCurrentScene().getObjs());
         if(match.size() < 1) System.out.println("There is no " + args + " here.");
         match.forEach(i->{
             if (i.isAccessible() && !(i instanceof AthoraEnemy)) {
                 this.getInventory().add(i);
                 map.getCurrentScene().getObjs().remove(i);
-                System.out.println(ANSI_RESET + "You picked up " + i.getName());
+                System.out.println("You picked up " + i.getName());
             } else {
                 if(i instanceof AthoraWeapon) ((AthoraWeapon) i).executeEvent(player);
-                else System.out.println(ANSI_RESET + "You can't pick up a " + i.getName() + "!");
+                else System.out.println("You can't pick up a " + i.getName() + "!");
             }
         });
     }
 
     public void eat(String args) {
+        if (args.equals("")) {
+            System.out.println("Specify what you want to eat.");
+            return;
+        }
         List<AthoraInvItem> match = getMatch(args, inventory);
         if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             if (i.isAccessible() && i instanceof AthoraFood f) {
                 this.changeHealth(f.getSaturation());
                 if (this.getHealth() > 10) this.health = 10;
-                System.out.println(ANSI_RESET + "You ate " + f.getName() +
+                System.out.println("You ate " + f.getName() +
                         ". It tasted good. You gained " + f.getSaturation() + " HP." +
                         "\nYou are now on " + this.getHealth() + " HP."
                 );
                 inventory.remove(i);
             } else {
-                System.out.println(ANSI_RESET + "You cannot eat a " + i.getName() + "!");
+                System.out.println("You cannot eat a " + i.getName() + "!");
             }
         });
     }
 
     public void drop(String args) {
+        if (args.equals("")) {
+            System.out.println("Specify what you want to drop.");
+            return;
+        }
         List<AthoraInvItem> match = getMatch(args, inventory);
         if(match.size() < 1) System.out.println("You do not have that.");
         match.forEach(i->{
             inventory.remove(i);
             map.getCurrentScene().getObjs().add(i);
-            System.out.println(ANSI_RESET + "Dropped " + i.getName());
+            System.out.println("Dropped " + i.getName());
         });
     }
 
     public void swing(String args, AthoraInvItem enemy) {
         if (enemy == null) {
-            System.out.println(ANSI_RESET + "No enemy found.");
+            System.out.println("No enemy found.");
             return;
         } else if (!(enemy instanceof AthoraEnemy)) {
-            System.out.println(ANSI_RESET + "That object can't be attacked.");
+            System.out.println("That object can't be attacked.");
+            return;
+        }
+        if (args.equals("")) {
+            System.out.println("Specify what you want to attack.");
             return;
         }
         List<AthoraInvItem> match = getMatch(args, getWeapons());
@@ -149,16 +173,16 @@ public class AthoraPlayer {
             AthoraEnemy e = (AthoraEnemy) enemy;
             if (e.isAlive()) {
                 i.attack(e, i);
-                System.out.println(ANSI_RESET + "You attacked the " + e.getName() + " with a " + i.getName() + " for " + i.getDamage() + " damage.");
+                System.out.println("You attacked the " + e.getName() + " with a " + i.getName() + " for " + i.getDamage() + " damage.");
                 if (e.isAlive()) {
-                    System.out.println(ANSI_RESET + "He swings back at you, dealing " + e.getDamage() + " damage to you.\nThe " + e.getName() + " is now on " + e.getHealth() + " HP.");
+                    System.out.println("He swings back at you, dealing " + e.getDamage() + " damage to you.\nThe " + e.getName() + " is now on " + e.getHealth() + " HP.");
                     this.changeHealth(e.getDamage());
                 } else {
-                    System.out.println(ANSI_RESET + "The " + e.getName() + " is now dead.");
+                    System.out.println("The " + e.getName() + " is now dead.");
                     e.setName("Dead " + e.getName());
                 }
             } else {
-                System.out.println(ANSI_RESET + "That " + e.getName() + " is already dead.");
+                System.out.println("That " + e.getName() + " is already dead.");
             }
         });
     }

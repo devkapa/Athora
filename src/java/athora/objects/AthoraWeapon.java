@@ -17,7 +17,7 @@ public class AthoraWeapon extends AthoraInvItem {
 
     public void executeEvent(AthoraPlayer player) {
         player.changeHealth(-damage);
-        System.out.println(ANSI_RESET + event + " -" + damage + " HP");
+        System.out.println(event + " -" + damage + " HP");
     }
 
 }

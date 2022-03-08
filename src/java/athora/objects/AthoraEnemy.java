@@ -17,8 +17,6 @@ public class AthoraEnemy extends AthoraInvItem {
         return health > 0;
     }
 
-
-
     public int getHealth() {
         return health;
     }

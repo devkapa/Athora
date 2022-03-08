@@ -33,23 +33,25 @@ public class AthoraLogic {
 
         System.out.println('\n' + map.getTitle() + '\n');
 
-        System.out.println(ANSI_RESET + look(map));
+        System.out.println(look(map));
 
         main:
         while (player.getHealth() > 0) {
 
-            System.out.print(ANSI_RESET + "> " + ANSI_GREEN);
+            System.out.print("> " + ANSI_GREEN);
             String command = input.nextLine().toLowerCase().trim();
             String verb = getVerb(command);
+
+            System.out.print(ANSI_RESET);
 
             String args = command.replace(verb, "").toLowerCase().trim();
 
             switch (verb) {
-                case "look" -> System.out.println(ANSI_RESET + look(map));
+                case "look" -> System.out.println(look(map));
                 case "north", "east", "south", "west", "up", "down" -> move(map, verb);
                 case "move", "go", "walk" -> {
                     String direction = getVerb(args);
-                    if (direction == null) System.out.println(ANSI_RESET + "Where do you want to move?");
+                    if (direction == null) System.out.println("Where do you want to move?");
                     else move(map, direction);
                 }
                 case "pick", "pickup", "take" -> {
@@ -57,50 +59,26 @@ public class AthoraLogic {
                         player.removeFromContents(args, player.getContainer(args));
                         break;
                     }
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "What do you want to pick up?");
-                    } else {
-                        player.pickup(args);
-                    }
+                    player.pickup(args);
                 }
                 case "exit", "stop" -> {
                     break main;
                 }
-                case "drop", "rid" -> {
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "Specify what you want to drop.");
-                    } else {
-                        player.drop(args);
-                    }
-                }
-                case "eat", "consume", "drink" -> {
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "Specify what you want to eat.");
-                    } else {
-                        player.eat(args);
-                    }
-                }
+                case "drop", "rid" -> player.drop(args);
+                case "eat", "consume", "drink" -> player.eat(args);
                 case "put", "place", "insert" -> {
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "Specify what you want to put.");
+                    if (!args.contains("in")) {
+                        System.out.println("Specify what you want to put that in.");
                         break;
                     }
-                    if (args.contains("in")) {
-                        player.addToContents(args, player.getContainer(args));
-                    } else {
-                        System.out.println(ANSI_RESET + "Specify what you want to put that in.");
-                    }
+                    player.addToContents(args, player.getContainer(args));
                 }
                 case "remove" -> {
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "Specify what you want to remove.");
+                    if (!args.contains("out") || !args.contains("from")) {
+                        System.out.println("Specify what you want to take that out of.");
                         break;
                     }
-                    if (args.contains("out") || args.contains("from")) {
-                        player.removeFromContents(args, player.getContainer(args));
-                    } else {
-                        System.out.println(ANSI_RESET + "Specify what you want to take that out of.");
-                    }
+                    player.removeFromContents(args, player.getContainer(args));
                 }
                 case "inv", "inventory", "items", "health", "hp" -> {
                     StringBuilder inventoryString = new StringBuilder();
@@ -115,24 +93,20 @@ public class AthoraLogic {
                         }
                     }
                     if (inventoryString.isEmpty()) inventoryString.append("(none)");
-                    System.out.println(ANSI_RESET + "Inventory: " + inventoryString + "\nHealth: " + player.getHealth());
+                    System.out.println("Inventory: " + inventoryString + "\nHealth: " + player.getHealth());
                 }
                 case "kill", "attack", "knife", "stab", "hit", "murder" -> {
-                    if (args.equals("")) {
-                        System.out.println(ANSI_RESET + "Specify what you want to attack.");
+                    if (!args.contains("with") || !args.contains("using")) {
+                        System.out.println("Specify what you want to attack with.");
                         break;
                     }
-                    if (args.contains("with") || args.contains("using")) {
-                        player.swing(args, player.getObj(args));
-                    } else {
-                        System.out.println(ANSI_RESET + "Specify what you want to attack with.");
-                    }
+                    player.swing(args, player.getObj(args));
                 }
-                default -> System.out.println(ANSI_RESET + "I don't understand \"" + command + "\".");
+                default -> System.out.println("I don't understand \"" + command + "\".");
             }
         }
 
-        System.out.println(ANSI_RESET + AthoraAssets.diedMessage);
+        System.out.println(AthoraAssets.diedMessage);
 
     }
 
@@ -148,9 +122,9 @@ public class AthoraLogic {
     public static void move(AthoraMap map, String direction) {
         AthoraDirection dir = map.getCurrentScene().getDestinations().get(AthoraDirection.getIndex(direction));
         if (map.findScene(dir) == null) {
-            if(dir.getHealth() == null) System.out.println(ANSI_RESET + dir.getMessage());
+            if(dir.getHealth() == null) System.out.println(dir.getMessage());
             else {
-                System.out.println(ANSI_RESET + dir.getMessage() + " " + dir.getHealth() + " HP");
+                System.out.println(dir.getMessage() + " " + dir.getHealth() + " HP");
                 player.changeHealth(dir.getHealth());
             }
             return;
@@ -160,7 +134,7 @@ public class AthoraLogic {
             return;
         }
         map.setCurrentScene(map.findScene(dir));
-        System.out.println(ANSI_RESET + look(map));
+        System.out.println(look(map));
     }
 
     public static String getVerb(String input) {
@@ -168,4 +142,5 @@ public class AthoraLogic {
         Optional<String> match = Arrays.stream(verbs).filter(args::contains).findFirst();
         return match.orElse("none");
     }
+
 }
