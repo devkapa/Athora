@@ -3,13 +3,11 @@ package athora;
 import athora.assets.AthoraAssets;
 import athora.map.AthoraDirection;
 import athora.map.AthoraMap;
-import athora.map.AthoraScene;
 import athora.objects.AthoraContainer;
 import athora.objects.AthoraEnemy;
 import athora.objects.AthoraInvItem;
 import athora.player.AthoraPlayer;
 
-import java.io.InputStream;
 import java.util.*;
 
 import static athora.assets.AthoraAssets.*;
@@ -38,12 +36,7 @@ public class AthoraLogic {
         System.out.println(ANSI_RESET + look(map));
 
         main:
-        while (true) {
-
-            if (player.getHealth() <= 0) {
-                System.out.println(ANSI_RESET + AthoraAssets.diedMessage);
-                break;
-            }
+        while (player.getHealth() > 0) {
 
             System.out.print(ANSI_RESET + "> " + ANSI_GREEN);
             String command = input.nextLine().toLowerCase().trim();
@@ -138,6 +131,9 @@ public class AthoraLogic {
                 default -> System.out.println(ANSI_RESET + "I don't understand \"" + command + "\".");
             }
         }
+
+        System.out.println(ANSI_RESET + AthoraAssets.diedMessage);
+
     }
 
     public static String look(AthoraMap map) {
