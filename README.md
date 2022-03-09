@@ -1,6 +1,7 @@
 # Athora
 
 Welcome to Athora. Athora is a strategy based puzzle game designed to be played in the command line, inspired by classic MS-DOS game Zork.
+Developed by @Nulfy for SDD Term 1 Assignment. 
 
 # Story
 
