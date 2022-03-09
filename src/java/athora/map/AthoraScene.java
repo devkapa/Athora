@@ -7,6 +7,7 @@ import java.util.List;
 
 public record AthoraScene(int id, String name, String setting, List<AthoraDirection> destinations, ArrayList<AthoraObject> items) {
 
+    // Getters and setters
     public int getId() {
         return id;
     }

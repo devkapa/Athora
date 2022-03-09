@@ -6,6 +6,13 @@ public class AthoraDirection {
     public String message;
     public Integer health;
 
+    /*
+        Overloading constructors for each type of AthoraDirection.
+        - AthoraDirection(Integer id) is used when a direction directly corresponds to the ID of a scene
+        - AthoraDirection(String message) is used when a direction does not correspond to a scene and instead prints a message
+        - AthoraDirection(String message, Integer health) is used when a direction does not correspond to a scene, prints a message and affects the health of the player
+     */
+
     public AthoraDirection(Integer id){
         this.id = id;
     }
@@ -19,6 +26,7 @@ public class AthoraDirection {
         this.health = health;
     }
 
+    // Getters
     public String getMessage() {
         return message;
     }
@@ -31,6 +39,7 @@ public class AthoraDirection {
         return id;
     }
 
+    // Returns an integer value, representing the index of the provided direction
     public static int getIndex(String direction){
         switch(direction){
             case "north" -> {
