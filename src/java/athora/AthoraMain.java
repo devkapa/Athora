@@ -8,6 +8,7 @@ public class AthoraMain {
 
     public static void main(String[] args) {
 
+        // Print the game title screen
         String title = """
                 Hello. Welcome to
                                     
