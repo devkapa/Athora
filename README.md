@@ -1,3 +1,7 @@
+# DISCONTINUED
+The Java version of Athora is now discontinued. Please download the new, lightweight version at 
+https://github.com/Nulfy/Pythora
+
 # Athora
 
 Welcome to Athora. Athora is a strategy based puzzle game designed to be played in the command line, inspired by classic MS-DOS game Zork.
