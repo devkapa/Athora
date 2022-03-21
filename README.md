@@ -1,6 +1,6 @@
 # DISCONTINUED
 The Java version of Athora is now discontinued. Please download the new, lightweight version at 
-https://github.com/Nulfy/Pythora
+https://github.com/Nulfy/Pythora/releases/latest
 
 # Athora
 
